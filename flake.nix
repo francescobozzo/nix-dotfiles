@@ -13,9 +13,19 @@
     # show applications in spotlight
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-vscode-extensions, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-vscode-extensions, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   let
     configuration = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
@@ -35,6 +45,15 @@
           pkgs.vim
           pkgs.monitorcontrol
         ];
+
+      homebrew = {
+        enable = true;
+
+        masApps = {
+          Xcode = 497799835;
+          "WhatsApp Messenger" = 310633997;
+        };
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -97,6 +116,26 @@
           home-manager.sharedModules = [
             mac-app-util.homeManagerModules.default
           ];
+        }
+
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+
+            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+            # enableRosetta = true;
+
+            user = "fbozzo";
+
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+            };
+
+            # taps can no longer be added imperatively with `brew tap`.
+            mutableTaps = false;
+          };
         }
       ];
     };
