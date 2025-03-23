@@ -68,6 +68,7 @@
           htop
           tree
 
+          google-chrome
           telegram-desktop
         ];
 
