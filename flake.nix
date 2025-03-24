@@ -38,6 +38,7 @@
           persistent-apps = [
             "/Applications/WhatsApp.app"
             "/Users/fbozzo/Applications/Home Manager Apps/Telegram.app"
+            "/Users/fbozzo/Applications/Home Manager Apps/Spotify.app"
             "/Users/fbozzo/Applications/Home Manager Apps/Google Chrome.app"
             "/Applications/Xcode.app"
             "/Users/fbozzo/Applications/Home Manager Apps/Visual Studio Code.app"
@@ -96,6 +97,7 @@
 
           google-chrome
           telegram-desktop
+          spotify
         ];
 
         imports = [
