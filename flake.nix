@@ -35,6 +35,13 @@
         dock = {
           autohide = true;
           show-recents = false;
+          persistent-apps = [
+            "/Applications/WhatsApp.app"
+            "/Users/fbozzo/Applications/Home Manager Apps/Telegram.app"
+            "/Users/fbozzo/Applications/Home Manager Apps/Google Chrome.app"
+            "/Applications/Xcode.app"
+            "/Users/fbozzo/Applications/Home Manager Apps/Visual Studio Code.app"
+          ];
         };
       };
 
