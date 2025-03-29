@@ -37,7 +37,7 @@
           show-recents = false;
           persistent-apps = [
             "/Applications/WhatsApp.app"
-            "/Users/fbozzo/Applications/Home Manager Apps/Telegram.app"
+            "/Applications/Telegram Lite.app"
             "/Users/fbozzo/Applications/Home Manager Apps/Spotify.app"
             "/Users/fbozzo/Applications/Home Manager Apps/Google Chrome.app"
             "/Applications/Xcode.app"
@@ -60,6 +60,7 @@
         masApps = {
           Xcode = 497799835;
           "WhatsApp Messenger" = 310633997;
+          "Telegram Lite" = 946399090;
         };
       };
 
@@ -96,7 +97,6 @@
           tree
 
           google-chrome
-          telegram-desktop
           spotify
         ];
 
