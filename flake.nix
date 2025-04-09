@@ -61,6 +61,7 @@
           Xcode = 497799835;
           "WhatsApp Messenger" = 310633997;
           "Telegram Lite" = 946399090;
+          "DAZN: Stream Live Sports" = 1129523589;
         };
       };
 
