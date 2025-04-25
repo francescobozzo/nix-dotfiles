@@ -57,6 +57,16 @@
       homebrew = {
         enable = true;
 
+        global = {
+          autoUpdate = true;
+        };
+
+        onActivation = {
+          autoUpdate = false;
+          upgrade = true;
+          cleanup = "zap";
+        };
+
         masApps = {
           Xcode = 497799835;
           "WhatsApp Messenger" = 310633997;
