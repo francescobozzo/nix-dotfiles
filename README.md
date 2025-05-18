@@ -8,6 +8,7 @@ darwin-rebuild switch
 ## Update Nix Flake
 
 ```sh
+cd /etc/nix-darwin/
 nix flake update
 ```
 
