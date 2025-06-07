@@ -16,7 +16,7 @@ Run the following command to apply changes to the system:
 
 ```sh
 cd /etc/nix-darwin/
-darwin-rebuild switch
+sudo darwin-rebuild switch
 ```
 
 ## Update Nix Flake

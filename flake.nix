@@ -2,12 +2,12 @@
   description = "Francesco Bozzo's nix-darwin system flake configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
-        url = "github:nix-community/home-manager/release-24.11";
+        url = "github:nix-community/home-manager/release-25.05";
         inputs.nixpkgs.follows = "nixpkgs";
     };
     # show applications in spotlight
@@ -29,7 +29,7 @@
   let
     configuration = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       system.defaults = {
         dock = {
@@ -97,7 +97,9 @@
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
-      system.stateVersion = 4;
+      system.stateVersion = 5;
+
+      system.primaryUser = "fbozzo";
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
@@ -112,7 +114,7 @@
 
         # this is internal compatibility configuration 
         # for home-manager, don't change this!
-        home.stateVersion = "24.11";
+        home.stateVersion = "25.05";
         home.homeDirectory = "/Users/fbozzo";
         home.packages = with pkgs; [
           htop
