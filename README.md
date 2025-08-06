@@ -28,6 +28,14 @@ cd /etc/nix-darwin/
 nix flake update
 ```
 
+## Clean up unused resources
+
+Particularly useful to free some space in the disk
+
+```sh
+nix-collect-garbage -d
+```
+
 ## Resources
 
 - [Install VSCode and extensions with home manager](https://davi.wsh/blog/2024/11/nix-vscode/)
