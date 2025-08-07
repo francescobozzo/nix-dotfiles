@@ -1,8 +1,8 @@
-
-{ ... }: {
+{ ... }:
+{
   # authentication
   security.pam.services.sudo_local.touchIdAuth = true;
-  security.pam.services.sudo_local.reattach = true;  # touchId in tmux
+  security.pam.services.sudo_local.reattach = true; # touchId in tmux
 
   system.defaults.dock = {
     autohide = true;
@@ -30,7 +30,7 @@
     AppleShowAllFiles = true;
     ShowStatusBar = true;
     ShowPathbar = true;
-    FXRemoveOldTrashItems = true;  # Remove items in the trash after 30 days
+    FXRemoveOldTrashItems = true; # Remove items in the trash after 30 days
     FXPreferredViewStyle = "Nlsv"; # List view
     AppleShowAllExtensions = true;
     _FXShowPosixPathInTitle = true;

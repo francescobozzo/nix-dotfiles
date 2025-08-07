@@ -1,4 +1,10 @@
-{ inputs, config, username, ... }: {
+{
+  inputs,
+  config,
+  username,
+  ...
+}:
+{
   homebrew = {
     enable = true;
 
@@ -11,7 +17,7 @@
     };
 
     casks = [
-      "ghostty"  # currently home manager doesn't support ghostty on nix darwin
+      "ghostty" # currently home manager doesn't support ghostty on nix darwin
     ];
 
     masApps = {

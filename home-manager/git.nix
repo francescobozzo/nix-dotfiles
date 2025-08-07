@@ -9,7 +9,7 @@ _:
 
     extraConfig = {
       user.signingkey = "~/.ssh/id_ed25519.pub";
-      
+
       pull.rebase = true;
     };
   };

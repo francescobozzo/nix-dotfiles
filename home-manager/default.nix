@@ -21,6 +21,8 @@
     htop
     tree
 
+    nixfmt-rfc-style
+
     google-chrome
     spotify
   ];

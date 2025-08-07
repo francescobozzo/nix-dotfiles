@@ -14,9 +14,9 @@
     # Home Manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  
+
     # Misc
-    mac-app-util.url = "github:hraban/mac-app-util";  # Show MacOS applications in spotlight
+    mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     # Homebrew
@@ -31,17 +31,19 @@
     };
   };
 
-  outputs = inputs@{ self, ... }: {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MBP-M4-Pro
-    darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = {
-        inherit inputs;
-        username = "fbozzo";
-        hostname = "MBP-M4-Pro";
+  outputs =
+    inputs@{ self, ... }:
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#MBP-M4-Pro
+      darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = {
+          inherit inputs;
+          username = "fbozzo";
+          hostname = "MBP-M4-Pro";
+        };
+
+        modules = [ ./hosts/macbook-pro ];
       };
-      
-      modules = [ ./hosts/macbook-pro ];
     };
-  };
 }
