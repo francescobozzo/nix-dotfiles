@@ -24,7 +24,7 @@
       "Xcode" = 497799835;
       "WhatsApp Messenger" = 310633997;
       "Telegram Lite" = 946399090;
-      "DAZN: Stream Live Sports" = 1129523589;
+      "DAZN: Diretta Calcio e Sport" = 1129523589;
     };
 
     # Needed to resolve the "Refusing to untap homebrew/cask" error
