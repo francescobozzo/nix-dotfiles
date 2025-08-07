@@ -1,12 +1,4 @@
-{ inputs, username,... }:
-
-let
-  taps = {
-    "homebrew/homebrew-core" = inputs.homebrew-core;
-    "homebrew/homebrew-cask" = inputs.homebrew-cask;
-  };
-in
-{
+{ inputs, config, username, ... }: {
   homebrew = {
     enable = true;
 
@@ -31,7 +23,7 @@ in
 
     # Needed to resolve the "Refusing to untap homebrew/cask" error
     # https://github.com/zhaofengli/nix-homebrew/issues/5#issuecomment-1878798641
-    taps = builtins.attrNames taps;
+    taps = builtins.attrNames config.nix-homebrew.taps;
   };
 
   nix-homebrew = {
@@ -41,7 +33,10 @@ in
     # enableRosetta = true;
 
     user = username;
-    inherit taps;
+    taps = {
+      "homebrew/homebrew-core" = inputs.homebrew-core;
+      "homebrew/homebrew-cask" = inputs.homebrew-cask;
+    };
 
     # taps can no longer be added imperatively with `brew tap`.
     mutableTaps = false;
