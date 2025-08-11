@@ -47,4 +47,14 @@
     computer = 5; # minutes
     display = 3; # minutes
   };
+
+  system.startup.chime = false;
+
+  system.defaults.CustomUserPreferences = {
+    "com.apple.desktopservices" = {
+      # Avoid creating .DS_Store files on network or USB volumes
+      DSDontWriteNetworkStores = true;
+      DSDontWriteUSBStores = true;
+    };
+  };
 }
