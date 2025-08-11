@@ -1,4 +1,5 @@
-{ pkgs, username, ... }: {
+{ pkgs, username, ... }:
+{
   imports = [
     ./git.nix
     ./ssh.nix
@@ -21,12 +22,17 @@
     htop
     tree
 
+    # nix
     nixfmt-rfc-style
+    nil
 
     google-chrome
     spotify
   ];
 
   # link additional dotfiles that are not handled by home manager
-  home.file.".config" = { source = ../config; recursive = true; };
+  home.file.".config" = {
+    source = ../config;
+    recursive = true;
+  };
 }
