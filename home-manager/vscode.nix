@@ -9,10 +9,19 @@
     profiles.default.userSettings = {
       # This property will be used to generate settings.json:
       # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
-      "editor.formatOnSave" = true;
+
+      "extensions.autoCheckUpdates" = false;
+      "extensions.ignoreRecommendations" = true;
+      "update.mode" = "none";
 
       "workbench.iconTheme" = "vscode-icons";
       "vsicons.dontShowNewVersionMessage" = true;
+
+      "telemetry.enableCrashReporter" = false;
+      "telemetry.enableTelemetry" = false;
+      "telemetry.telemetryLevel" = "off";
+
+      "editor.formatOnSave" = true;
 
       # Nix
       "nix.enableLanguageServer" = true;
