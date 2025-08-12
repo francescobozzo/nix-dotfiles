@@ -50,5 +50,8 @@
       "markdown" = false;
       "nix" = false;
     };
+
+    # enable delta to open files from hyperlinks
+    "security.promptForLocalFileProtocolHandling" = false;
   };
 }
