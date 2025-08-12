@@ -5,7 +5,7 @@
     ./git.nix
     ./ssh.nix
     ./starship.nix
-    ./zsh.nix
+    ./shell.nix
   ];
 
   # Let Home Manager install and manage itself.
