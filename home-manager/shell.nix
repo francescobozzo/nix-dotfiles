@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -25,6 +26,18 @@
 
   programs.fzf = {
     enable = true;
+    package = pkgs.fzf.overrideAttrs (oldAttrs: {
+      postInstall = oldAttrs.postInstall + ''
+        install bin/fzf-preview.sh $out/bin
+      '';
+    });
     enableZshIntegration = true;
+    fileWidgetOptions = [ "--preview 'fzf-preview.sh {}'" ];
+  };
+
+  # just to install kitten since it used by Ghostty to display images with fzf preview
+  # https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh#L68
+  programs.kitty = {
+    enable = true;
   };
 }
