@@ -4,7 +4,6 @@
     ./vscode
     ./git.nix
     ./ssh.nix
-    ./starship.nix
     ./shell.nix
   ];
 
