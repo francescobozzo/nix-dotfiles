@@ -17,9 +17,11 @@
   home.homeDirectory = "/Users/${username}";
 
   home.packages = with pkgs; [
+    # utilities
     bat
     htop
     tree
+    ripgrep
 
     # nix
     nixfmt-rfc-style

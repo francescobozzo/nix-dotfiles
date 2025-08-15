@@ -38,5 +38,5 @@ nix-collect-garbage -d
 
 ## Resources
 
-- [Install VSCode and extensions with home manager](https://davi.wsh/blog/2024/11/nix-vscode/)
+- [NixOS Manual](https://nixos.org/manual/nixos/stable)
 - [Install from the Apple App Store](https://github.com/mas-cli/mas)
