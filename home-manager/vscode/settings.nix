@@ -6,6 +6,7 @@
     "extensions.autoCheckUpdates" = false;
     "extensions.ignoreRecommendations" = true;
     "update.mode" = "none";
+    "workbench.startupEditor" = "none";
 
     "workbench.iconTheme" = "vscode-icons";
     "vsicons.dontShowNewVersionMessage" = true;
