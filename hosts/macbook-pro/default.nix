@@ -37,6 +37,7 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
+    inputs.nix4vscode.overlays.forVscode
   ];
 
   # user

@@ -17,7 +17,11 @@
 
     # Misc
     mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
+
+    # vscode
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix4vscode.url = "github:nix-community/nix4vscode";
+    nix4vscode.inputs.nixpkgs.follows = "nixpkgs";
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

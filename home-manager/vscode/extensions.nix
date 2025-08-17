@@ -1,17 +1,17 @@
 { pkgs, ... }:
 {
-  programs.vscode.profiles.default.extensions = with pkgs.vscode-marketplace; [
-    jnoortheen.nix-ide
+  programs.vscode.profiles.default.extensions = pkgs.nix4vscode.forVscode [
+    "jnoortheen.nix-ide"
 
     # Themes
-    vscode-icons-team.vscode-icons
+    "vscode-icons-team.vscode-icons"
 
     # AI
-    github.copilot
-    github.copilot-chat
+    "github.copilot"
+    "github.copilot-chat"
 
     # Python
-    ms-python.python
-    charliermarsh.ruff
+    "ms-python.python"
+    "charliermarsh.ruff"
   ];
 }
