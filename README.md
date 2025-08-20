@@ -36,6 +36,14 @@ Particularly useful to free some space in the disk
 nix-collect-garbage -d
 ```
 
+## Project directories
+
+When initializing a new project using nix flakes, use the following command to start with a template.
+
+```sh
+nix flake new -t github:nix-community/nix-direnv .
+```
+
 ## Resources
 
 - [NixOS Manual](https://nixos.org/manual/nixos/stable)
