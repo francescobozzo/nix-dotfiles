@@ -1,2 +1,20 @@
 font-size = 18
 theme = catppuccin-macchiato.conf
+
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-space-behavior = remain
+quick-terminal-animation-duration = 0
+
+keybind = global:super+period=toggle_quick_terminal
+keybind = ctrl+l=clear_screen
+
+keybind = cmd+alt+h=resize_split:left,10
+keybind = cmd+alt+j=resize_split:down,10
+keybind = cmd+alt+k=resize_split:up,10
+keybind = cmd+alt+l=resize_split:right,10
+
+keybind = cmd+h=goto_split:left
+keybind = cmd+j=goto_split:down
+keybind = cmd+k=goto_split:up
+keybind = cmd+l=goto_split:right
