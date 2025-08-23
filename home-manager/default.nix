@@ -30,6 +30,7 @@
 
     google-chrome
     spotify
+    obsidian
   ];
 
   # link additional dotfiles that are not handled by home manager
