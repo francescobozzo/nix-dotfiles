@@ -18,6 +18,10 @@
   home.homeDirectory = "/Users/${username}";
 
   home.packages = with pkgs; [
+    google-chrome
+    spotify
+    obsidian
+
     # utilities
     bat
     htop
@@ -28,9 +32,11 @@
     nixfmt-rfc-style
     nil
 
-    google-chrome
-    spotify
-    obsidian
+    # reverse engineering
+    # desmume
+    ndstool
+    imhex
+    ghidra
   ];
 
   # link additional dotfiles that are not handled by home manager

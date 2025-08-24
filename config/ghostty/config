@@ -12,7 +12,7 @@ quick-terminal-space-behavior = remain
 quick-terminal-animation-duration = 0
 
 keybind = global:super+period=toggle_quick_terminal
-keybind = ctrl+l=clear_screen
+keybind = ctrl+k=clear_screen
 
 keybind = cmd+alt+h=resize_split:left,10
 keybind = cmd+alt+j=resize_split:down,10
