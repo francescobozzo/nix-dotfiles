@@ -28,6 +28,7 @@
 
     extraConfig = {
       pull.rebase = true;
+      init.defaultBranch = "main";
       merge.conflictStyle = "zdiff3";
 
       diff.colorMoved = "default";
