@@ -18,6 +18,7 @@
 
     casks = [
       "ghostty" # currently home manager doesn't support ghostty on nix darwin
+      "nvidia-geforce-now"
     ];
 
     masApps = {
