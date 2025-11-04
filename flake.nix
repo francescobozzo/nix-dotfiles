@@ -11,6 +11,9 @@
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
 
+    # Flake parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     # Home Manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,18 +39,26 @@
   };
 
   outputs =
-    inputs@{ self, ... }:
-    {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#MBP-M4-Pro
-      darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          inherit inputs;
-          username = "fbozzo";
-          hostname = "MBP-M4-Pro";
-        };
+    inputs@{ self, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
 
-        modules = [ ./hosts/macbook-pro ];
+      systems = [
+        "aarch64-darwin"
+        # "aarch64-linux"
+      ];
+
+      flake = {
+        # Build darwin flake using:
+        # $ darwin-rebuild build --flake .#MBP-M4-Pro
+        darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs;
+            username = "fbozzo";
+            hostname = "MBP-M4-Pro";
+          };
+
+          modules = [ ./hosts/macbook-pro ];
+        };
       };
     };
 }
