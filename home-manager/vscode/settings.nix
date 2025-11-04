@@ -44,6 +44,7 @@
       "plaintext" = false;
       "markdown" = false;
       "nix" = false;
+      "yaml" = false;
     };
 
     # enable delta to open files from hyperlinks

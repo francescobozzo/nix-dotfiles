@@ -34,9 +34,11 @@
 
     # reverse engineering
     # desmume
+    melonDS
     ndstool
     imhex
     ghidra
+    gcc-arm-embedded
   ];
 
   # link additional dotfiles that are not handled by home manager

@@ -13,5 +13,8 @@
     # Python
     "ms-python.python"
     "charliermarsh.ruff"
+
+    # Rust
+    "rust-lang.rust-analyzer"
   ];
 }
