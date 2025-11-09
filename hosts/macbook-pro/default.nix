@@ -13,11 +13,19 @@
     ./preferences.nix
   ];
 
-  # nix
   nix = {
     enable = true;
     settings.experimental-features = "nix-command flakes";
     optimise.automatic = true;
+
+    # run on 0th day of every week
+    gc.automatic = true;
+    gc.interval = {
+      Weekday = 0;
+      Hour = 0;
+      Minute = 0;
+    };
+    gc.options = "--delete-older-than 10d";
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
