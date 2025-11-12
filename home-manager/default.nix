@@ -42,6 +42,7 @@
 
     # os
     nixos-anywhere
+    deploy-rs
     mkpasswd
   ];
 

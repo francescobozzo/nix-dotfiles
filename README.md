@@ -18,13 +18,24 @@ In case you want to use the existing hardware configuration
 nix run github:nix-community/nixos-anywhere -- --flake .#neos --target-host nixos@192.168.1.89
 ```
 
-Sources:
-- https://github.com/nix-community/nixos-anywhere
+### Deployment
+
+Use `deploy-rs` to deploy changes remotely:
+
+```sh
+deploy --skip-checks .#neos
+```
+
+### Resources
+
 - https://nixos.org/manual/nixos/stable/#sec-installation-manual
+- https://github.com/nix-community/nixos-anywhere
+- https://github.com/serokell/deploy-rs
+
 
 ## MacOS
 
-### Install NixOS
+### Install Nix
 
 It is recommended to install Nix using the [Determinate installer](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer).
 

@@ -22,6 +22,7 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
+    pkgs.htop
   ];
 
   time.timeZone = "Europe/Rome";

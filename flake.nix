@@ -11,6 +11,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # Deployment
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     # Nix-Darwin
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
@@ -76,6 +79,27 @@
             ./hosts/framework-desktop
           ];
         };
+
+        deploy.nodes.neos = {
+          hostname = "neos";
+          sshUser = "root";
+          sudo = "doas -u";
+          sshOpts = [ ];
+          magicRollback = true;
+          autoRollback = true;
+          fastConnection = false;
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.neos;
+          };
+        };
+
+        # This is highly advised, and will prevent many possible mistakes
+        checks = builtins.mapAttrs (
+          system: deployLib: deployLib.deployChecks self.deploy
+        ) inputs.deploy-rs.lib;
+
       };
     };
 }

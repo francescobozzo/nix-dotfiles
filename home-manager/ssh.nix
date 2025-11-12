@@ -14,6 +14,12 @@
           UseKeychain = "yes";
         };
       };
+
+      "neos" = {
+        extraOptions = {
+          SetEnv = "TERM=xterm-256color";
+        };
+      };
     };
   };
 }
