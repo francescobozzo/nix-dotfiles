@@ -1,6 +1,5 @@
 # TODO List
 
-- Use [flake part](https://flake.parts/index.html)
 - Speed up editing of frequently edited dotfiles: https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
 
 ## Reverse Engineering

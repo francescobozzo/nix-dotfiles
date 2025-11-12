@@ -6,10 +6,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Hardware
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     # Nix-Darwin
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Flake parts
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -43,8 +48,8 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       systems = [
+        "x86_64-linux"
         "aarch64-darwin"
-        # "aarch64-linux"
       ];
 
       flake = {
@@ -56,8 +61,20 @@
             username = "fbozzo";
             hostname = "MBP-M4-Pro";
           };
-
           modules = [ ./hosts/macbook-pro ];
+        };
+
+        nixosConfigurations.neos = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            username = "fbozzo";
+            hostname = "neos";
+          };
+          system = "x86_64-linux";
+          modules = [
+            inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
+            ./hosts/framework-desktop
+          ];
         };
       };
     };

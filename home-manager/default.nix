@@ -39,6 +39,10 @@
     imhex
     ghidra
     gcc-arm-embedded
+
+    # os
+    nixos-anywhere
+    mkpasswd
   ];
 
   # link additional dotfiles that are not handled by home manager
