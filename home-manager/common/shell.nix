@@ -34,10 +34,4 @@
     enableZshIntegration = true;
     fileWidgetOptions = [ "--preview 'fzf-preview.sh {}'" ];
   };
-
-  # just to install kitten since it used by Ghostty to display images with fzf preview
-  # https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh#L68
-  programs.kitty = {
-    enable = true;
-  };
 }

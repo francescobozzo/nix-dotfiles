@@ -11,6 +11,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     inputs.disko.nixosModules.disko
+    inputs.home-manager.nixosModules.home-manager
     ./disks.nix
     ./hardware-configuration.nix
   ];
@@ -22,7 +23,6 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
-    pkgs.htop
   ];
 
   time.timeZone = "Europe/Rome";
@@ -50,4 +50,15 @@
     root.hashedPassword = "$6$w6UYvw/qfQjnZn4s$X4JoDYFZZmCmMdq4LUcxflRhK98KuVs3DerIA4aaUb1pQVE9jxKAnC8ptIjgc7oKU1Qg0xRGkz2/V1QFg.zb9/";
   };
   system.stateVersion = "25.05";
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${username} = import ../../home-manager/framework-desktop;
+    extraSpecialArgs = {
+      inherit username;
+    };
+
+    backupFileExtension = "backup";
+  };
 }

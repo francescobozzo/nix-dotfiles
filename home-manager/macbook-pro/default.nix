@@ -2,10 +2,10 @@
 {
   imports = [
     ./vscode
-    ./dev.nix
-    ./git.nix
+    ../common/dev.nix
+    ../common/git.nix
+    ../common/shell.nix
     ./ssh.nix
-    ./shell.nix
   ];
 
   # Let Home Manager install and manage itself.
@@ -46,9 +46,15 @@
     mkpasswd
   ];
 
+  # just to install kitten since it used by Ghostty to display images with fzf preview
+  # https://github.com/junegunn/fzf/blob/master/bin/fzf-preview.sh#L68
+  programs.kitty = {
+    enable = true;
+  };
+
   # link additional dotfiles that are not handled by home manager
   home.file.".config" = {
-    source = ../config;
+    source = ../../config;
     recursive = true;
   };
 }

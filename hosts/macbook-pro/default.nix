@@ -59,7 +59,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     verbose = true;
-    users.${username} = import ../../home-manager;
+    users.${username} = import ../../home-manager/macbook-pro;
     sharedModules = [
       inputs.mac-app-util.homeManagerModules.default
     ];
