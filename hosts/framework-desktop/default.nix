@@ -14,6 +14,7 @@
     inputs.home-manager.nixosModules.home-manager
     ./boot.nix
     ./disks.nix
+    ./gaming.nix
     ./hardware.nix
     ./networking.nix
     ./services.nix
@@ -24,6 +25,8 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
+    pkgs.amdgpu_top
+    # pkgs.rocmPackages.amdsmi
   ];
 
   time.timeZone = "Europe/Rome";
