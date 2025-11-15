@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -5,6 +6,7 @@
     loader.efi.canTouchEfiVariables = true;
 
     # kernel
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
