@@ -16,6 +16,7 @@
     ./disks.nix
     ./gaming.nix
     ./hardware.nix
+    ./llm.nix
     ./networking.nix
     ./services.nix
     ./users.nix

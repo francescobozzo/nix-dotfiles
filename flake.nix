@@ -67,13 +67,17 @@
           modules = [ ./hosts/macbook-pro ];
         };
 
-        nixosConfigurations.neos = inputs.nixpkgs.lib.nixosSystem {
+        nixosConfigurations.neos = inputs.nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
             username = "fbozzo";
             hostname = "neos";
+            pkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
-          system = "x86_64-linux";
           modules = [
             inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
             ./hosts/framework-desktop
