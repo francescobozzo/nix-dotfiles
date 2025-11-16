@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   username,
   ...
 }:
@@ -65,6 +66,7 @@
     ];
     extraSpecialArgs = {
       inherit username;
+      inherit pkgs-unstable;
     };
 
     backupFileExtension = "backup";

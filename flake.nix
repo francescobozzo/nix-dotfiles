@@ -58,11 +58,16 @@
       flake = {
         # Build darwin flake using:
         # $ darwin-rebuild build --flake .#MBP-M4-Pro
-        darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem {
+        darwinConfigurations."MBP-M4-Pro" = inputs.nix-darwin.lib.darwinSystem rec {
+          system = "aarch64-darwin";
           specialArgs = {
             inherit inputs;
             username = "fbozzo";
             hostname = "MBP-M4-Pro";
+            pkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
           modules = [ ./hosts/macbook-pro ];
         };
