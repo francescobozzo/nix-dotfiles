@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # https://wiki.nixos.org/wiki/Steam
   programs.steam = {
@@ -10,9 +10,17 @@
       proton-ge-bin
     ];
   };
-  hardware.steam-hardware.enable = true;
   services.udev.packages = [
     pkgs.steam-devices-udev-rules
     pkgs.game-devices-udev-rules
+  ];
+
+  hardware = {
+    steam-hardware.enable = true;
+    xpadneo.enable = true; # xbox controller
+  };
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    xpadneo
   ];
 }
