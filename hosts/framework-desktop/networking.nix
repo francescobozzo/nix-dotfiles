@@ -13,6 +13,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   # networking.interfaces.enp191s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp192s0.useDHCP = lib.mkDefault true;

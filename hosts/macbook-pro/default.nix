@@ -49,6 +49,8 @@
     inputs.nix4vscode.overlays.forVscode
   ];
 
+  services.tailscale.enable = true;
+
   # user
   programs.zsh.enable = true;
   users.users.${username} = {
