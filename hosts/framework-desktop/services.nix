@@ -1,7 +1,5 @@
 {
   services = {
-    openssh.enable = true;
-
     # KDE Plasma
     xserver.enable = true;
     displayManager.sddm.enable = true;

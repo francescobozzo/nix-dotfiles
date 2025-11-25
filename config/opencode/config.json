@@ -15,8 +15,11 @@
                 "baseURL": "http://neos:11434/v1"
             },
             "models": {
-                "qwen3-coder:30b": {
-                    "name": "Qwen3 Coder"
+                // "qwen3-coder:30b": {
+                //     "name": "Qwen3 Coder"
+                // },
+                "qwen3:30b": {
+                    "name": "Qwen3"
                 }
             }
         }
