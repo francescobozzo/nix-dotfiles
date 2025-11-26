@@ -31,6 +31,7 @@
     # https://github.com/sst/opencode/issues/1890
     # https://github.com/ggml-org/llama.cpp/pull/16755
     pkgs-unstable.opencode
+    pkgs-unstable.gemini-cli
 
     # utilities
     bat
