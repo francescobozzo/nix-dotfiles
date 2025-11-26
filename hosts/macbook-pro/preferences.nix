@@ -1,3 +1,4 @@
+{ username, ... }:
 {
   # authentication
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -12,10 +13,10 @@
     persistent-apps = [
       "/Applications/WhatsApp.app"
       "/Applications/Telegram Lite.app"
-      "/Users/fbozzo/Applications/Home Manager Apps/Spotify.app"
-      "/Users/fbozzo/Applications/Home Manager Apps/Google Chrome.app"
+      "/Users/${username}/Applications/Home Manager Apps/Spotify.app"
+      "/Users/${username}/Applications/Home Manager Apps/Google Chrome.app"
       "/Applications/Xcode.app"
-      "/Users/fbozzo/Applications/Home Manager Apps/Visual Studio Code.app"
+      "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"
       "/Applications/Ghostty.app"
     ];
     # Disable all hot corners
