@@ -10,9 +10,13 @@
     syntaxHighlighting.enable = true;
 
     oh-my-zsh = {
-      enable = true;
+      enable = false;
       plugins = [ ];
     };
+
+    # profile zsh startup time
+    # for i in $(seq 1 10); do time $SHELL -i -c exit; done
+    zprof.enable = false;
   };
 
   programs.starship = {
