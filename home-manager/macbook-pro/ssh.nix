@@ -2,7 +2,7 @@
   programs.ssh = {
     enable = true;
 
-    addKeysToAgent = "yes";
+    enableDefaultConfig = false;
 
     matchBlocks = {
       "github.com" = {
@@ -17,6 +17,7 @@
 
       "neos" = {
         extraOptions = {
+          AddKeysToAgent = "yes";
           SetEnv = "TERM=xterm-256color";
         };
       };

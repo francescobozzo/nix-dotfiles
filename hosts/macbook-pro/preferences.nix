@@ -13,7 +13,7 @@
     persistent-apps = [
       "/Applications/WhatsApp.app"
       "/Applications/Telegram Lite.app"
-      "/Users/${username}/Applications/Home Manager Apps/Spotify.app"
+      "/Applications/Spotify.app"
       "/Users/${username}/Applications/Home Manager Apps/Google Chrome.app"
       "/Applications/Xcode.app"
       "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"

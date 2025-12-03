@@ -24,7 +24,6 @@
 
   home.packages = with pkgs; [
     google-chrome
-    spotify
     obsidian
 
     # llm
@@ -40,7 +39,7 @@
     ripgrep
 
     # nix
-    nixfmt-rfc-style
+    nixfmt
     nil
 
     # reverse engineering
