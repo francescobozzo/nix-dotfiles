@@ -6,11 +6,12 @@
 }:
 {
   imports = [
-    ./vscode
     ../common/dev.nix
     ../common/git.nix
     ../common/shell.nix
     ./ssh.nix
+    ./vscode
+    ./zed.nix
   ];
 
   # Let Home Manager install and manage itself.

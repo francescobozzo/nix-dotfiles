@@ -1,6 +1,7 @@
 # Nix Configuration
 
 This repository contains the setup of my personal devices through Nix, including:
+
 - MacBook Pro M4 Pro (Nix Darwin)
 - Framework Desktop (NixOS)
 
@@ -9,11 +10,13 @@ This repository contains the setup of my personal devices through Nix, including
 ### Installation
 
 In case you need to generate the hardware configuration:
+
 ```sh
 nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/framework-desktop/hardware-configuration.nix --flake .#neos --target-host nixos@192.168.1.89
 ```
 
 In case you want to use the existing hardware configuration
+
 ```sh
 nix run github:nix-community/nixos-anywhere -- --flake .#neos --target-host nixos@192.168.1.89
 ```
@@ -32,7 +35,6 @@ deploy --skip-checks .#neos
 - https://github.com/nix-community/nixos-anywhere
 - https://github.com/serokell/deploy-rs
 
-
 ## MacOS
 
 ### Install Nix
@@ -42,7 +44,6 @@ It is recommended to install Nix using the [Determinate installer](https://githu
 From the official documentation:
 
 > It installs either Nix or Determinate Nix (with flakes enabled by default), it offers support for seamlessly uninstalling Nix, it enables Nix to survive macOS upgrades, and much more.
-
 
 ### Build the system
 
