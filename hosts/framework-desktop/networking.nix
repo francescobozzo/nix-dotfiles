@@ -28,6 +28,7 @@
       "10.0.0.0/8"
       "172.16.0.0/12"
       "192.168.0.0/16"
+      "100.64.0.0/10" # https://tailscale.com/kb/1304/ip-pool
     ];
     bantime = "24h"; # Ban IPs for one day on the first ban
     bantime-increment = {
