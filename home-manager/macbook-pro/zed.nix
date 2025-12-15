@@ -5,6 +5,7 @@
       "basher"
       "catppuccin"
       "catppuccin-icons"
+      "docker-compose"
       "dockerfile"
       "env" # .env and conf file
       "git-firefly"
@@ -35,6 +36,12 @@
 
       auto_update = false;
       load_direnv = "shell_hook";
+      tabs = {
+        file_icons = true;
+        git_status = true;
+      };
+
+      double_click_in_multibuffer = "open";
 
       telemetry = {
         diagnostics = false;

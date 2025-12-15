@@ -39,10 +39,16 @@
 
   # apps
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.monitorcontrol
-  ];
+  environment = {
+    systemPackages = [
+      pkgs.vim
+      pkgs.monitorcontrol
+    ];
+    variables = {
+      "LESS" = "-R";
+    };
+  };
+
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default

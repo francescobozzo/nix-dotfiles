@@ -35,6 +35,7 @@
 
     # utilities
     bat
+    less
     htop
     tree
     ripgrep
