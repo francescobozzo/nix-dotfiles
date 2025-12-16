@@ -17,6 +17,13 @@
     # profile zsh startup time
     # for i in $(seq 1 10); do time $SHELL -i -c exit; done
     zprof.enable = false;
+
+    shellAliases = {
+      ls = "eza"; # default view
+      ll = "eza -bhl --group-directories-first"; # long list
+      la = "eza -abhl --group-directories-first"; # all list
+      lt = "eza --tree --level=2"; # tree
+    };
   };
 
   programs.starship = {
@@ -37,5 +44,12 @@
     });
     enableZshIntegration = true;
     fileWidgetOptions = [ "--preview 'fzf-preview.sh {}'" ];
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    git = true;
+    icons = "auto";
   };
 }

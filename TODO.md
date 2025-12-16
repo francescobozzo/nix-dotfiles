@@ -4,6 +4,7 @@
 
 - [Speed up editing of frequently edited dotfiles](https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging)
 - [Development Environments on NixOS](https://nixos-and-flakes.thiscute.world/development/intro)
+- https://github.com/eh8/chenglab/
 
 ## Boot
 
@@ -19,6 +20,7 @@
   - [Build a voice agent with LangChain](https://www.youtube.com/watch?v=kDPzdyX76cg)
   - [JarVish: The LLM-Powered Personal Agent](https://medium.com/@kafkafranz495/jarvish-the-llm-powered-personal-agent-3eee2ef4b8db)
   - [Awesome Adaptation of Agentic AI](https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI/blob/main/paper.pdf)
+  - https://github.com/GiovanniPasq/agentic-rag-for-dummies/
 - RAG:
   - [Qdrant Essentials](https://www.youtube.com/watch?v=QnRjMolv8Qk&list=PL9IXkWSmb36_ykIQC30xk6aNKF8dlVkAy)
   - https://github.com/getzep/graphiti
@@ -52,6 +54,7 @@
 - https://wiki.nixos.org/wiki/Grafana
 - https://github.com/adinhodovic/tailscale-exporter
 - https://lab.workhub.so/the-free-self-hosted-monitoring-stack/
+- https://ntfy.sh/
 
 ## Networking
 
