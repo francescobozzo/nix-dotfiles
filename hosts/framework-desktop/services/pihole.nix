@@ -1,0 +1,75 @@
+{
+  services.pihole-web = {
+    enable = true;
+    ports = [ 168 ];
+  };
+  networking.firewall.allowedTCPPorts = [
+    168
+    53
+  ];
+  networking.firewall.allowedUDPPorts = [
+    168
+    53
+  ];
+
+  services.pihole-ftl = {
+    enable = true;
+    openFirewallDNS = true;
+    openFirewallDHCP = true;
+    privacyLevel = 0; # full visibility. Up to 3
+    queryLogDeleter = {
+      enable = true;
+      age = 120; # days
+    };
+    lists = [
+      {
+        url = "https://easylist.to/easylist/easylist.txt";
+        type = "block";
+        enabled = true;
+        description = "EasyList";
+      }
+      {
+        url = "https://easylist.to/easylist/easyprivacy.txt";
+        type = "block";
+        enabled = true;
+        description = "EasyPrivacy";
+      }
+      {
+        url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+        type = "block";
+        enabled = true;
+        description = "Steven Black Hosts";
+      }
+    ];
+    settings = {
+      dns = {
+        listeningMode = "ALL";
+        upstreams = [
+          "1.1.1.1" # Cloudflare
+          "2606:4700:4700::1111"
+          "9.9.9.11" # Quad9
+          "2620:fe::11"
+        ];
+        hosts = [
+          # split horizon dns with dnsmasq's localise-queries directive
+          # https://discourse.pi-hole.net/t/pi-hole-tailscale-and-split-horizon/74407/9
+          "192.168.1.89 frabit.dev"
+          "100.76.213.79 frabit.dev"
+          # TODO: split horizon dns with iOS hotspot tethering
+          # https://github.com/tailscale/tailscale/issues/15352
+        ];
+      };
+      dhcp = {
+        active = true;
+        start = "192.168.1.50";
+        end = "192.168.1.250";
+        router = "192.168.1.254";
+        ipv6 = false;
+        logging = true;
+        ignoreUnknownClients = false;
+        hosts = [ ];
+      };
+    };
+  };
+
+}
