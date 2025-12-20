@@ -117,6 +117,17 @@
           ];
         };
       };
+
+      language_models.ollama = {
+        api_url = "http://neos:11434";
+        available_models = [ ];
+      };
+      agent = {
+        default_model = {
+          provider = "ollama";
+          model = "qwen3:30b";
+        };
+      };
     };
   };
 }

@@ -16,7 +16,7 @@
       "/Applications/Spotify.app"
       "/Users/${username}/Applications/Home Manager Apps/Google Chrome.app"
       "/Applications/Xcode.app"
-      "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"
+      "/Users/${username}/Applications/Home Manager Apps/Zed.app"
       "/Applications/Ghostty.app"
     ];
     # Disable all hot corners

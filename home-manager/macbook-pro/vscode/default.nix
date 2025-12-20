@@ -3,7 +3,7 @@
   programs.vscode.mutableExtensionsDir = true;
 
   imports = [
-    ./extensions.nix
+    # ./extensions.nix # TODO: fix broken build
     ./settings.nix
   ];
 }
