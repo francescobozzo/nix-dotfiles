@@ -13,6 +13,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Firmware updater
+  services.fwupd.enable = true;
+
   hardware = {
     graphics.enable = true;
     amdgpu.initrd.enable = true;

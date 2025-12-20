@@ -12,43 +12,25 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
-    ./boot.nix
-    ./disks.nix
-    ./gaming.nix
-    ./hardware.nix
-    ./llm.nix
-    ./networking.nix
-    ./services.nix
-    ./users.nix
+    ./system/boot.nix
+    ./system/disks.nix
+    ./system/hardware.nix
+    ./system/networking.nix
+    ./system/nix.nix
+    ./system/desktop.nix
+    ./system/users.nix
+    ./services
   ];
-
-  nix = {
-    enable = true;
-    settings.experimental-features = "nix-command flakes";
-    optimise.automatic = true;
-
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 10d";
-    };
-  };
 
   programs.zsh.enable = true;
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
     pkgs.amdgpu_top
-    # pkgs.rocmPackages.amdsmi
+    # pkgs.rocmPackages.amdsmiti
   ];
 
   time.timeZone = "Europe/Rome";
-
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.hostPlatform = "x86_64-linux";
-  nixpkgs.config.rocmSupport = true;
-
-  system.stateVersion = "25.05";
 
   home-manager = {
     useGlobalPkgs = true;
