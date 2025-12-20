@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs-unstable, pkgs, ... }:
 
 let
   ollamaPort = 11434;
@@ -10,7 +10,7 @@ in
     port = ollamaPort;
     host = "0.0.0.0";
     openFirewall = true;
-    package = pkgs-unstable.ollama;
+    package = pkgs.ollama;
     acceleration = "rocm";
     rocmOverrideGfx = "11.5.1";
     loadModels = [
@@ -33,7 +33,6 @@ in
     environment = {
       OLLAMA_BASE_URL = "http://127.0.0.1:${toString ollamaPort}";
     };
-    # Pending resolution: https://github.com/nixos/nixpkgs/issues/461605
-    # package = pkgs-unstable.open-webui;
+    package = pkgs-unstable.open-webui;
   };
 }
