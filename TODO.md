@@ -59,8 +59,6 @@
 ## Networking
 
 - https://github.com/favonia/cloudflare-ddns
-- https://docs.pi-hole.net/
-- https://0xerr0r.github.io/blocky/latest/
 
 ## Security
 
