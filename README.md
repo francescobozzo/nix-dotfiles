@@ -29,11 +29,18 @@ Use `deploy-rs` to deploy changes remotely:
 deploy --skip-checks .#neos
 ```
 
+### LUKS + TPM2
+
+```sh
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0 /dev/nvme0n1p2
+```
+
 ### Resources
 
 - https://nixos.org/manual/nixos/stable/#sec-installation-manual
 - https://github.com/nix-community/nixos-anywhere
 - https://github.com/serokell/deploy-rs
+- https://discourse.nixos.org/t/full-disk-encryption-tpm2/29454/2
 
 ## MacOS
 

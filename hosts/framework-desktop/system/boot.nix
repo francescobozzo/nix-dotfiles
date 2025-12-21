@@ -7,15 +7,18 @@
 
     # kernel
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.availableKernelModules = [
-      "nvme"
-      "xhci_pci"
-      "thunderbolt"
-      "usbhid"
-      "uas"
-      "sd_mod"
-    ];
-    initrd.kernelModules = [ ];
+    initrd = {
+      systemd.enable = true;
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "thunderbolt"
+        "usbhid"
+        "uas"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+    };
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     kernelParams = [

@@ -10,7 +10,6 @@
 
 - [SecureBoot on NixOS](https://github.com/nix-community/lanzaboote)
 - [A not-featureful SSH server listening on your tailnet, for your initrd](https://github.com/boinkor-net/hoopsnake/tree/main)
-- https://laniakita.com/blog/nixos-fde-tpm-hm-guide
 
 ## AI
 

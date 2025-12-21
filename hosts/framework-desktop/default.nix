@@ -29,6 +29,7 @@
     pkgs.curl
     pkgs.gitMinimal
     pkgs.amdgpu_top
+    pkgs.tpm2-tss
     # pkgs.rocmPackages.amdsmiti
   ];
 
