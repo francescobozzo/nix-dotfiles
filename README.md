@@ -83,3 +83,9 @@ nix flake new -t github:nix-community/nix-direnv .
 
 - [NixOS Manual](https://nixos.org/manual/nixos/stable)
 - [Install from the Apple App Store](https://github.com/mas-cli/mas)
+
+## Secrets
+
+```sh
+nix-shell -p sops --run "sops hosts/framework-desktop/system/neos-secrets.yaml"
+```

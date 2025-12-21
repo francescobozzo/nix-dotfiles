@@ -1,0 +1,9 @@
+keys:
+  - &fbozzo age198t4vs3g8zejjsemqgxltrkrjxp9yx8ahujwh64u0clk7926hscsc9v0d4
+  - &neos age1c9lp94r8d0djx4vyg3cj8xz6u55zlmlwddlda4x4x7l4s5xmwgps0qrr35
+creation_rules:
+  - path_regex: .*-secrets.*$
+    key_groups:
+      - age:
+          - *fbozzo
+          - *neos

@@ -26,6 +26,10 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # sops-nix
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Misc
     mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
 

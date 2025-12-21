@@ -1,15 +1,20 @@
-{ hostname, ... }:
+{ config, hostname, ... }:
+
+let
+  localIp = "192.168.1.89";
+  modelIp = "192.168.1.254";
+in
 {
   networking = {
     hostName = hostname;
     useDHCP = false;
-    defaultGateway = "192.168.1.254";
-    nameservers = [ "192.168.1.89" ];
+    defaultGateway = modelIp;
+    nameservers = [ localIp ];
 
     interfaces.wlp192s0 = {
       ipv4.addresses = [
         {
-          address = "192.168.1.89";
+          address = localIp;
           prefixLength = 24;
         }
       ];
@@ -18,6 +23,35 @@
     networkmanager = {
       enable = true;
       wifi.powersave = true;
+      ensureProfiles = {
+        environmentFiles = [
+          config.sops.secrets.wifi.path
+        ];
+        profiles."HomeNetwork" = {
+          connection = {
+            id = "HomeNetwork";
+            type = "wifi";
+            autoconnect = true;
+          };
+
+          wifi = {
+            mode = "infrastructure";
+            ssid = "$WIFI_SSID";
+          };
+
+          ipv4 = {
+            address1 = "${localIp}/24";
+            dns = localIp;
+            gateway = modelIp;
+            method = "manual";
+          };
+
+          wifi-security = {
+            key-mgmt = "wpa-psk"; # WPA2
+            psk = "$WIFI_PSW";
+          };
+        };
+      };
     };
   };
 

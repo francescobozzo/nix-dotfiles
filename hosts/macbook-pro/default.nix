@@ -46,6 +46,7 @@
     ];
     variables = {
       "LESS" = "-R";
+      "EDITOR" = "zeditor --wait";
     };
   };
 

@@ -12,12 +12,14 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
     ./system/boot.nix
+    ./system/desktop.nix
     ./system/disks.nix
     ./system/hardware.nix
     ./system/networking.nix
     ./system/nix.nix
-    ./system/desktop.nix
+    ./system/sops.nix
     ./system/users.nix
     ./services
   ];
