@@ -56,7 +56,21 @@
     inputs.nix4vscode.overlays.forVscode
   ];
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    overrideLocalDns = true;
+  };
+
+  networking = {
+    # obtained through networksetup -listallnetworkservices
+    # needed for tailscale's overrideLocalDns
+    knownNetworkServices = [
+      "USB 10/100/1000 LAN"
+      "USB 10/100/1000 LAN 2"
+      "Thunderbolt Bridge"
+      "Wi-Fi"
+    ];
+  };
 
   # user
   programs.zsh.enable = true;
