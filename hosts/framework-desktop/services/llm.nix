@@ -2,7 +2,7 @@
 
 let
   ollamaPort = 11434;
-  openwebuiPort = 8080;
+  openwebuiPort = 9090;
 in
 {
   services.ollama = {

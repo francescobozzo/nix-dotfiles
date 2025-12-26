@@ -31,6 +31,10 @@
   - https://github.com/firecrawl/firecrawl
 - STT:
   - https://github.com/microsoft/VibeVoice/blob/main/docs/vibevoice-realtime-0.5b.md#installation
+- Image
+  - https://github.com/leejet/stable-diffusion.cpp
+- Video
+  - https://github.com/thu-ml/TurboDiffusion
 
 ## Self-hosting
 
@@ -61,7 +65,6 @@
 
 ## Security
 
-- https://github.com/Mic92/sops-nix
 - https://www.crowdsec.net/
 - https://github.com/CISOfy/lynis
 - https://github.com/imthenachoman/How-To-Secure-A-Linux-Server

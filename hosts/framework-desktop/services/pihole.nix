@@ -53,10 +53,16 @@
         hosts = [
           # split horizon dns with dnsmasq's localise-queries directive
           # https://discourse.pi-hole.net/t/pi-hole-tailscale-and-split-horizon/74407/9
-          "192.168.1.89 frabit.dev"
-          "100.76.213.79 frabit.dev"
           # TODO: split horizon dns with iOS hotspot tethering
           # https://github.com/tailscale/tailscale/issues/15352
+          "192.168.1.89 fbozzo.dpdns.org"
+          "100.76.213.79 fbozzo.dpdns.org"
+          "192.168.1.89 whoami.fbozzo.dpdns.org"
+          "100.76.213.79 whoami.fbozzo.dpdns.org"
+          "192.168.1.89 pihole.fbozzo.dpdns.org"
+          "100.76.213.79 pihole.fbozzo.dpdns.org"
+          "192.168.1.89 webui.fbozzo.dpdns.org"
+          "100.76.213.79 webui.fbozzo.dpdns.org"
         ];
       };
       dhcp = {
