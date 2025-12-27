@@ -31,7 +31,7 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Misc
-    mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
+    mac-app-util.url = "github:hraban/mac-app-util/8414fa1e2cb775b17793104a9095aabeeada63ef"; # Show MacOS applications in spotlight
 
     # vscode
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";

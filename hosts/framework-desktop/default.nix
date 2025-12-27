@@ -30,7 +30,10 @@
     pkgs.gitMinimal
     pkgs.amdgpu_top
     pkgs.tpm2-tss
-    # pkgs.rocmPackages.amdsmiti
+    # pkgs.rocmPackages.amdsmi
+    pkgs.rocmPackages.rocm-smi
+    pkgs.rocmPackages.rocminfo
+    pkgs.btop-rocm
   ];
 
   time.timeZone = "Europe/Rome";
