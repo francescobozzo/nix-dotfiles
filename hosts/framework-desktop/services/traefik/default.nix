@@ -92,6 +92,11 @@ in
           rule = "Host(`webui.fbozzo.dpdns.org`)";
           service = "webui";
         };
+        hass = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`hass.fbozzo.dpdns.org`)";
+          service = "hass";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
@@ -102,6 +107,9 @@ in
         };
         webui.loadBalancer = {
           servers = [ { url = "http://localhost:${toString 9090}"; } ];
+        };
+        hass.loadBalancer = {
+          servers = [ { url = "http://localhost:${toString 8123}"; } ];
         };
       };
     };

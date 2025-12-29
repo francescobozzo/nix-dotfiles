@@ -63,6 +63,8 @@
           "100.76.213.79 pihole.fbozzo.dpdns.org"
           "192.168.1.89 webui.fbozzo.dpdns.org"
           "100.76.213.79 webui.fbozzo.dpdns.org"
+          "192.168.1.89 hass.fbozzo.dpdns.org"
+          "100.76.213.79 hass.fbozzo.dpdns.org"
         ];
       };
       dhcp = {

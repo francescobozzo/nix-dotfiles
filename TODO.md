@@ -31,6 +31,7 @@
   - https://github.com/firecrawl/firecrawl
 - STT:
   - https://github.com/microsoft/VibeVoice/blob/main/docs/vibevoice-realtime-0.5b.md#installation
+  - https://github.com/OHF-Voice/wyoming
 - Image
   - https://github.com/leejet/stable-diffusion.cpp
 - Video
