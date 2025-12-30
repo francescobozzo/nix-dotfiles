@@ -119,14 +119,18 @@
       };
 
       language_models.ollama = {
-        api_url = "http://neos:11434";
-        available_models = [ ];
-      };
-      agent = {
-        default_model = {
-          provider = "ollama";
-          model = "qwen3:30b";
-        };
+        api_url = "https://llm.fbozzo.dpdns.org";
+        available_models = [
+          {
+            name = "nemotron-3-nano:30b";
+            display_name = "nemotron-3-nano:30b";
+            max_tokens = 32768;
+            keep_alive = "15m";
+            supports_tools = true;
+            supports_thinking = true;
+            supports_images = false;
+          }
+        ];
       };
     };
   };

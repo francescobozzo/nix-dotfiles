@@ -51,18 +51,22 @@
 - https://mynixos.com/nixpkgs/options/services.opencloud
 - https://github.com/glanceapp/glance
 - https://paisa.fyi/reference/journal/
+- https://github.com/mattermost/mattermost
+- https://mynixos.com/nixpkgs/options/services.ocis
+- https://garagehq.deuxfleurs.fr/
 
 ## Monitoring
 
 - https://wiki.nixos.org/wiki/Prometheus
 - https://wiki.nixos.org/wiki/Grafana
+- https://wiki.nixos.org/wiki/Grafana_Loki
 - https://github.com/adinhodovic/tailscale-exporter
 - https://lab.workhub.so/the-free-self-hosted-monitoring-stack/
 - https://ntfy.sh/
+- https://vector.dev/docs/setup/installation/operating-systems/nixos/
 
 ## Networking
 
-- https://github.com/favonia/cloudflare-ddns
 - https://github.com/lablabs/cloudflare-exporter
 
 ## Security
@@ -80,6 +84,7 @@
 
 - [sketchybar](https://mynixos.com/nix-darwin/options/services.sketchybar) with [aerospace integration](https://www.reddit.com/r/Nix/comments/1lhv5bi/nixdarwin_aerospace_to_sketchybar_issue/)
 - https://dropoverapp.com/
+- https://cyberduck.io/
 
 ## Reverse Engineering
 

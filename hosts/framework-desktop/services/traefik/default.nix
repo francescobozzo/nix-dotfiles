@@ -1,11 +1,8 @@
 { config, ... }:
-let
-  whoAmIPort = 15558;
-in
 {
   services.whoami = {
     enable = true;
-    port = whoAmIPort;
+    port = 15558;
   };
 
   services.traefik = {
@@ -97,19 +94,33 @@ in
           rule = "Host(`hass.fbozzo.dpdns.org`)";
           service = "hass";
         };
+        llm = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`llm.fbozzo.dpdns.org`)";
+          service = "llm";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
-          servers = [ { url = "http://localhost:${toString whoAmIPort}"; } ];
+          servers = [
+            { url = "http://localhost:${toString config.services.whoami.port}"; }
+          ];
         };
         pihole.loadBalancer = {
-          servers = [ { url = "http://localhost:${toString 168}"; } ];
+          servers = [ { url = "http://localhost:${config.services.pihole-web.ports}"; } ];
         };
         webui.loadBalancer = {
-          servers = [ { url = "http://localhost:${toString 9090}"; } ];
+          servers = [ { url = "http://localhost:${toString config.services.open-webui.port}"; } ];
         };
         hass.loadBalancer = {
-          servers = [ { url = "http://localhost:${toString 8123}"; } ];
+          servers = [
+            { url = "http://localhost:${toString config.services.home-assistant.config.http.server_port}"; }
+          ];
+        };
+        llm.loadBalancer = {
+          servers = [
+            { url = "http://localhost:${toString config.services.ollama.port}"; }
+          ];
         };
       };
     };

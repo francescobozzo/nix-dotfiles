@@ -1,15 +1,9 @@
-{ pkgs-unstable, ... }:
-
-let
-  ollamaPort = 11434;
-  openwebuiPort = 9090;
-in
+{ config, pkgs-unstable, ... }:
 {
   services.ollama = {
     enable = true;
-    port = ollamaPort;
     host = "0.0.0.0";
-    openFirewall = true;
+    port = 11434;
     package = pkgs-unstable.ollama;
     acceleration = "rocm";
     rocmOverrideGfx = "11.5.1";
@@ -24,17 +18,18 @@ in
       # OLLAMA_CONTEXT_LENGTH = "256000"; # max supported by qwen3-coder:30b
       OLLAMA_CONTEXT_LENGTH = "64000";
       # OLLAMA_KEEP_ALIVE = "-1"; # keep the model loaded
-      AMD_LOG_LEVEL = "3";
+      # AMD_LOG_LEVEL = "3";
+      #OLLAMA_ORIGINS = "*";
+      # OLLAMA_DEBUG = "1";
+      # HIP_VISIBLE_DEVICES = "1";
     };
   };
 
   services.open-webui = {
     enable = true;
-    port = openwebuiPort;
-    host = "0.0.0.0";
-    openFirewall = true;
+    port = 9090;
     environment = {
-      OLLAMA_BASE_URL = "http://127.0.0.1:${toString ollamaPort}";
+      OLLAMA_BASE_URL = "http://localhost:${toString config.services.ollama.port}";
     };
     package = pkgs-unstable.open-webui;
   };

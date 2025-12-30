@@ -4,11 +4,9 @@
     ports = [ 168 ];
   };
   networking.firewall.allowedTCPPorts = [
-    168
     53
   ];
   networking.firewall.allowedUDPPorts = [
-    168
     53
   ];
 
@@ -65,6 +63,8 @@
           "100.76.213.79 webui.fbozzo.dpdns.org"
           "192.168.1.89 hass.fbozzo.dpdns.org"
           "100.76.213.79 hass.fbozzo.dpdns.org"
+          "192.168.1.89 llm.fbozzo.dpdns.org"
+          "100.76.213.79 llm.fbozzo.dpdns.org"
         ];
       };
       dhcp = {
