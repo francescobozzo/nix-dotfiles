@@ -21,6 +21,7 @@
         web = {
           address = ":80";
           asDefault = true;
+          http.sanitizePath = true;
           http.redirections.entrypoint = {
             to = "websecure";
             scheme = "https";
@@ -30,6 +31,7 @@
         websecure = {
           address = ":443";
           asDefault = true;
+          http.sanitizePath = true;
           http.tls = {
             certResolver = "letsencrypt";
             domains = [
