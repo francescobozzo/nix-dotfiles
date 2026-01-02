@@ -29,6 +29,7 @@
   - [Scaling PDF Retrieval with Qdrant](https://qdrant.tech/documentation/advanced-tutorials/pdf-retrieval-at-scale/)
 - Tools:
   - https://github.com/firecrawl/firecrawl
+  - https://github.com/LMCache/LMCache
 - STT:
   - https://github.com/microsoft/VibeVoice/blob/main/docs/vibevoice-realtime-0.5b.md#installation
   - https://github.com/OHF-Voice/wyoming
@@ -54,6 +55,7 @@
 - https://github.com/mattermost/mattermost
 - https://mynixos.com/nixpkgs/options/services.ocis
 - https://garagehq.deuxfleurs.fr/
+- https://www.coverlettermaker.co/
 
 ## Monitoring
 
