@@ -50,12 +50,12 @@
 - https://www.stirling.com/
 - https://dawarich.app/
 - https://mynixos.com/nixpkgs/options/services.opencloud
-- https://github.com/glanceapp/glance
 - https://paisa.fyi/reference/journal/
 - https://github.com/mattermost/mattermost
 - https://mynixos.com/nixpkgs/options/services.ocis
 - https://garagehq.deuxfleurs.fr/
 - https://www.coverlettermaker.co/
+- https://changedetection.io/
 
 ## Monitoring
 

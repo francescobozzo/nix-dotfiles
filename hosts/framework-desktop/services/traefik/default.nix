@@ -101,6 +101,11 @@
           rule = "Host(`llm.fbozzo.dpdns.org`)";
           service = "llm";
         };
+        glance = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`glance.fbozzo.dpdns.org`)";
+          service = "glance";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
@@ -123,6 +128,9 @@
           servers = [
             { url = "http://localhost:${toString config.services.ollama.port}"; }
           ];
+        };
+        glance.loadBalancer = {
+          servers = [ { url = "http://localhost:${toString config.services.glance.settings.server.port}"; } ];
         };
       };
     };
