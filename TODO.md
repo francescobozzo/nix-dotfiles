@@ -78,6 +78,11 @@
 - https://github.com/imthenachoman/How-To-Secure-A-Linux-Server
 - https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
 
+## Containers
+
+- https://github.com/hall/kubenix
+- https://github.com/aksiksi/compose2nix
+
 ## Framework Desktop
 
 - https://strixhalo-homelab.d7.wtf/Guides/C-States

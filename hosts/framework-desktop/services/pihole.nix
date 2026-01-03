@@ -74,7 +74,7 @@
         start = "192.168.1.50";
         end = "192.168.1.250";
         router = "192.168.1.254";
-        ipv6 = false;
+        ipv6 = true;
         logging = true;
         ignoreUnknownClients = false;
         hosts = [ ];
