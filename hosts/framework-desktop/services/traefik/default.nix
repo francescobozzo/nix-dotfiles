@@ -49,6 +49,19 @@
         filePath = "${config.services.traefik.dataDir}/traefik.log";
         format = "json";
       };
+      accessLog = {
+        filePath = "${config.services.traefik.dataDir}/access.json";
+        format = "json";
+        bufferingSize = 0; # collect logs as in-memory buffer before writing into log file
+        fields = {
+          headers = {
+            defaultMode = "drop"; # drop all headers per default
+            names = {
+              User-Agent = "keep"; # log user agent strings
+            };
+          };
+        };
+      };
 
       # https://go-acme.github.io/lego/dns/cloudflare/index.html
       certificatesResolvers.letsencrypt.acme = {
