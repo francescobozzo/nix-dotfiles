@@ -5,6 +5,10 @@
     port = 15558;
   };
 
+  networking.firewall.allowedTCPPorts = [
+    443
+  ];
+
   services.traefik = {
     enable = true;
 
