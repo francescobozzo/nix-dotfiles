@@ -26,6 +26,7 @@
       "Xcode" = 497799835;
       "WhatsApp Messenger" = 310633997;
       "Telegram Lite" = 946399090;
+      # "Tailscale" = 1470499037;
       # "DAZN: Diretta Calcio e Sport" = 1129523589;
     };
 
