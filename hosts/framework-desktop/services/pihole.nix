@@ -1,17 +1,13 @@
+{ pkgs-unstable, ... }:
 {
   services.pihole-web = {
     enable = true;
     ports = [ 168 ];
   };
-  networking.firewall.allowedTCPPorts = [
-    53
-  ];
-  networking.firewall.allowedUDPPorts = [
-    53
-  ];
 
   services.pihole-ftl = {
     enable = true;
+    package = pkgs-unstable.pihole-ftl;
     openFirewallDNS = true;
     openFirewallDHCP = true;
     privacyLevel = 0; # full visibility. Up to 3
@@ -73,7 +69,7 @@
       };
       dhcp = {
         active = true;
-        start = "192.168.1.50";
+        start = "192.168.1.100";
         end = "192.168.1.250";
         router = "192.168.1.254";
         ipv6 = true;
