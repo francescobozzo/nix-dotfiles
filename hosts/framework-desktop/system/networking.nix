@@ -22,7 +22,7 @@ in
 
     networkmanager = {
       enable = true;
-      wifi.powersave = true;
+      wifi.powersave = false; # solve occasional pihole high dns resolution latency (> 5 seconds)
       ensureProfiles = {
         environmentFiles = [
           config.sops.secrets.wifi.path
