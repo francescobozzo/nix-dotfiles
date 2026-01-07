@@ -17,7 +17,7 @@
         "uas"
         "sd_mod"
       ];
-      kernelModules = [ ];
+      kernelModules = [ "amdgpu" ];
     };
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
