@@ -90,8 +90,8 @@
       languages = {
         Python = {
           language_servers = [
-            "ty"
-            "!basedpyright"
+            "!ty"
+            "basedpyright"
             "..."
           ];
           format_on_save = "on";
