@@ -21,7 +21,17 @@
         checkNewVersion = false;
         sendAnonymousUsage = false;
       };
+      metrics = {
+        prometheus = {
+          addRoutersLabels = true;
+          addServicesLabels = true;
+          entryPoint = "metrics";
+        };
+      };
       entryPoints = {
+        metrics = {
+          address = ":8082";
+        };
         web = {
           address = ":80";
           asDefault = true;
@@ -123,6 +133,11 @@
           rule = "Host(`glance.fbozzo.dpdns.org`)";
           service = "glance";
         };
+        prometheus = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`prometheus.fbozzo.dpdns.org`)";
+          service = "prometheus";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
@@ -148,6 +163,9 @@
         };
         glance.loadBalancer = {
           servers = [ { url = "http://localhost:${toString config.services.glance.settings.server.port}"; } ];
+        };
+        prometheus.loadBalancer = {
+          servers = [ { url = "http://localhost:${toString config.services.prometheus.port}"; } ];
         };
       };
     };

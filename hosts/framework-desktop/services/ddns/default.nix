@@ -10,6 +10,7 @@
       "hass.fbozzo.dpdns.org"
       "llm.fbozzo.dpdns.org"
       "glance.fbozzo.dpdns.org"
+      # "prometheus.fbozzo.dpdns.org"
     ];
     proxied = false;
     ipv4 = true;

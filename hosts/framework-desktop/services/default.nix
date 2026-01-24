@@ -8,5 +8,6 @@
     ./llm.nix
     ./logrotate.nix
     ./pihole.nix
+    ./prometheus.nix
   ];
 }
