@@ -66,6 +66,7 @@
 - https://garagehq.deuxfleurs.fr/
 - https://www.coverlettermaker.co/
 - https://changedetection.io/
+- https://app.affine.pro/
 
 ## Monitoring
 

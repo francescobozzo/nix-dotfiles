@@ -89,6 +89,10 @@
           };
           modules = [
             inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
+            (import ./hosts/framework-desktop/system/module-override.nix {
+              pkgs-unstable = inputs.nixpkgs-unstable;
+              inherit system;
+            })
             ./hosts/framework-desktop
           ];
         };
