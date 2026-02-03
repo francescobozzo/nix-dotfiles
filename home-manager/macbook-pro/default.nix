@@ -40,6 +40,10 @@
     tree
     ripgrep
 
+    # containers
+    colima
+    docker
+
     # nix
     nixfmt
     nil
