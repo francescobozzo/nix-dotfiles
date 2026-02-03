@@ -138,6 +138,11 @@
           rule = "Host(`prometheus.fbozzo.dpdns.org`)";
           service = "prometheus";
         };
+        uptime = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`status.fbozzo.dpdns.org`)";
+          service = "uptime";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
@@ -166,6 +171,11 @@
         };
         prometheus.loadBalancer = {
           servers = [ { url = "http://localhost:${toString config.services.prometheus.port}"; } ];
+        };
+        uptime.loadBalancer = {
+          servers = [
+            { url = "http://localhost:${config.services.uptime-kuma.settings.UPTIME_KUMA_PORT}"; }
+          ];
         };
       };
     };

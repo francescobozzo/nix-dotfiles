@@ -10,5 +10,6 @@
     ./neo4j.nix
     ./pihole.nix
     ./prometheus.nix
+    ./uptime-kuma.nix
   ];
 }

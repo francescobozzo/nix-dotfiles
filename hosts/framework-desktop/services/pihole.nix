@@ -67,6 +67,8 @@
           "100.76.213.79 glance.fbozzo.dpdns.org"
           "192.168.1.89 prometheus.fbozzo.dpdns.org"
           "100.76.213.79 prometheus.fbozzo.dpdns.org"
+          "192.168.1.89 status.fbozzo.dpdns.org"
+          "100.76.213.79 status.fbozzo.dpdns.org"
         ];
       };
       dhcp = {
