@@ -21,6 +21,7 @@
     ./system/nix.nix
     ./system/sops.nix
     ./system/users.nix
+    ./system/virtualisation.nix
     ./services
   ];
 
