@@ -24,7 +24,7 @@
   home.homeDirectory = "/Users/${username}";
 
   home.packages = with pkgs; [
-    google-chrome
+    pkgs-unstable.google-chrome
     obsidian
 
     # llm
