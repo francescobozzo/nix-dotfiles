@@ -18,6 +18,7 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    nixpkgs-darwin-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Flake parts
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -68,7 +69,7 @@
             inherit inputs;
             username = "fbozzo";
             hostname = "MBP-M4-Pro";
-            pkgs-unstable = import inputs.nixpkgs-unstable {
+            pkgs-unstable = import inputs.nixpkgs-darwin-unstable {
               inherit system;
               config.allowUnfree = true;
             };
