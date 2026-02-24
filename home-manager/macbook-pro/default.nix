@@ -38,6 +38,7 @@
     bat
     less
     htop
+    mactop
     tree
     ripgrep
 
