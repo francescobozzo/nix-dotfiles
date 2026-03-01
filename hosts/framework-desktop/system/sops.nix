@@ -15,6 +15,10 @@
       wifi.restartUnits = [ "NetworkManager.service" ];
       traefik.restartUnits = [ "traefik.service" ];
       cloudflare-dyndns-api-token.restartUnits = [ "cloudflare-dyndns.service" ];
+
+      "backblaze/environment" = { };
+      "backblaze/repository" = { };
+      "backblaze/password" = { };
     };
   };
 }

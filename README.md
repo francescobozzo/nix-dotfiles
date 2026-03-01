@@ -96,3 +96,23 @@ nix flake new -t github:nix-community/nix-direnv .
 ```sh
 nix-shell -p sops --run "sops hosts/framework-desktop/system/neos-secrets.yaml"
 ```
+
+## Backup
+
+Execute a backup:
+
+```sh
+sudo systemctl start restic-backups-backblaze.service
+```
+
+Check snapshots:
+
+```sh
+sudo restic-backblaze snapshots
+```
+
+To restore the last backup into the restore-backup directory we run:
+
+```sh
+sudo restic-backblaze restore latest --target restore-backup
+```

@@ -13,6 +13,7 @@
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
+    ./system/backup.nix
     ./system/boot.nix
     ./system/desktop.nix
     ./system/disks.nix
@@ -22,7 +23,18 @@
     ./system/sops.nix
     ./system/users.nix
     ./system/virtualisation.nix
-    ./services
+
+    ./services/ddns.nix
+    ./services/gaming.nix
+    ./services/glance.nix
+    ./services/hass.nix
+    ./services/llm.nix
+    ./services/logrotate.nix
+    ./services/neo4j.nix
+    ./services/pihole.nix
+    ./services/prometheus.nix
+    ./services/traefik.nix
+    ./services/uptime-kuma.nix
   ];
 
   programs.zsh.enable = true;
