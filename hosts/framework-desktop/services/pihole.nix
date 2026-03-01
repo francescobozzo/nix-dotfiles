@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   services.pihole-web = {
     enable = true;
@@ -7,7 +7,7 @@
 
   services.pihole-ftl = {
     enable = true;
-    package = pkgs-unstable.pihole-ftl;
+    package = pkgs.pihole-ftl;
     openFirewallDNS = true;
     openFirewallDHCP = true;
     privacyLevel = 0; # full visibility. Up to 3
