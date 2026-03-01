@@ -29,6 +29,10 @@
       pruneOpts = [
         "--keep-last 30" # 30 days
       ];
+      timerConfig = {
+        OnCalendar = "04:00";
+        Persistent = true;
+      };
     };
   };
 }
