@@ -1,7 +1,6 @@
 {
   imports = [
-    ./ddns
-    ./traefik
+    ./ddns.nix
     ./gaming.nix
     ./glance.nix
     ./hass.nix
@@ -10,6 +9,7 @@
     ./neo4j.nix
     ./pihole.nix
     ./prometheus.nix
+    ./traefik.nix
     ./uptime-kuma.nix
   ];
 }

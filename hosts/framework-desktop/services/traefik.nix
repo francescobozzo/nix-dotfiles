@@ -180,11 +180,4 @@
       };
     };
   };
-
-  sops.secrets.traefik = {
-    format = "dotenv";
-    restartUnits = [ "traefik.service" ];
-    sopsFile = ./traefik-secrets.env;
-    key = ""; # to map the whole file as a secret
-  };
 }

@@ -16,13 +16,6 @@
     ipv4 = true;
     ipv6 = true;
     deleteMissing = true;
-    apiTokenFile = config.sops.secrets.api-token.path;
-  };
-
-  sops.secrets.api-token = {
-    format = "yaml";
-    mode = "0440";
-    restartUnits = [ "cloudflare-dyndns.service" ];
-    sopsFile = ./cloudflare-dyndns-secrets.yaml;
+    apiTokenFile = config.sops.secrets.cloudflare-dyndns-api-token.path;
   };
 }

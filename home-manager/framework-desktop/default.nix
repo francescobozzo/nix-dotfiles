@@ -24,5 +24,6 @@
     htop
     tree
     ripgrep
+    jq
   ];
 }
