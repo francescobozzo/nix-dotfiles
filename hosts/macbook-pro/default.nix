@@ -47,6 +47,11 @@
     variables = {
       "LESS" = "-R";
       "EDITOR" = "zeditor --wait";
+
+      # Claude
+      "ANTHROPIC_AUTH_TOKEN" = "ollama";
+      "ANTHROPIC_API_KEY" = "";
+      "ANTHROPIC_BASE_URL" = "https://llm.fbozzo.dpdns.org";
     };
     shellAliases = {
       # https://github.com/ironicbadger/nix-config/blob/3aaa2cfb4dfa2299986ef5298b39286cc23c60f1/data/mac-dot-zshrc#L50

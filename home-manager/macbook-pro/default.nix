@@ -9,8 +9,10 @@
     ../common/dev.nix
     ../common/git.nix
     ../common/shell.nix
-    ./ssh.nix
     ./vscode
+    ./claude.nix
+    ./opencode.nix
+    ./ssh.nix
     ./zed.nix
   ];
 
@@ -28,9 +30,6 @@
     obsidian
 
     # llm
-    # https://github.com/sst/opencode/issues/1890
-    # https://github.com/ggml-org/llama.cpp/pull/16755
-    pkgs-unstable.opencode
     pkgs-unstable.gemini-cli
     pkgs-unstable.antigravity
 
