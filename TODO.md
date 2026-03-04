@@ -13,8 +13,6 @@
 
 ## AI
 
-- Models:
-  - [qwen3-vl](https://ollama.com/library/qwen3-vl/tags)
 - Backend
   - [Improving server inference/TTFT via prompt/input streaming](https://github.com/ggml-org/llama.cpp/discussions/11348)
 - Agents:

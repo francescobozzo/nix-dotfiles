@@ -11,6 +11,7 @@
     ../common/shell.nix
     ./vscode
     ./claude.nix
+    ./ghostty.nix
     ./opencode.nix
     ./ssh.nix
     ./zed.nix

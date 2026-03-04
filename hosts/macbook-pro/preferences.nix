@@ -17,7 +17,7 @@
       "/Users/${username}/Applications/Home Manager Apps/Google Chrome.app"
       "/Applications/Xcode.app"
       "/Users/${username}/Applications/Home Manager Apps/Zed.app"
-      "/Applications/Ghostty.app"
+      "/Users/${username}/Applications/Home Manager Apps/Ghostty.app"
     ];
     # Disable all hot corners
     wvous-bl-corner = 1;
