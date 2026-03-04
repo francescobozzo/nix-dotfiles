@@ -25,6 +25,7 @@
         "${config.services.open-webui.stateDir}/data"
         "${config.services.traefik.dataDir}/acme.json"
         config.services.uptime-kuma.settings.DATA_DIR
+        config.services.pihole-ftl.stateDirectory
       ];
       pruneOpts = [
         "--keep-last 30" # 30 days
