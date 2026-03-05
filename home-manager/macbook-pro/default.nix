@@ -72,8 +72,8 @@
   };
 
   # link additional dotfiles that are not handled by home manager
-  home.file.".config" = {
-    source = ../../config;
-    recursive = true;
-  };
+  # home.file.".config" = {
+  #   source = ../../config;
+  #   recursive = true;
+  # };
 }
