@@ -81,6 +81,11 @@
                       url = "https://status.fbozzo.dpdns.org";
                       icon = "di:uptime-kuma";
                     }
+                    {
+                      title = "immich";
+                      url = "https://photos.fbozzo.dpdns.org";
+                      icon = "di:immich";
+                    }
                   ];
                 }
               ];

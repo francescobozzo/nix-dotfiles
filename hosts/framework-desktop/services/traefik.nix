@@ -143,6 +143,11 @@
           rule = "Host(`status.fbozzo.dpdns.org`)";
           service = "uptime";
         };
+        immich = {
+          entryPoints = [ "websecure" ];
+          rule = "Host(`photos.fbozzo.dpdns.org`)";
+          service = "immich";
+        };
       };
       http.services = {
         whoami.loadBalancer = {
@@ -175,6 +180,11 @@
         uptime.loadBalancer = {
           servers = [
             { url = "http://localhost:${config.services.uptime-kuma.settings.UPTIME_KUMA_PORT}"; }
+          ];
+        };
+        immich.loadBalancer = {
+          servers = [
+            { url = "http://localhost:${toString config.services.immich.port}"; }
           ];
         };
       };

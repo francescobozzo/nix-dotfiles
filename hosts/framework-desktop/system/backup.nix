@@ -27,6 +27,10 @@
         config.services.uptime-kuma.settings.DATA_DIR
         # config.services.pihole-ftl.stateDirectory ~170MiB daily
         "/var/lib/${config.services.prometheus.stateDir}"
+        "${config.services.immich.mediaLocation}/backups"
+        "${config.services.immich.mediaLocation}/library"
+        "${config.services.immich.mediaLocation}/upload"
+        "${config.services.immich.mediaLocation}/profile"
       ];
       pruneOpts = [
         "--keep-last 30" # 30 days

@@ -69,6 +69,8 @@
           "100.76.213.79 prometheus.fbozzo.dpdns.org"
           "192.168.1.89 status.fbozzo.dpdns.org"
           "100.76.213.79 status.fbozzo.dpdns.org"
+          "192.168.1.89 photos.fbozzo.dpdns.org"
+          "100.76.213.79 photos.fbozzo.dpdns.org"
         ];
       };
       dhcp = {

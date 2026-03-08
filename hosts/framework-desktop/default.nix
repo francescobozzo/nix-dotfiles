@@ -28,6 +28,7 @@
     ./services/gaming.nix
     ./services/glance.nix
     ./services/hass.nix
+    ./services/immich.nix
     ./services/llm.nix
     ./services/logrotate.nix
     ./services/neo4j.nix
