@@ -12,6 +12,7 @@
     ./vscode
     ./claude.nix
     ./ghostty.nix
+    ./mcp.nix
     ./opencode.nix
     ./ssh.nix
     ./zed.nix

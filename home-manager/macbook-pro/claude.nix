@@ -3,5 +3,6 @@
   #   claude --model qwen3.5:9b
   programs.claude-code = {
     enable = true;
+    # enableMcpIntegration = true; TODO: uncomment when it moves out of unstable
   };
 }
