@@ -6,6 +6,7 @@
     package = pkgs-unstable.opencode;
     enableMcpIntegration = true;
     settings = {
+      theme = "catppuccin-macchiato";
       provider = {
         ollama = {
           npm = "@ai-sdk/openai-compatible";

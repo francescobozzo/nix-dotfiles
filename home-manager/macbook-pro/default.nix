@@ -64,6 +64,9 @@
     deploy-rs
     mkpasswd
     age
+
+    # graphics
+    rapidraw
   ];
 
   # just to install kitten since it used by Ghostty to display images with fzf preview

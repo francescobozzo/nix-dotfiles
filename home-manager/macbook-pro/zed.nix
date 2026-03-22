@@ -16,6 +16,7 @@
       "sql"
       "svelte"
       "toml"
+      "make"
     ];
     userSettings = {
       icon_theme = "Catppuccin Macchiato";
