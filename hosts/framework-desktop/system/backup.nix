@@ -21,12 +21,13 @@
         "**/GarminConnectConfig.json"
       ];
       paths = [
+        "/var/lib/nixos" # state needed to generate stable uids and gids
         config.services.home-assistant.configDir
         "${config.services.open-webui.stateDir}/data"
         "${config.services.traefik.dataDir}/acme.json"
         config.services.uptime-kuma.settings.DATA_DIR
         # config.services.pihole-ftl.stateDirectory ~170MiB daily
-        "/var/lib/${config.services.prometheus.stateDir}"
+        # "/var/lib/${config.services.prometheus.stateDir}" ~30MiB daily
         "${config.services.immich.mediaLocation}/backups"
         "${config.services.immich.mediaLocation}/library"
         "${config.services.immich.mediaLocation}/upload"
