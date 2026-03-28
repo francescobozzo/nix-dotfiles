@@ -8,7 +8,7 @@
     settings = {
       auto-update = "off";
       mouse-hide-while-typing = true;
-      font-size = 18;
+      font-size = 16;
       theme = "catppuccin-macchiato";
       window-width = 100;
       window-height = 27;

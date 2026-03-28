@@ -19,6 +19,7 @@
     zprof.enable = false;
 
     shellAliases = {
+      l = "eza"; # default view
       ls = "eza"; # default view
       ll = "eza -bhl --group-directories-first"; # long list
       la = "eza -abhl --group-directories-first"; # all list
