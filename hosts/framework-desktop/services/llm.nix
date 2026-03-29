@@ -7,6 +7,7 @@
     package = pkgs-unstable.ollama-rocm;
     rocmOverrideGfx = "11.5.1";
     environmentVariables = {
+      OLLAMA_NO_CLOUD = "1";
       OLLAMA_FLASH_ATTENTION = "1";
       OLLAMA_CONTEXT_LENGTH = "256000"; # max supported by qwen3-coder:30b
       # OLLAMA_KEEP_ALIVE = "-1"; # keep the model loaded

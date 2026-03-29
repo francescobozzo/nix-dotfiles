@@ -48,6 +48,7 @@
     pkgs.rocmPackages.rocm-smi
     pkgs.rocmPackages.rocminfo
     pkgs.btop-rocm
+    pkgs.ryzenadj
   ];
 
   time.timeZone = "Europe/Rome";
