@@ -1,6 +1,6 @@
 # Nix Configuration
 
-This repository contains the setup of my personal devices through Nix, including:
+This repository contains the setup of my personal devices through dendritic Nix, including:
 
 - MacBook Pro M4 Pro (Nix Darwin)
 - Framework Desktop (NixOS)
@@ -116,3 +116,7 @@ To restore the last backup into the restore-backup directory we run:
 ```sh
 sudo restic-backblaze restore latest --target restore-backup
 ```
+
+## References
+
+- https://github.com/Doc-Steve/dendritic-design-with-flake-parts
