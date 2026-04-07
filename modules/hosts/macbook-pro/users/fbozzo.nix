@@ -28,10 +28,10 @@
         home.packages = with pkgs; [
           unstable.google-chrome
           obsidian
-          rapidraw
+          # rapidraw
 
           # containers
-          colima
+          # colima
           docker
 
           # os
