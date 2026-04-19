@@ -13,7 +13,6 @@
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
-      # Firmware updater
       services.fwupd.enable = true;
 
       systemd.tmpfiles.rules = [
@@ -37,6 +36,27 @@
               FastConnectable = true;
             };
           };
+        };
+      };
+
+      # performance tuning
+      services.tuned = {
+        enable = true;
+        profiles = {
+          strix-halo = {
+            main = {
+              include = "accelerator-performance"; # default: balanced
+            };
+          };
+        };
+      };
+      systemd.services.tuned-set-profile = {
+        description = "Set TuneD profile";
+        after = [ "tuned.service" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.tuned}/bin/tuned-adm profile accelerator-performance";
         };
       };
     };

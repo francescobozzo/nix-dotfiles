@@ -5,6 +5,10 @@
     nixpkgs.config.rocmSupport = true;
     nixpkgs.hostPlatform = "x86_64-linux";
 
+    # It's sometimes helpful to tell Nixpkgs which GFX targets to compile ROCm for.
+    # You can usually find this by running `rocminfo` or checking your GPU's specs.
+    # nixpkgs.config.rocmTargets = [ "gfx1151" ]; # Add your GPU's GFX here
+
     nixpkgs.overlays = [
       (final: _prev: {
         unstable = import inputs.nixpkgs-unstable {
