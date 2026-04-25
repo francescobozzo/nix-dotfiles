@@ -14,6 +14,7 @@
           self.modules.homeManager.reverse-engineering
           self.modules.homeManager.shell
           self.modules.homeManager.ssh
+          self.modules.homeManager.llm-models
         ];
 
         # Let Home Manager install and manage itself.

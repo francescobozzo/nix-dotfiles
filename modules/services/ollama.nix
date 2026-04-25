@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.llm =
+  flake.modules.nixos.ollama =
     {
       config,
       pkgs,

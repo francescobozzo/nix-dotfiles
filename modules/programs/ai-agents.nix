@@ -1,7 +1,16 @@
 {
   flake.modules.homeManager.ai-agents =
-    { pkgs, lib, ... }:
     {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    let
+      ollamaModels = lib.filter (m: m.provider == "ollama") config.llms;
+    in
+    {
+
       home.packages = with pkgs; [
         unstable.gemini-cli
         unstable.antigravity
@@ -28,17 +37,15 @@
               npm = "@ai-sdk/openai-compatible";
               name = "Ollama (local)";
               options.baseURL = "https://llm.fbozzo.dpdns.org/v1";
-              models = {
-                "qwen3.5:9b" = {
-                  name = "qwen3.5:9b";
-                };
-                "qwen3.6:27b" = {
-                  name = "qwen3.6:27b";
-                };
-                "qwen3.6:35b" = {
-                  name = "qwen3.6:35b";
-                };
-              };
+              # expected structure -> models = { "qwen3.5:9b" = { name = "qwen3.5:9b"; }; };
+              models = lib.listToAttrs (
+                map (m: {
+                  name = m.name;
+                  value = {
+                    name = m.name;
+                  };
+                }) ollamaModels
+              );
             };
           };
         };

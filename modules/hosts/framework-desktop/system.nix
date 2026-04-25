@@ -22,7 +22,7 @@
         self.modules.nixos.glance
         self.modules.nixos.hass
         self.modules.nixos.immich
-        self.modules.nixos.llm
+        self.modules.nixos.ollama
         self.modules.nixos.logrotate
         self.modules.nixos.neo4j
         self.modules.nixos.pihole
