@@ -93,7 +93,7 @@
             };
           };
           serversTransport = {
-            insecureSkipVerify = true;
+            insecureSkipVerify = true; # client ---HTTPS--> traefik ---HTTP--> service
           };
 
           api = {

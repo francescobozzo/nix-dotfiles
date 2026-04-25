@@ -10,6 +10,8 @@
         tree
         ripgrep
         jq
+
+        nodejs_22
       ];
 
       programs.zsh = {

@@ -5,6 +5,7 @@
       home.packages = with pkgs; [
         unstable.gemini-cli
         unstable.antigravity
+        unstable.pi-coding-agent
       ];
 
       # Use the following command to instantiate claude code with ollama models
@@ -31,8 +32,11 @@
                 "qwen3.5:9b" = {
                   name = "qwen3.5:9b";
                 };
-                "qwen3.5:27b" = {
-                  name = "qwen3.5:27b";
+                "qwen3.6:27b" = {
+                  name = "qwen3.6:27b";
+                };
+                "qwen3.6:35b" = {
+                  name = "qwen3.6:35b";
                 };
               };
             };
