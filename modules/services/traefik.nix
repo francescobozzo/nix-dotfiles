@@ -150,6 +150,11 @@
               rule = "Host(`photos.fbozzo.dpdns.org`)";
               service = "immich";
             };
+            llama = {
+              entryPoints = [ "websecure" ];
+              rule = "Host(`llama.fbozzo.dpdns.org`)";
+              service = "llama";
+            };
           };
           http.services = {
             whoami.loadBalancer = {
@@ -187,6 +192,11 @@
             immich.loadBalancer = {
               servers = [
                 { url = "http://localhost:${toString config.services.immich.port}"; }
+              ];
+            };
+            llama.loadBalancer = {
+              servers = [
+                { url = "http://localhost:${toString config.services.llama-swap.port}"; }
               ];
             };
           };

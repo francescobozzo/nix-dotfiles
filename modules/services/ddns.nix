@@ -13,6 +13,7 @@
           "llm.fbozzo.dpdns.org"
           "glance.fbozzo.dpdns.org"
           # "prometheus.fbozzo.dpdns.org"
+          # "llama.fbozzo.dpdns.org"
         ];
         proxied = false;
         ipv4 = true;
