@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.homeManager.ai-agents =
     {
@@ -7,7 +8,8 @@
       ...
     }:
     let
-      ollamaModels = lib.filter (m: m.provider == "ollama") config.llms;
+      ollamaModels = lib.filter (m: m.provider == "ollama") self.llms;
+      llamaModels = lib.filter (m: m.provider == "llama") self.llms;
     in
     {
 
@@ -45,6 +47,20 @@
                     name = m.name;
                   };
                 }) ollamaModels
+              );
+            };
+            llama = {
+              npm = "@ai-sdk/openai-compatible";
+              name = "llama (local)";
+              options.baseURL = "https://llama.fbozzo.dpdns.org/v1";
+              # expected structure -> models = { "qwen3.5:9b" = { name = "qwen3.5:9b"; }; };
+              models = lib.listToAttrs (
+                map (m: {
+                  name = m.name;
+                  value = {
+                    name = m.name;
+                  };
+                }) llamaModels
               );
             };
           };

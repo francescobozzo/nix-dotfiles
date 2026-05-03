@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.modules.nixos.ollama =
     {
@@ -13,6 +13,7 @@
       llama-server = lib.getExe' llama-cpp "llama-server";
       llmGroup = "llm";
       llmPath = "/var/llms";
+      llamaModels = lib.filter (m: m.provider == "llama") self.llms;
     in
     {
       imports = [
@@ -55,18 +56,15 @@
         settings = {
           # increase health check timeout to 1 hour to accommodate large model downloads
           healthCheckTimeout = 3600;
-          models = {
-            "qwen3.6:27b" = {
-              cmd = "${llama-server} --port \${PORT} -hf unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
-              aliases = [ "qwen3.6:27b" ];
-              # ttl = 300; # 5 minutes
-            };
-            "qwen3.5:0.8b" = {
-              cmd = "${llama-server} --port \${PORT} -hf unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
-              aliases = [ "qwen3.5:0.8b" ];
-              # ttl = 300; # 5 minutes
-            };
-          };
+          models = lib.listToAttrs (
+            builtins.map (m: {
+              name = m.name;
+              value = {
+                cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} ${m.llamaArgs}";
+                aliases = [ m.name ];
+              };
+            }) llamaModels
+          );
         };
       };
 

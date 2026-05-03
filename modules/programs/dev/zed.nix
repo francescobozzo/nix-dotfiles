@@ -1,6 +1,31 @@
+{ self, ... }:
 {
   flake.modules.homeManager.dev =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
+    let
+      ollamaModels = builtins.map (m: {
+        name = m.name;
+        display_name = m.name;
+        max_tokens = 32768;
+        keep_alive = "5m";
+        supports_tools = true;
+        supports_thinking = true;
+        supports_images = m.supportImages;
+      }) (lib.filter (m: m.provider == "ollama") self.llms);
+
+      # openai_compatible uses nested "capabilities" block
+      llamaModels = builtins.map (m: {
+        name = m.name;
+        display_name = m.name;
+        max_tokens = 32768;
+        capabilities = {
+          tools = true;
+          images = m.supportImages;
+          parallel_tool_calls = false;
+          prompt_cache_key = false;
+        };
+      }) (lib.filter (m: m.provider == "llama") self.llms);
+    in
     {
       home.packages = with pkgs; [
         nixfmt
@@ -33,7 +58,7 @@
             dark = "Catppuccin Macchiato";
             light = "Catppuccin Latte";
           };
-          hour_format = "hour24";
+          journal.hour_format = "hour24";
           vim_mode = false;
 
           format_on_save = "on";
@@ -60,16 +85,6 @@
           lsp = {
             pylsp = {
               binary.path_lookup = true;
-            };
-            rust-analyzer = {
-              binary = {
-                path_lookup = true;
-              };
-            };
-            package-version-server = {
-              binary = {
-                path_lookup = true;
-              };
             };
             ruff = {
               initialization_options = {
@@ -104,19 +119,11 @@
                 "..."
               ];
               format_on_save = "on";
-              formatter = [
-                {
-                  language_server = {
-                    name = "ruff";
-                  };
-                }
-                {
-                  code_actions = {
-                    "source.fixAll.ruff" = true;
-                    "source.organizeImports.ruff" = true;
-                  };
-                }
-              ];
+              code_actions_on_format = {
+                "source.fixAll.ruff" = true;
+                "source.organizeImports.ruff" = true;
+              };
+              formatter.language_server.name = "ruff";
             };
             Nix = {
               language_servers = [
@@ -127,19 +134,16 @@
             };
           };
 
-          language_models.ollama = {
-            api_url = "https://llm.fbozzo.dpdns.org";
-            available_models = [
-              {
-                name = "nemotron-3-nano:30b";
-                display_name = "nemotron-3-nano:30b";
-                max_tokens = 32768;
-                keep_alive = "15m";
-                supports_tools = true;
-                supports_thinking = true;
-                supports_images = false;
-              }
-            ];
+          show_edit_predictions = false;
+          language_models = {
+            ollama = {
+              api_url = "https://llm.fbozzo.dpdns.org";
+              available_models = ollamaModels;
+            };
+            openai_compatible.llama = {
+              api_url = "https://llama.fbozzo.dpdns.org/v1";
+              available_models = llamaModels;
+            };
           };
         };
       };
