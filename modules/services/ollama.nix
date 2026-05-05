@@ -9,7 +9,7 @@
       ...
     }:
     let
-      llama-cpp = pkgs.unstable.llama-cpp-rocm;
+      llama-cpp = pkgs.llama-cpp;
       llama-server = lib.getExe' llama-cpp "llama-server";
       llmGroup = "llm";
       llmPath = "/var/llms";

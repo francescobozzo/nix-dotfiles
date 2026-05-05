@@ -66,5 +66,12 @@
       llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
       supportImages = true;
     }
+    {
+      name = "qwen3.6:27b-draft-qwen3.5:0.8b";
+      provider = "llama";
+      huggingFace = "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL";
+      llamaArgs = "-hfd unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
+      supportImages = true;
+    }
   ];
 }

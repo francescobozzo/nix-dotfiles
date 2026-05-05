@@ -16,6 +16,7 @@
           config = final.config;
         };
       })
+      inputs.llama-cpp.overlays.default
     ];
 
     nix = {
