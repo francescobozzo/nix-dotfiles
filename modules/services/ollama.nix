@@ -101,5 +101,9 @@
         llama-cpp
         pkgs.unstable.python3Packages.huggingface-hub
       ];
+
+      nixpkgs.overlays = [
+        inputs.llama-cpp.overlays.default
+      ];
     };
 }

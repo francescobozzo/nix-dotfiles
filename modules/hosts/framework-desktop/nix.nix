@@ -10,13 +10,13 @@
     # nixpkgs.config.rocmTargets = [ "gfx1151" ]; # Add your GPU's GFX here
 
     nixpkgs.overlays = [
-      (final: _prev: {
+      (final: _prev: rec {
         unstable = import inputs.nixpkgs-unstable {
           system = final.stdenv.hostPlatform.system;
           config = final.config;
         };
+        rocmPackages = unstable.rocmPackages;
       })
-      inputs.llama-cpp.overlays.default
     ];
 
     nix = {
