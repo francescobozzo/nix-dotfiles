@@ -10,6 +10,7 @@
         imports = [
           self.modules.homeManager.dev
           self.modules.homeManager.shell
+          self.modules.homeManager.ai-agents
         ];
 
         # Let Home Manager install and manage itself.

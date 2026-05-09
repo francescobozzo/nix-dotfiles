@@ -14,6 +14,8 @@
         nodejs_22
       ];
 
+      programs.zsh.sessionVariables."LESS" = "-R";
+
       programs.zsh = {
         enable = true;
 

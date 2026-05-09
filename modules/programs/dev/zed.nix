@@ -32,6 +32,9 @@
         nil
       ];
 
+      programs.zsh.sessionVariables."EDITOR" = "zeditor --wait";
+      programs.delta.options.hyperlinks-file-link-format = "zed://file/{path}:{line}";
+
       programs.zed-editor = {
         enable = true;
         extensions = [

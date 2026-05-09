@@ -35,7 +35,6 @@
         side-by-side = false;
         line-numbers = true;
         hyperlinks = true;
-        hyperlinks-file-link-format = "zed://file/{path}:{line}";
       };
     };
   };

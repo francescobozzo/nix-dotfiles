@@ -27,6 +27,12 @@
         # enableMcpIntegration = true; TODO: uncomment when it moves out of unstable
       };
 
+      programs.zsh.sessionVariables = {
+        "ANTHROPIC_AUTH_TOKEN" = "ollama";
+        "ANTHROPIC_API_KEY" = "";
+        "ANTHROPIC_BASE_URL" = "https://llm.fbozzo.dpdns.org";
+      };
+
       # https://github.com/sst/opencode/issues/1890
       programs.opencode = {
         enable = true;
