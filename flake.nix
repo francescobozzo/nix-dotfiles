@@ -34,7 +34,6 @@
 
     # Misc
     mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
-    llama-cpp.url = "github:ggml-org/llama.cpp";
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

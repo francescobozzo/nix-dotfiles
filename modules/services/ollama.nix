@@ -9,7 +9,37 @@
       ...
     }:
     let
-      llama-cpp = pkgs.llama-cpp;
+      llama-cpp =
+        (pkgs.unstable.llama-cpp.override {
+          rocmSupport = true;
+          rocmGpuTargets = [ "gfx1151" ];
+        }).overrideAttrs
+          (oldAttrs: rec {
+            version = "9186";
+            src = pkgs.fetchFromGitHub {
+              owner = "ggml-org";
+              repo = "llama.cpp";
+              tag = "b${version}";
+              hash = "sha256-mkdZl/yReMMbls6neFmyD5gOZYR2wsafipxlRXcDPYM=";
+              leaveDotGit = true;
+              postFetch = ''
+                git -C "$out" rev-parse --short HEAD > $out/COMMIT
+                find "$out" -name .git -print0 | xargs -0 rm -rf
+              '';
+            };
+            npmRoot = "tools/ui";
+            npmDepsHash = "sha256-WaEePrEZ7O/7deP2KJhe0AwiSKYA8HOqETmMHUkmBe0=";
+
+            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+              "-DLLAMA_HIP_UMA=ON" # unified memory
+            ];
+
+            # Mirror the Strix Halo toolbox HIP tuning: pin the ROCm path explicitly and
+            # raise the local unroll threshold for gfx1151 kernels.
+            cmakeFlagsArray = (oldAttrs.cmakeFlagsArray or [ ]) ++ [
+              "-DCMAKE_HIP_FLAGS=--rocm-path=${pkgs.rocmPackages.clr} -mllvm --amdgpu-unroll-threshold-local=600"
+            ];
+          });
       llama-server = lib.getExe' llama-cpp "llama-server";
       llmGroup = "llm";
       llmPath = "/var/llms";
@@ -100,10 +130,6 @@
       environment.systemPackages = [
         llama-cpp
         pkgs.unstable.python3Packages.huggingface-hub
-      ];
-
-      nixpkgs.overlays = [
-        inputs.llama-cpp.overlays.default
       ];
     };
 }
