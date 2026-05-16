@@ -19,6 +19,9 @@
       })
     ];
 
+    # https://wiki.nixos.org/wiki/Zed#Nix-ld_(recommended)
+    programs.nix-ld.enable = true;
+
     nix = {
       enable = true;
       settings = {

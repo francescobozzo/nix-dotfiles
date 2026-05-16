@@ -8,7 +8,6 @@
         ndstool
         imhex
         ghidra
-        gcc-arm-embedded
       ];
     };
 }

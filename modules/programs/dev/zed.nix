@@ -37,6 +37,9 @@
 
       programs.zed-editor = {
         enable = true;
+        # enableMcpIntegration = true; enable when available
+        # installRemoteServer = !pkgs.stdenv.isDarwin; requires same version on local and remote
+        package = pkgs.unstable.zed-editor;
         extensions = [
           "basher"
           "catppuccin"
@@ -109,6 +112,12 @@
                     maxTsServerMemory = 16184;
                   };
                 };
+              };
+            };
+            clangd = {
+              binary = {
+                # path = lib.getExe' pkgs.clang-tools "clangd";
+                arguments = [ "--header-insertion=never" ];
               };
             };
           };

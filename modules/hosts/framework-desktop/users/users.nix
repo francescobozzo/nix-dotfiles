@@ -11,6 +11,7 @@
           self.modules.homeManager.dev
           self.modules.homeManager.shell
           self.modules.homeManager.ai-agents
+          self.modules.homeManager.ssh
         ];
 
         # Let Home Manager install and manage itself.

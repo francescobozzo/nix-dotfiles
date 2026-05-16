@@ -4,6 +4,8 @@
     { pkgs, lib, ... }:
     {
       programs.zsh.enable = true;
+      programs.ssh.startAgent = true;
+
       environment.systemPackages = map lib.lowPrio [
         pkgs.curl
         pkgs.gitMinimal
