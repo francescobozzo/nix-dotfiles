@@ -69,7 +69,7 @@
                       {
                         title = "ollama";
                         url = "https://llm.fbozzo.dpdns.org";
-                        icon = "di:ollama";
+                        icon = "di:ollama-dark";
                       }
                       {
                         title = "glance";
@@ -85,6 +85,11 @@
                         title = "immich";
                         url = "https://photos.fbozzo.dpdns.org";
                         icon = "di:immich";
+                      }
+                      {
+                        title = "llama-swap";
+                        url = "https://llama.fbozzo.dpdns.org";
+                        icon = "mdi:swap-horizontal";
                       }
                     ];
                   }
