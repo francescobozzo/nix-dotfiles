@@ -34,6 +34,7 @@
 
     # Misc
     mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

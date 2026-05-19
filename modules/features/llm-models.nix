@@ -77,7 +77,7 @@
       name = "qwen3.6:27b-MTP";
       provider = "llama";
       huggingFace = "unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 2 --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
       supportImages = true;
     }
   ];
