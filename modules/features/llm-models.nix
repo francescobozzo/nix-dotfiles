@@ -38,28 +38,6 @@
 
   config.flake.llms = [
     {
-      name = "qwen3.5:9b";
-      provider = "ollama";
-      supportImages = true;
-    }
-    {
-      name = "qwen3.6:27b";
-      provider = "ollama";
-      supportImages = true;
-    }
-    {
-      name = "qwen3.6:35b";
-      provider = "ollama";
-      supportImages = true;
-    }
-    {
-      name = "qwen3.6:27b";
-      provider = "llama";
-      huggingFace = "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
-      supportImages = true;
-    }
-    {
       name = "qwen3.5:0.8b";
       provider = "llama";
       huggingFace = "unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL";
@@ -77,7 +55,14 @@
       name = "qwen3.6:27b-MTP";
       provider = "llama";
       huggingFace = "unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
+      supportImages = true;
+    }
+    {
+      name = "qwen3.6:35b-MTP";
+      provider = "llama";
+      huggingFace = "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-webui --kv-unified -c 262144";
       supportImages = true;
     }
   ];
