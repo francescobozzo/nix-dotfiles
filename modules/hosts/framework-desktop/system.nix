@@ -23,6 +23,7 @@
         self.modules.nixos.gaming
         self.modules.nixos.glance
         self.modules.nixos.hass
+        self.modules.nixos.hermes
         self.modules.nixos.immich
         self.modules.nixos.ollama
         self.modules.nixos.logrotate
