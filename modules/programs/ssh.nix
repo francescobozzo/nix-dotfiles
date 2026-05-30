@@ -7,21 +7,18 @@
 
         enableDefaultConfig = false;
 
-        matchBlocks = {
+        settings = {
           "github.com" = {
-            hostname = "github.com";
-            identityFile = "~/.ssh/id_ed25519";
-
-            extraOptions = {
-              AddKeysToAgent = "yes";
-            }
-            // lib.optionalAttrs pkgs.stdenv.isDarwin { UseKeychain = "yes"; };
-          };
+            HostName = "github.com";
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
+          }
+          // lib.optionalAttrs pkgs.stdenv.isDarwin { UseKeychain = "yes"; };
 
           "neos" = {
-            extraOptions = {
-              AddKeysToAgent = "yes";
-              SetEnv = "TERM=xterm-256color";
+            AddKeysToAgent = "yes";
+            SetEnv = {
+              TERM = "xterm-256color";
             };
           };
         };

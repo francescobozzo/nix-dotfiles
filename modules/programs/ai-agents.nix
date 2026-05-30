@@ -42,8 +42,10 @@
         enable = true;
         package = llm-agents.opencode;
         enableMcpIntegration = true;
-        settings = {
+        tui = {
           theme = "catppuccin-macchiato";
+        };
+        settings = {
           provider = {
             ollama = {
               npm = "@ai-sdk/openai-compatible";
@@ -80,9 +82,9 @@
       programs.mcp = {
         enable = true;
         servers = {
-          nixos = {
-            command = lib.getExe pkgs.mcp-nixos;
-          };
+          # nixos = {
+          #   command = lib.getExe pkgs.mcp-nixos;
+          # };
         };
       };
     };

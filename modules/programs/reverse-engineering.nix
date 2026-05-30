@@ -4,7 +4,7 @@
     {
       home.packages = with pkgs; [
         # desmume
-        melonDS
+        melonds
         ndstool
         imhex
         ghidra

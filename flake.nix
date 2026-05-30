@@ -15,8 +15,8 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     # Nix-Darwin
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     nixpkgs-darwin-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -25,7 +25,7 @@
     import-tree.url = "github:vic/import-tree";
 
     # Home Manager
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # sops-nix
