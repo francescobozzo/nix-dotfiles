@@ -3,13 +3,13 @@
     { config, ... }:
     let
       localIp = "192.168.1.89";
-      modelIp = "192.168.1.254";
+      modemIp = "192.168.1.254";
     in
     {
       networking = {
         hostName = "neos";
         useDHCP = false;
-        defaultGateway = modelIp;
+        defaultGateway = modemIp;
         nameservers = [ localIp ];
 
         interfaces.wlp192s0 = {
@@ -43,7 +43,7 @@
               ipv4 = {
                 address1 = "${localIp}/24";
                 dns = localIp;
-                gateway = modelIp;
+                gateway = modemIp;
                 method = "manual";
               };
 

@@ -79,7 +79,7 @@
 
           network = { };
           dhcp = { };
-          lovelace.mode = "yaml";
+          lovelace.resource_mode = "yaml";
         };
       };
 
