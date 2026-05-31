@@ -27,7 +27,7 @@
             config.services.home-assistant.configDir
             "${config.services.open-webui.stateDir}/data"
             "${config.services.traefik.dataDir}/acme.json"
-            config.services.uptime-kuma.settings.DATA_DIR
+            "/var/lib/gatus"
             # config.services.pihole-ftl.stateDirectory ~170MiB daily
             # "/var/lib/${config.services.prometheus.stateDir}" ~30MiB daily
             "${config.services.immich.mediaLocation}/backups"

@@ -140,11 +140,6 @@
               rule = "Host(`prometheus.fbozzo.dpdns.org`)";
               service = "prometheus";
             };
-            uptime = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`status.fbozzo.dpdns.org`)";
-              service = "uptime";
-            };
             immich = {
               entryPoints = [ "websecure" ];
               rule = "Host(`photos.fbozzo.dpdns.org`)";
@@ -154,6 +149,11 @@
               entryPoints = [ "websecure" ];
               rule = "Host(`llama.fbozzo.dpdns.org`)";
               service = "llama";
+            };
+            gatus = {
+              entryPoints = [ "websecure" ];
+              rule = "Host(`gatus.fbozzo.dpdns.org`)";
+              service = "gatus";
             };
           };
           http.services = {
@@ -184,11 +184,6 @@
             prometheus.loadBalancer = {
               servers = [ { url = "http://localhost:${toString config.services.prometheus.port}"; } ];
             };
-            uptime.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${config.services.uptime-kuma.settings.UPTIME_KUMA_PORT}"; }
-              ];
-            };
             immich.loadBalancer = {
               servers = [
                 { url = "http://localhost:${toString config.services.immich.port}"; }
@@ -197,6 +192,11 @@
             llama.loadBalancer = {
               servers = [
                 { url = "http://localhost:${toString config.services.llama-swap.port}"; }
+              ];
+            };
+            gatus.loadBalancer = {
+              servers = [
+                { url = "http://localhost:${toString config.services.gatus.settings.web.port}"; }
               ];
             };
           };

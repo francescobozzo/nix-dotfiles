@@ -75,6 +75,8 @@
               "100.76.213.79 photos.fbozzo.dpdns.org"
               "192.168.1.89 llama.fbozzo.dpdns.org"
               "100.76.213.79 llama.fbozzo.dpdns.org"
+              "192.168.1.89 gatus.fbozzo.dpdns.org"
+              "100.76.213.79 gatus.fbozzo.dpdns.org"
             ];
           };
           dhcp = {

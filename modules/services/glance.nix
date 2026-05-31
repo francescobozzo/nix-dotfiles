@@ -77,9 +77,9 @@
                         icon = "di:glance";
                       }
                       {
-                        title = "uptime-kuma";
-                        url = "https://status.fbozzo.dpdns.org";
-                        icon = "di:uptime-kuma";
+                        title = "gatus";
+                        url = "https://gatus.fbozzo.dpdns.org";
+                        icon = "di:gatus";
                       }
                       {
                         title = "immich";

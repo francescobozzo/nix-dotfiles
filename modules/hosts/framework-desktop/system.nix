@@ -25,13 +25,13 @@
         self.modules.nixos.hass
         self.modules.nixos.hermes
         self.modules.nixos.immich
-        self.modules.nixos.ollama
         self.modules.nixos.logrotate
+        self.modules.nixos.monitoring
+        self.modules.nixos.ollama
         self.modules.nixos.pihole
         self.modules.nixos.prometheus
         self.modules.nixos.restic
         self.modules.nixos.traefik
-        self.modules.nixos.uptime-kuma
       ];
 
       time.timeZone = "Europe/Rome";
