@@ -90,7 +90,7 @@
             builtins.map (m: {
               name = m.name;
               value = {
-                cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} ${m.llamaArgs}";
+                cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} -c ${toString m.contextWindow} ${m.llamaArgs}";
                 aliases = [ m.name ];
               };
             }) llamaModels

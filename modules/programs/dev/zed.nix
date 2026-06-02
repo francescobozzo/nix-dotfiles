@@ -3,16 +3,6 @@
   flake.modules.homeManager.dev =
     { pkgs, lib, ... }:
     let
-      ollamaModels = builtins.map (m: {
-        name = m.name;
-        display_name = m.name;
-        max_tokens = 32768;
-        keep_alive = "5m";
-        supports_tools = true;
-        supports_thinking = true;
-        supports_images = m.supportImages;
-      }) (lib.filter (m: m.provider == "ollama") self.llms);
-
       # openai_compatible uses nested "capabilities" block
       llamaModels = builtins.map (m: {
         name = m.name;
@@ -148,10 +138,6 @@
 
           show_edit_predictions = false;
           language_models = {
-            ollama = {
-              api_url = "https://llm.fbozzo.dpdns.org";
-              available_models = ollamaModels;
-            };
             openai_compatible.llama = {
               api_url = "https://llama.fbozzo.dpdns.org/v1";
               available_models = llamaModels;
