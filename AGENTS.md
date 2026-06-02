@@ -14,6 +14,7 @@ Discovered in `~/.pi/agent/extensions/`. Rules:
 - `*.ts`/`*.js` in root → auto-loaded
 - Subfolders need `index.ts`, `index.js`, or `package.json` with `pi.extensions`
 - No recursion beyond one level
+- **New files must be `git add`-ed** — nix build includes only tracked files
 
 **Single-file extension:**
 
