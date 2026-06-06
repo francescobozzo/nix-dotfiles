@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.hermes =
+  flake.modules.nixos.ai =
     { config, ... }:
     {
       imports = [

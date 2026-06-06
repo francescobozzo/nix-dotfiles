@@ -67,11 +67,6 @@
                         icon = "di:home-assistant";
                       }
                       {
-                        title = "ollama";
-                        url = "https://llm.fbozzo.dpdns.org";
-                        icon = "di:ollama-dark";
-                      }
-                      {
                         title = "glance";
                         url = "https://glance.fbozzo.dpdns.org";
                         icon = "di:glance";

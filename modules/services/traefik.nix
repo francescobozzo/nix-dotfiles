@@ -125,11 +125,6 @@
               rule = "Host(`hass.fbozzo.dpdns.org`)";
               service = "hass";
             };
-            llm = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`llm.fbozzo.dpdns.org`)";
-              service = "llm";
-            };
             glance = {
               entryPoints = [ "websecure" ];
               rule = "Host(`glance.fbozzo.dpdns.org`)";
@@ -171,11 +166,6 @@
             hass.loadBalancer = {
               servers = [
                 { url = "http://localhost:${toString config.services.home-assistant.config.http.server_port}"; }
-              ];
-            };
-            llm.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.ollama.port}"; }
               ];
             };
             glance.loadBalancer = {

@@ -18,7 +18,7 @@
           theme = "catppuccin-macchiato";
           hideThinkingBlock = false;
           enableInstallTelemetry = false;
-          defaultProvider = "ollama";
+          defaultProvider = "llama";
           defaultModel = "qwen3.6:27b-MTP";
           defaultThinkingLevel = "high";
           packages = [
@@ -33,10 +33,10 @@
       home.file.".pi/agent/models.json" = {
         text = builtins.toJSON {
           providers = {
-            ollama = {
+            llama = {
               baseUrl = "https://llama.fbozzo.dpdns.org/v1";
               api = "openai-completions";
-              apiKey = "ollama";
+              apiKey = "placeholder";
               models = map (m: {
                 id = m.name;
                 contextWindow = m.contextWindow;

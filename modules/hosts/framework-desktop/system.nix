@@ -19,15 +19,14 @@
       ];
 
       imports = [
+        self.modules.nixos.ai
         self.modules.nixos.ddns
         self.modules.nixos.gaming
         self.modules.nixos.glance
         self.modules.nixos.hass
-        self.modules.nixos.hermes
         self.modules.nixos.immich
         self.modules.nixos.logrotate
         self.modules.nixos.monitoring
-        self.modules.nixos.ollama
         self.modules.nixos.pihole
         self.modules.nixos.prometheus
         self.modules.nixos.restic
