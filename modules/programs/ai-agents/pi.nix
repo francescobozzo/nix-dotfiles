@@ -40,6 +40,7 @@
               models = map (m: {
                 id = m.name;
                 contextWindow = m.contextWindow;
+                input = [ "text" ] ++ (if m.supportImages then [ "image" ] else [ ]);
               }) llamaModels;
             };
           };
