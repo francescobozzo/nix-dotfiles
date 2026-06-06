@@ -36,6 +36,7 @@
     mac-app-util.url = "github:hraban/mac-app-util"; # Show MacOS applications in spotlight
     llm-agents.url = "github:numtide/llm-agents.nix";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    nix-amd-ai.url = "github:noamsto/nix-amd-ai";
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
