@@ -1,4 +1,4 @@
-{ self, ... }:
+{ inputs, self, ... }:
 {
   flake.modules.nixos.ai =
     {
@@ -41,9 +41,12 @@
             ];
           });
       llama-server = lib.getExe' llama-cpp "llama-server";
+      ds4 = inputs.ds4.packages.${pkgs.system}.default;
+      ds4-server = lib.getExe' ds4 "ds4-server";
       llmGroup = "llm";
       llmPath = "/var/llms";
-      llamaModels = lib.filter (m: m.provider == "llama") self.llms;
+      llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
+      ds4Models = lib.filter (m: m.provider == "ds4-server") self.llms;
     in
     {
       services.llama-swap = {
@@ -52,15 +55,29 @@
         settings = {
           # increase health check timeout to 1 hour to accommodate large model downloads
           healthCheckTimeout = 3600;
-          models = lib.listToAttrs (
-            builtins.map (m: {
-              name = m.name;
-              value = {
-                cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} -c ${toString m.contextWindow} ${m.llamaArgs}";
-                aliases = [ m.name ];
-              };
-            }) llamaModels
-          );
+          models =
+            lib.listToAttrs (
+              builtins.map (m: {
+                name = m.name;
+                value = {
+                  cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} -c ${toString m.contextWindow} ${m.llamaArgs}";
+                  aliases = [ m.name ];
+                };
+              }) llamaModels
+            )
+            // lib.listToAttrs (
+              builtins.map (m: {
+                name = m.name;
+                value = {
+                  cmd = "${ds4-server} --port \${PORT} --ctx ${toString m.contextWindow} ${m.llamaArgs}";
+                  aliases = [ m.name ];
+                  checkEndpoint = "/v1/models";
+                  timeouts = {
+                    responseHeader = 600;
+                  };
+                };
+              }) ds4Models
+            );
         };
       };
 
@@ -95,6 +112,7 @@
 
       environment.systemPackages = [
         llama-cpp
+        ds4
         pkgs.unstable.python3Packages.huggingface-hub
       ];
     };

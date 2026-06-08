@@ -8,7 +8,7 @@
     }:
     let
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-      llamaModels = lib.filter (m: m.provider == "llama") self.llms;
+      llamaModels = self.llms;
     in
     {
       home.packages = [ llm-agents.pi ];

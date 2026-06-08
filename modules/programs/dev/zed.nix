@@ -14,7 +14,7 @@
           parallel_tool_calls = false;
           prompt_cache_key = false;
         };
-      }) (lib.filter (m: m.provider == "llama") self.llms);
+      }) self.llms;
     in
     {
       home.packages = with pkgs; [
