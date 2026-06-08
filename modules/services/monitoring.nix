@@ -2,6 +2,23 @@
   flake.modules.nixos.monitoring =
     { lib, ... }:
     {
+      services.ntfy-sh = {
+        enable = true;
+        settings = {
+          base-url = "https://ntfy.fbozzo.dpdns.org";
+
+          # enable iOS push notifications
+          # https://docs.ntfy.sh/config/#ios-instant-notifications
+          upstream-base-url = "https://ntfy.sh";
+
+          listen-http = "127.0.0.1:23445";
+          behind-proxy = true;
+
+          enable-login = true;
+          enable-signup = true;
+        };
+      };
+
       services.gatus = {
         enable = true;
         settings = {
@@ -11,17 +28,34 @@
             path = "/var/lib/gatus/gatus.db";
             caching = true;
           };
+          alerting = {
+            ntfy = {
+              url = "https://ntfy.fbozzo.dpdns.org";
+              topic = "alerts";
+              priority = 3;
+              default-alert = {
+                failure-thresqhold = 3;
+                success-threshold = 2;
+                send-on-resolved = true;
+              };
+            };
+          };
           endpoints = [
             {
               name = "Glance";
               group = "fbozzo.dpdns.org";
               url = "https://glance.fbozzo.dpdns.org/api/healthz";
-              interval = "5m";
+              interval = "1m";
               conditions = [
                 "[STATUS] == 200"
                 "[CONNECTED] == true"
                 "[RESPONSE_TIME] < 500"
                 "[CERTIFICATE_EXPIRATION] > 336h"
+              ];
+              alerts = [
+                {
+                  type = "ntfy";
+                }
               ];
             }
             {
@@ -35,6 +69,11 @@
                 "[RESPONSE_TIME] < 500"
                 "[CERTIFICATE_EXPIRATION] > 336h"
               ];
+              alerts = [
+                {
+                  type = "ntfy";
+                }
+              ];
             }
             {
               name = "llama-swap";
@@ -47,6 +86,11 @@
                 "[RESPONSE_TIME] < 500"
                 "[BODY] == OK"
                 "[CERTIFICATE_EXPIRATION] > 336h"
+              ];
+              alerts = [
+                {
+                  type = "ntfy";
+                }
               ];
             }
             {
@@ -64,6 +108,11 @@
                 "[BODY].queries.total > 0" # We are receiving queries
                 "[BODY].gravity.domains_being_blocked > 0" # We are using blocklists
                 "[CERTIFICATE_EXPIRATION] > 336h"
+              ];
+              alerts = [
+                {
+                  type = "ntfy";
+                }
               ];
             }
           ];

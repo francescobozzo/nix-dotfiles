@@ -150,6 +150,11 @@
               rule = "Host(`gatus.fbozzo.dpdns.org`)";
               service = "gatus";
             };
+            ntfy = {
+              entryPoints = [ "websecure" ];
+              rule = "Host(`ntfy.fbozzo.dpdns.org`)";
+              service = "ntfy";
+            };
           };
           http.services = {
             whoami.loadBalancer = {
@@ -187,6 +192,11 @@
             gatus.loadBalancer = {
               servers = [
                 { url = "http://localhost:${toString config.services.gatus.settings.web.port}"; }
+              ];
+            };
+            ntfy.loadBalancer = {
+              servers = [
+                { url = "http://localhost:23445"; }
               ];
             };
           };

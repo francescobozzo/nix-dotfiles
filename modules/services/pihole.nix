@@ -18,24 +18,24 @@
           age = 120; # days
         };
         lists = [
-          {
-            url = "https://easylist.to/easylist/easylist.txt";
-            type = "block";
-            enabled = true;
-            description = "EasyList";
-          }
-          {
-            url = "https://easylist.to/easylist/easyprivacy.txt";
-            type = "block";
-            enabled = true;
-            description = "EasyPrivacy";
-          }
-          {
-            url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
-            type = "block";
-            enabled = true;
-            description = "Steven Black Hosts";
-          }
+          # {
+          #   url = "https://easylist.to/easylist/easylist.txt";
+          #   type = "block";
+          #   enabled = true;
+          #   description = "EasyList";
+          # }
+          # {
+          #   url = "https://easylist.to/easylist/easyprivacy.txt";
+          #   type = "block";
+          #   enabled = true;
+          #   description = "EasyPrivacy";
+          # }
+          # {
+          #   url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+          #   type = "block";
+          #   enabled = true;
+          #   description = "Steven Black Hosts";
+          # }
         ];
         settings = {
           dns = {
@@ -77,6 +77,8 @@
               "100.76.213.79 llama.fbozzo.dpdns.org"
               "192.168.1.89 gatus.fbozzo.dpdns.org"
               "100.76.213.79 gatus.fbozzo.dpdns.org"
+              "192.168.1.89 ntfy.fbozzo.dpdns.org"
+              "100.76.213.79 ntfy.fbozzo.dpdns.org"
             ];
           };
           dhcp = {
