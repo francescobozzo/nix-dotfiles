@@ -46,15 +46,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified";
-      supportImages = true;
-    }
-    {
-      name = "qwen3.6:27b-draft-qwen3.5:0.8b";
-      provider = "llama-server";
-      contextWindow = 262144;
-      huggingFace = "unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL";
-      llamaArgs = "-hfd unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-webui --kv-unified";
+      llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-ui --kv-unified";
       supportImages = true;
     }
     {
@@ -62,7 +54,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-webui --kv-unified";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
@@ -70,7 +62,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-webui --kv-unified";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {

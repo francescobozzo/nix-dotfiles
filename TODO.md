@@ -68,13 +68,11 @@
 
 ## Monitoring
 
-- https://wiki.nixos.org/wiki/Prometheus
 - https://wiki.nixos.org/wiki/Grafana
 - https://wiki.nixos.org/wiki/Grafana_Loki
 - https://grafana.com/oss/tempo/
 - https://github.com/adinhodovic/tailscale-exporter
 - https://lab.workhub.so/the-free-self-hosted-monitoring-stack/
-- https://ntfy.sh/
 - https://vector.dev/docs/setup/installation/operating-systems/nixos/
 
 ## Networking
