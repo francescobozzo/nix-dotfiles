@@ -47,6 +47,7 @@
       llmPath = "/var/llms";
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
       ds4Models = lib.filter (m: m.provider == "ds4-server") self.llms;
+      flmModels = lib.filter (m: m.provider == "flm") self.llms;
     in
     {
       services.llama-swap = {
@@ -77,6 +78,16 @@
                   };
                 };
               }) ds4Models
+            )
+            // lib.listToAttrs (
+              builtins.map (m: {
+                name = m.name;
+                value = {
+                  cmd = "${pkgs.fastflowlm}/bin/flm serve --port \${PORT} -c ${toString m.contextWindow} ${m.llamaArgs}";
+                  aliases = [ m.name ];
+                  checkEndpoint = "/v1/models";
+                };
+              }) flmModels
             );
         };
       };
@@ -85,6 +96,8 @@
       users.users.fbozzo.extraGroups = [ llmGroup ]; # required for llama-bench
 
       environment.sessionVariables.HF_HOME = "${llmPath}/huggingface";
+      environment.sessionVariables.FLM_MODEL_PATH = "${llmPath}/flm";
+
       systemd.tmpfiles.rules = [
         "d ${llmPath} 2770 ${config.users.users.fbozzo.name} ${llmGroup} - -"
         "a+ ${llmPath} - - - - default:group:${llmGroup}:rwx"
@@ -95,6 +108,13 @@
         environment = {
           XDG_CACHE_HOME = "/var/cache/llama.cpp";
           HF_HOME = config.environment.sessionVariables.HF_HOME;
+
+          # fastflowlm with npu support
+          FLM_MODEL_PATH = config.environment.sessionVariables.FLM_MODEL_PATH;
+          XILINX_XRT = config.environment.sessionVariables.XILINX_XRT or "";
+          XRT_PATH = config.environment.sessionVariables.XRT_PATH or "";
+          FLM_DISABLE_UPDATE_CHECK = "1";
+          LD_LIBRARY_PATH = "${config.environment.sessionVariables.XILINX_XRT or ""}/lib";
         };
         serviceConfig = {
           CacheDirectory = "llama.cpp";
@@ -102,12 +122,17 @@
           User = "llama-swap";
           Group = llmGroup;
           BindPaths = [ llmPath ];
+          LimitMEMLOCK = "infinity"; # fastflowlm with npu support
         };
       };
       users.users.llama-swap = {
         isSystemUser = true;
         group = llmGroup;
         description = "llama-swap service user";
+        extraGroups = [
+          "video"
+          "render"
+        ];
       };
 
       environment.systemPackages = [

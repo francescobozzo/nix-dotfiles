@@ -9,6 +9,7 @@
             type = lib.types.enum [
               "llama-server"
               "ds4-server"
+              "flm"
             ];
           };
           huggingFace = lib.mkOption {
@@ -54,7 +55,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
@@ -62,7 +63,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
@@ -71,6 +72,13 @@
       contextWindow = 262144;
       llamaArgs = "--kv-disk-dir /tmp/ds4-kv --kv-disk-space-mb 8192 -m /var/llms/huggingface/hub/models--antirez--deepseek-v4-gguf/snapshots/9170bf42beb77f38006e016503ecace31f2bd9a0/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf";
       supportImages = false;
+    }
+    {
+      name = "qwen3.5:2b";
+      provider = "flm";
+      contextWindow = 262144;
+      llamaArgs = "--pmode turbo";
+      supportImages = true;
     }
   ];
 }
