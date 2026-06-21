@@ -30,6 +30,7 @@
         self.modules.nixos.pihole
         self.modules.nixos.prometheus
         self.modules.nixos.restic
+        self.modules.nixos.search
         self.modules.nixos.traefik
       ];
 

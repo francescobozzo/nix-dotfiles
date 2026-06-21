@@ -155,6 +155,11 @@
               rule = "Host(`ntfy.fbozzo.dpdns.org`)";
               service = "ntfy";
             };
+            search = {
+              entryPoints = [ "websecure" ];
+              rule = "Host(`search.fbozzo.dpdns.org`)";
+              service = "search";
+            };
           };
           http.services = {
             whoami.loadBalancer = {
@@ -197,6 +202,11 @@
             ntfy.loadBalancer = {
               servers = [
                 { url = "http://localhost:23445"; }
+              ];
+            };
+            search.loadBalancer = {
+              servers = [
+                { url = "http://localhost:${toString config.services.searx.settings.server.port}"; }
               ];
             };
           };

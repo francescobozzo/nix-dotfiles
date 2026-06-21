@@ -79,6 +79,8 @@
               "100.76.213.79 gatus.fbozzo.dpdns.org"
               "192.168.1.89 ntfy.fbozzo.dpdns.org"
               "100.76.213.79 ntfy.fbozzo.dpdns.org"
+              "192.168.1.89 search.fbozzo.dpdns.org"
+              "100.76.213.79 search.fbozzo.dpdns.org"
             ];
           };
           dhcp = {

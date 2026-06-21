@@ -54,7 +54,6 @@
 
 ## Services
 
-- https://docs.searxng.org/
 - https://www.stirling.com/
 - https://dawarich.app/
 - https://mynixos.com/nixpkgs/options/services.opencloud

@@ -25,6 +25,8 @@
           "backblaze/environment" = { };
           "backblaze/repository" = { };
           "backblaze/password" = { };
+
+          searx.restartUnits = [ "searx.service" ];
         };
       };
     };
