@@ -94,6 +94,24 @@
               ];
             }
             {
+              name = "searxng";
+              group = "fbozzo.dpdns.org";
+              url = "https://search.fbozzo.dpdns.org/healthz";
+              interval = "5m";
+              conditions = [
+                "[STATUS] == 200"
+                "[CONNECTED] == true"
+                "[RESPONSE_TIME] < 500"
+                "[BODY] == OK"
+                "[CERTIFICATE_EXPIRATION] > 336h"
+              ];
+              alerts = [
+                {
+                  type = "ntfy";
+                }
+              ];
+            }
+            {
               name = "Pihole";
               group = "fbozzo.dpdns.org";
               url = "https://pihole.fbozzo.dpdns.org/api/stats/summary";

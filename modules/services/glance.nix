@@ -86,6 +86,11 @@
                         url = "https://llama.fbozzo.dpdns.org";
                         icon = "mdi:swap-horizontal";
                       }
+                      {
+                        title = "searxng";
+                        url = "https://search.fbozzo.dpdns.org";
+                        icon = "di:searxng";
+                      }
                     ];
                   }
                 ];
