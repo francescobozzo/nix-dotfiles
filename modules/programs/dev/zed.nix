@@ -7,7 +7,7 @@
       llamaModels = builtins.map (m: {
         name = m.name;
         display_name = m.name;
-        max_tokens = 32768;
+        max_tokens = m.contextWindow;
         capabilities = {
           tools = true;
           images = m.supportImages;
