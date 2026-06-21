@@ -26,6 +26,7 @@
             "npm:pi-direnv"
             "git:github.com/jonjonrankin/pi-caveman"
             "git:github.com/otahontas/pi-coding-agent-catppuccin"
+            "npm:@juicesharp/rpiv-web-tools"
           ];
         };
       };
@@ -43,6 +44,19 @@
                 input = [ "text" ] ++ (if m.supportImages then [ "image" ] else [ ]);
               }) llamaModels;
             };
+          };
+        };
+      };
+
+      home.file.".config/rpiv-web-tools/config.json" = {
+        text = builtins.toJSON {
+          provider = "searxng";
+          baseUrls.searxng = "https://search.fbozzo.dpdns.org";
+          # TODO: install gh cli for better support
+          interceptors.github = {
+            maxRepoSizeMB = 1000;
+            cloneTimeoutSeconds = 90;
+            clonePath = "/tmp";
           };
         };
       };

@@ -18,6 +18,12 @@
             secret_key = config.sops.secrets.searx.path;
             method = "GET";
           };
+          search = {
+            formats = [
+              "html"
+              "json"
+            ];
+          };
           # https://docs.searxng.org/user/configured_engines.html
           engines =
             lib.mapAttrsToList (name: value: { inherit name; } // value) {
