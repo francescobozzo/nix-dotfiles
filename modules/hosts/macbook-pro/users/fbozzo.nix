@@ -27,6 +27,7 @@
 
         home.packages = with pkgs; [
           unstable.google-chrome
+          unstable.mactop
           obsidian
           # rapidraw
 

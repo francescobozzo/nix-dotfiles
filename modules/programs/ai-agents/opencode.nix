@@ -9,14 +9,6 @@
     let
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       llamaModels = self.llms;
-      # TODO: remove override when https://github.com/NixOS/nixpkgs/pull/527159 lands
-      mcp-nixos =
-        if pkgs.stdenv.hostPlatform.isDarwin then
-          pkgs.mcp-nixos.overrideAttrs (old: {
-            disabledTests = (old.disabledTests or [ ]) ++ [ "test_read_text_file" ];
-          })
-        else
-          pkgs.mcp-nixos;
     in
     {
       programs.opencode = {
@@ -50,7 +42,7 @@
         enable = true;
         servers = {
           nixos = {
-            command = lib.getExe mcp-nixos;
+            command = lib.getExe pkgs.mcp-nixos;
           };
         };
       };
