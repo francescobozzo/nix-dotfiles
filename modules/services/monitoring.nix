@@ -50,7 +50,7 @@
                 "[STATUS] == 200"
                 "[CONNECTED] == true"
                 "[RESPONSE_TIME] < 500"
-                "[CERTIFICATE_EXPIRATION] > 336h"
+                "[CERTIFICATE_EXPIRATION] > 96h"
               ];
               alerts = [
                 {
@@ -67,7 +67,7 @@
                 "[STATUS] == 200"
                 "[CONNECTED] == true"
                 "[RESPONSE_TIME] < 500"
-                "[CERTIFICATE_EXPIRATION] > 336h"
+                "[CERTIFICATE_EXPIRATION] > 96h"
               ];
               alerts = [
                 {
@@ -85,7 +85,7 @@
                 "[CONNECTED] == true"
                 "[RESPONSE_TIME] < 500"
                 "[BODY] == OK"
-                "[CERTIFICATE_EXPIRATION] > 336h"
+                "[CERTIFICATE_EXPIRATION] > 96h"
               ];
               alerts = [
                 {
@@ -103,7 +103,7 @@
                 "[CONNECTED] == true"
                 "[RESPONSE_TIME] < 500"
                 "[BODY] == OK"
-                "[CERTIFICATE_EXPIRATION] > 336h"
+                "[CERTIFICATE_EXPIRATION] > 96h"
               ];
               alerts = [
                 {
@@ -125,7 +125,7 @@
                 "[RESPONSE_TIME] < 500"
                 "[BODY].queries.total > 0" # We are receiving queries
                 "[BODY].gravity.domains_being_blocked > 0" # We are using blocklists
-                "[CERTIFICATE_EXPIRATION] > 336h"
+                "[CERTIFICATE_EXPIRATION] > 96h"
               ];
               alerts = [
                 {
