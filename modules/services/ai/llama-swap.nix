@@ -15,12 +15,12 @@
           rocmGpuTargets = [ "gfx1151" ];
         }).overrideAttrs
           (oldAttrs: rec {
-            version = "9631";
+            version = "10031";
             src = pkgs.fetchFromGitHub {
               owner = "ggml-org";
               repo = "llama.cpp";
               tag = "b${version}";
-              hash = "sha256-e5TYrgQQ4ZbURBG55x6KM+Fl7G9uPGU7JG+9keA1wds=";
+              hash = "sha256-+ZEs0nRoAYcGeEnIrT5422Xh6AzRwHnnRXrLi65A1Uk=";
               leaveDotGit = true;
               postFetch = ''
                 git -C "$out" rev-parse --short HEAD > $out/COMMIT
@@ -28,7 +28,7 @@
               '';
             };
             npmRoot = "tools/ui";
-            npmDepsHash = "sha256-TU4Gv+dd48WDpswhfVtm79IVIOwoCXz1fZ/DI/z40Wg=";
+            npmDepsHash = "sha256-6s9skw1wzEfm9QKktTqea3J+oudQAsS6O2VnZEMXAdw=";
 
             cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
               "-DLLAMA_HIP_UMA=ON" # unified memory
