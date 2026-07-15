@@ -10,13 +10,13 @@
           rocmPackages = pkgs.rocmPackages;
         }).overrideAttrs
           (oldAttrs: rec {
-            version = "master-677-cfbc19d";
+            version = "master-778-c00a9e9";
 
             src = pkgs.fetchFromGitHub {
               owner = "leejet";
               repo = "stable-diffusion.cpp";
               rev = version;
-              hash = "sha256-Kt6GjJN1OdzzjZFb+L59m6JfU3n5Zz8oebZFqGaEhgU=";
+              hash = "sha256-XNZkmdr6PB+0Bb22/m75yXS9r7PijyYORBoDxtcf/QQ=";
               fetchSubmodules = true;
             };
 
