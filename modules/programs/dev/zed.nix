@@ -31,6 +31,7 @@
         # installRemoteServer = !pkgs.stdenv.isDarwin; requires same version on local and remote
         package = pkgs.unstable.zed-editor;
         extensions = [
+          "astro"
           "basher"
           "catppuccin"
           "catppuccin-icons"
