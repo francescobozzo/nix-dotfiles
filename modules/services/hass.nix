@@ -35,8 +35,9 @@
           "prometheus"
           "met" # nowcasting
           "isal" # recommended for fast zlib compression
-          "xiaomi_ble" # framework's bluetooth module
+          "xiaomi_ble" # framework desktop's bluetooth module
           "switchbot"
+          "broadlink" # infrared remote
 
           # required for onboarding
           "google_translate"
@@ -52,9 +53,27 @@
           home-assistant-custom-lovelace-modules.mini-graph-card
           home-assistant-custom-lovelace-modules.bubble-card
         ];
+        customComponents = with pkgs.home-assistant-custom-components; [
+          smartir
+        ];
 
         config = {
           default_config = { };
+
+          smartir.check_updates = false;
+          climate = [
+            {
+              # https://github.com/smartHomeHub/SmartIR/blob/master/docs/CLIMATE.md
+              platform = "smartir";
+              name = "Daikin Living";
+              unique_id = "living_ac";
+              device_code = 1106; # 1118
+              controller_data = "remote.remote_broadlink";
+              # temperature_sensor: sensor.temperature
+              # humidity_sensor: sensor.humidity
+              # power_sensor: binary_sensor.ac_power
+            }
+          ];
 
           automation = "!include automations.yaml";
           script = "!include scripts.yaml";
