@@ -21,6 +21,7 @@
           "nvidia-geforce-now"
           "spotify"
           "garmin-express"
+          "opensuperwhisper"
         ];
 
         masApps = {
