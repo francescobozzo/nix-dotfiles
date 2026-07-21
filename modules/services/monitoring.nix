@@ -34,7 +34,7 @@
               topic = "alerts";
               priority = 3;
               default-alert = {
-                failure-thresqhold = 3;
+                failure-threshold = 3;
                 success-threshold = 2;
                 send-on-resolved = true;
               };
