@@ -67,6 +67,15 @@
       supportImages = true;
     }
     {
+      name = "laguna-S-2.1";
+      provider = "llama-server";
+      contextWindow = 262144;
+      huggingFace = "poolside/Laguna-S-2.1-GGUF:Q4_K_M";
+      # -hfd poolside/Laguna-S-2.1-GGUF:DFlash-BF16 --spec-type draft-dflash --spec-draft-n-max 15
+      llamaArgs = "-ngl all --no-mmap -fa 1 --no-ui --kv-unified --jinja --ubatch-size 4096 --batch-size 4096";
+      supportImages = true;
+    }
+    {
       name = "ds4";
       provider = "ds4-server";
       contextWindow = 262144;
