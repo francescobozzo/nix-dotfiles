@@ -15,12 +15,12 @@
           rocmGpuTargets = [ "gfx1151" ];
         }).overrideAttrs
           (oldAttrs: rec {
-            version = "10031";
+            version = "10154";
             src = pkgs.fetchFromGitHub {
               owner = "ggml-org";
               repo = "llama.cpp";
               tag = "b${version}";
-              hash = "sha256-+ZEs0nRoAYcGeEnIrT5422Xh6AzRwHnnRXrLi65A1Uk=";
+              hash = "sha256-p7us5WEU+Pdommjc8+OOcmaNdY0wY4zXaQ7KAwbkLbc=";
               leaveDotGit = true;
               postFetch = ''
                 git -C "$out" rev-parse --short HEAD > $out/COMMIT
@@ -28,7 +28,7 @@
               '';
             };
             npmRoot = "tools/ui";
-            npmDepsHash = "sha256-6s9skw1wzEfm9QKktTqea3J+oudQAsS6O2VnZEMXAdw=";
+            npmDepsHash = "sha256-B7uEynAG70a3xauBKc20RuFa9cnWaWzVBCh+LPLBnIM=";
 
             cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
               "-DLLAMA_HIP_UMA=ON" # unified memory
@@ -40,38 +40,7 @@
               "-DCMAKE_HIP_FLAGS=--rocm-path=${pkgs.rocmPackages.clr} -mllvm --amdgpu-unroll-threshold-local=600"
             ];
           });
-      llama-cpp-laguna =
-        (pkgs.unstable.llama-cpp.override {
-          rocmSupport = true;
-          rocmGpuTargets = [ "gfx1151" ];
-        }).overrideAttrs
-          (oldAttrs: {
-            version = "10031";
-            src = pkgs.fetchFromGitHub {
-              owner = "ggml-org";
-              repo = "llama.cpp";
-              rev = "54f214a09b8c4e709357ae661a77925edb154f13";
-              hash = "sha256-MuuVqUUeH8oIQA19F/7/XFpR+oWi5CUBV4TpI0v4vN8=";
-              leaveDotGit = true;
-              postFetch = ''
-                git -C "$out" rev-parse --short HEAD > $out/COMMIT
-                find "$out" -name .git -print0 | xargs -0 rm -rf
-              '';
-            };
-            npmRoot = "tools/ui";
-            npmDepsHash = "sha256-6s9skw1wzEfm9QKktTqea3J+oudQAsS6O2VnZEMXAdw=";
-
-            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-              "-DLLAMA_HIP_UMA=ON" # unified memory
-            ];
-
-            # Mirror the Strix Halo toolbox HIP tuning: pin the ROCm path explicitly and
-            # raise the local unroll threshold for gfx1151 kernels.
-            cmakeFlagsArray = (oldAttrs.cmakeFlagsArray or [ ]) ++ [
-              "-DCMAKE_HIP_FLAGS=--rocm-path=${pkgs.rocmPackages.clr} -mllvm --amdgpu-unroll-threshold-local=600"
-            ];
-          });
-      llama-server = lib.getExe' llama-cpp-laguna "llama-server";
+      llama-server = lib.getExe' llama-cpp "llama-server";
       ds4 = inputs.ds4.packages.${pkgs.system}.default;
       ds4-server = lib.getExe' ds4 "ds4-server";
       llmGroup = "llm";
