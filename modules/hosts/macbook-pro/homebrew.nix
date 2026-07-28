@@ -24,6 +24,7 @@
           "opensuperwhisper"
         ];
 
+        # TODO: migrate to nix darwin native mas
         masApps = {
           "Xcode" = 497799835;
           "WhatsApp Messenger" = 310633997;
