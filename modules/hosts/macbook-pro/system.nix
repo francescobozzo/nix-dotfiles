@@ -1,7 +1,12 @@
+{ self, ... }:
 {
   flake.modules.darwin.macbook-pro =
     { config, ... }:
     {
+      imports = [
+        self.modules.darwin.ai
+      ];
+
       system.startup.chime = false;
 
       # Used for backwards compatibility, please read the changelog before changing.

@@ -138,7 +138,7 @@
       environment.systemPackages = [
         llama-cpp
         ds4
-        pkgs.unstable.python3Packages.huggingface-hub
+        pkgs.unstable.python314Packages.huggingface-hub
       ];
     };
 }
