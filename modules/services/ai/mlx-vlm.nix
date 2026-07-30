@@ -3,8 +3,10 @@
   flake.modules.darwin.ai =
     { config, pkgs, ... }:
     {
-      environment.systemPackages = [
-        pkgs.unstable.python314Packages.mlx-vlm
+      environment.systemPackages = with pkgs.unstable.python314Packages; [
+        mlx-vlm
+        mlx-lm
+        huggingface-hub
       ];
     };
 }
