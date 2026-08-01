@@ -84,6 +84,13 @@
       supportImages = false;
     }
     {
+      name = "ds4-0731";
+      provider = "ds4-server";
+      contextWindow = 262144;
+      llamaArgs = "--kv-disk-dir /tmp/ds4-kv --kv-disk-space-mb 8192 -m /var/llms/huggingface/hub/models--antirez--deepseek-v4-gguf/snapshots/1cd7b564460821938add0475a60b942c409295e0/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf";
+      supportImages = false;
+    }
+    {
       name = "qwen3.5:2b";
       provider = "flm";
       contextWindow = 262144;
