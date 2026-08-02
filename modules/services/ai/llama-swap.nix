@@ -43,6 +43,9 @@
       llama-server = lib.getExe' llama-cpp "llama-server";
       ds4 = inputs.ds4.packages.${pkgs.stdenv.hostPlatform.system}.default;
       ds4-server = lib.getExe' ds4 "ds4-server";
+      vllm = inputs.nix-amd-ai.packages.${pkgs.stdenv.hostPlatform.system}.vllm-rocm.override {
+        gpuTarget = "gfx1151";
+      };
       llmGroup = "llm";
       llmPath = "/var/llms";
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
@@ -139,6 +142,7 @@
         llama-cpp
         ds4
         pkgs.unstable.python314Packages.huggingface-hub
+        vllm
       ];
     };
 }
