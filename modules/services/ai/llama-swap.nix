@@ -57,8 +57,21 @@
         enable = true;
         port = 11435;
         settings = {
-          # increase health check timeout to 1 hour to accommodate large model downloads
-          healthCheckTimeout = 3600;
+          healthCheckTimeout = 3600; # increase health check timeout to 1 hour to accommodate large model downloads
+          sendLoadingState = true;
+
+          peers.openrouter = {
+            proxy = "https://openrouter.ai/api";
+            apiKey = "\${env.OPENROUTER_KEY}";
+            models = map (m: m.name) (lib.filter (m: m.provider == "openrouter") self.llms);
+
+            # https://openrouter.ai/docs/guides/features/zdr
+            # filters.setParams.provider = {
+            #   data_collection = "deny";
+            #   zdr = true;
+            # };
+          };
+
           models =
             lib.listToAttrs (
               builtins.map (m: {
@@ -126,6 +139,7 @@
           Group = llmGroup;
           BindPaths = [ llmPath ];
           LimitMEMLOCK = "infinity"; # fastflowlm with npu support
+          EnvironmentFile = [ config.sops.secrets."llama-swap-env".path ];
         };
       };
       users.users.llama-swap = {
@@ -136,6 +150,10 @@
           "video"
           "render"
         ];
+      };
+
+      sops.secrets."llama-swap-env" = {
+        restartUnits = [ "llama-swap.service" ];
       };
 
       environment.systemPackages = [

@@ -10,6 +10,7 @@
               "llama-server"
               "ds4-server"
               "flm"
+              "openrouter"
             ];
           };
           huggingFace = lib.mkOption {
@@ -96,6 +97,18 @@
       contextWindow = 262144;
       llamaArgs = "--pmode turbo";
       supportImages = true;
+    }
+    {
+      name = "deepseek/deepseek-v4-flash-0731";
+      provider = "openrouter";
+      contextWindow = 1000000;
+      supportImages = false;
+    }
+    {
+      name = "nvidia/nemotron-3-ultra-550b-a55b:free";
+      provider = "openrouter";
+      contextWindow = 1000000;
+      supportImages = false;
     }
   ];
 }
