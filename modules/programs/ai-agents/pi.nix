@@ -19,7 +19,7 @@
           hideThinkingBlock = false;
           enableInstallTelemetry = false;
           defaultProvider = "llama";
-          defaultModel = "qwen3.6:27b-MTP";
+          defaultModel = "ds4-0731";
           defaultThinkingLevel = "high";
           packages = [
             "npm:pi-mcp-adapter"

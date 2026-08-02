@@ -39,6 +39,9 @@
     nix-amd-ai.url = "github:noamsto/nix-amd-ai";
     ds4.url = "github:fedeizzo/ds4";
 
+    herdr.url = "github:herdrdev/herdr";
+    herdr.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {

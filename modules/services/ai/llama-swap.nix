@@ -41,7 +41,7 @@
             ];
           });
       llama-server = lib.getExe' llama-cpp "llama-server";
-      ds4 = inputs.ds4.packages.${pkgs.system}.default;
+      ds4 = inputs.ds4.packages.${pkgs.stdenv.hostPlatform.system}.default;
       ds4-server = lib.getExe' ds4 "ds4-server";
       llmGroup = "llm";
       llmPath = "/var/llms";

@@ -73,7 +73,7 @@
       huggingFace = "poolside/Laguna-S-2.1-GGUF:Q4_K_M";
       # -hfd poolside/Laguna-S-2.1-GGUF:DFlash-BF16 --spec-type draft-dflash --spec-draft-n-max 15
       # https://x.com/antirez/status/2081690739000406235
-      llamaArgs = "-ngl all --no-mmap -fa 1 --no-ui --kv-unified --jinja --ubatch-size 4096 --batch-size 4096 --min-p 0.05 --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      llamaArgs = "-ngl all --no-mmap -fa 1 --no-ui --kv-unified --jinja --ubatch-size 4096 --batch-size 4096 --temp 1 --min-p 0.05 --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
