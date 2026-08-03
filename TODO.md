@@ -3,7 +3,6 @@
 ## Nix
 
 - [Speed up editing of frequently edited dotfiles](https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging)
-- [Development Environments on NixOS](https://nixos-and-flakes.thiscute.world/development/intro)
 - https://github.com/eh8/chenglab/
 
 ## Boot
@@ -17,32 +16,13 @@
   - [Improving server inference/TTFT via prompt/input streaming](https://github.com/ggml-org/llama.cpp/discussions/11348)
 - Agents:
   - [Build a voice agent with LangChain](https://www.youtube.com/watch?v=kDPzdyX76cg)
-  - [JarVish: The LLM-Powered Personal Agent](https://medium.com/@kafkafranz495/jarvish-the-llm-powered-personal-agent-3eee2ef4b8db)
-  - [Awesome Adaptation of Agentic AI](https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI/blob/main/paper.pdf)
-  - https://github.com/GiovanniPasq/agentic-rag-for-dummies/
 - RAG:
   - [Qdrant Essentials](https://www.youtube.com/watch?v=QnRjMolv8Qk&list=PL9IXkWSmb36_ykIQC30xk6aNKF8dlVkAy)
   - https://github.com/getzep/graphiti
   - [mem0](https://docs.mem0.ai/open-source/overview)
-  - [Meta just solved RAG's biggest bottleneck.](https://x.com/techNmak/status/1998847976341647776)
-  - https://docling-project.github.io/docling/
-  - https://github.com/allenai/olmocr
   - [Scaling PDF Retrieval with Qdrant](https://qdrant.tech/documentation/advanced-tutorials/pdf-retrieval-at-scale/)
   - https://github.com/HKUDS/RAG-Anything
   - https://github.com/chonkie-inc/memchunk
-  - https://github.com/bytedance/Dolphin
-- Tools:
-  - https://github.com/firecrawl/firecrawl
-  - https://github.com/LMCache/LMCache
-- TTS:
-  - https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
-  - https://github.com/OHF-Voice/wyomingw
-- STT:
-  - https://github.com/microsoft/VibeVoice/blob/main/docs/vibevoice-realtime-0.5b.md#installation
-- Image
-  - https://github.com/leejet/stable-diffusion.cpp
-- Video
-  - https://github.com/thu-ml/TurboDiffusion
 - UI
   - https://json-render.dev/
 
@@ -64,6 +44,7 @@
 - https://www.coverlettermaker.co/
 - https://changedetection.io/
 - https://app.affine.pro/
+- https://github.com/CodeWithCJ/SparkyFitness
 
 ## Monitoring
 
@@ -90,10 +71,6 @@
 - https://github.com/hall/kubenix
 - https://github.com/aksiksi/compose2nix
 
-## Framework Desktop
-
-- https://strixhalo-homelab.d7.wtf/Guides/C-States
-
 ## MacOS
 
 - [sketchybar](https://mynixos.com/nix-darwin/options/services.sketchybar) with [aerospace integration](https://www.reddit.com/r/Nix/comments/1lhv5bi/nixdarwin_aerospace_to_sketchybar_issue/)
@@ -102,6 +79,7 @@
 
 ## Reverse Engineering
 
+- https://www.starcubelabs.com/reverse-engineering-ds/
 - https://bookstack.nsmbcentral.net/books/new-super-mario-bros/page/using-gdb-with-ghidra-and-melonds
 - https://www.starcubelabs.com/reverse-engineering-ds/
 - https://github.com/pedro-javierf/NTRGhidra

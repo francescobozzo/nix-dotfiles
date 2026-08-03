@@ -1,9 +1,36 @@
 # Nix Configuration
 
-This repository contains the setup of my personal devices through dendritic Nix, including:
+This repository contains the setup of my personal devices through dendritic
+Nix, including:
 
-- MacBook Pro M4 Pro (Nix Darwin)
-- Framework Desktop (NixOS)
+- 🍎 MacBook Pro M4 Pro (nix-darwin)
+- 🖥️ Framework Desktop (NixOS)
+
+## Highlights
+
+- ❄️ Dendritic Nix: flake-parts + `import-tree` auto-discover `modules/` and `hosts/`
+- 🏠 [home-manager](https://github.com/nix-community/home-manager) manages user
+  dotfiles and packages
+- 🍺 [nix-homebrew](https://github.com/zhaofengli-wip/nix-homebrew) manages
+  Homebrew taps, casks, and formulae on macOS
+- 🤫 [sops-nix](https://github.com/Mic92/sops-nix) manages encrypted secrets
+- 🔑 TPM2-based LUKS unlock with `systemd-cryptenroll`
+- 🚀 Remote deployment via [deploy-rs](https://github.com/serokell/deploy-rs) and
+  [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
+- 💾 Automatic [restic](https://restic.readthedocs.io/) backups to Backblaze
+  B2 via a systemd service
+- 🧩 Self-hosted services: Traefik, Immich, Pi-hole, Home Assistant,
+  Prometheus, Glance, and more
+- 🤖 AI agents wired via llama-cpp, stable-diffusion, llama-swap, Hermes, and [llm-agents](https://github.com/numtide/llm-agents.nix)
+
+## Repository layout
+
+- `modules/hosts/` — host-specific configuration (framework-desktop,
+  macbook-pro)
+- `modules/features/` — cross-host feature modules (home-manager, llm-models)
+- `modules/programs/` — shared programs and shell config
+- `modules/services/` — self-hosted service modules
+- `secrets/` — sops-encrypted secrets
 
 ## NixOS
 
@@ -34,13 +61,6 @@ deploy --skip-checks .#neos
 ```sh
 sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0 /dev/nvme0n1p2
 ```
-
-### Resources
-
-- https://nixos.org/manual/nixos/stable/#sec-installation-manual
-- https://github.com/nix-community/nixos-anywhere
-- https://github.com/serokell/deploy-rs
-- https://discourse.nixos.org/t/full-disk-encryption-tpm2/29454/2
 
 ## MacOS
 
@@ -86,11 +106,6 @@ When initializing a new project using nix flakes, use the following command to s
 nix flake new -t github:nix-community/nix-direnv .
 ```
 
-### Resources
-
-- [NixOS Manual](https://nixos.org/manual/nixos/stable)
-- [Install from the Apple App Store](https://github.com/mas-cli/mas)
-
 ## Secrets
 
 ```sh
@@ -120,3 +135,8 @@ sudo restic-backblaze restore latest --target restore-backup
 ## References
 
 - https://github.com/Doc-Steve/dendritic-design-with-flake-parts
+- https://nixos.org/manual/nixos/stable/#sec-installation-manual
+- https://github.com/nix-community/nixos-anywhere
+- https://github.com/serokell/deploy-rs
+- https://discourse.nixos.org/t/full-disk-encryption-tpm2/29454/2
+- [Install from the Apple App Store](https://github.com/mas-cli/mas)
