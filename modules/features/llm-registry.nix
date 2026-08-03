@@ -68,23 +68,6 @@
       supportImages = true;
     }
     {
-      name = "laguna-S-2.1";
-      provider = "llama-server";
-      contextWindow = 262144;
-      huggingFace = "poolside/Laguna-S-2.1-GGUF:Q4_K_M";
-      # -hfd poolside/Laguna-S-2.1-GGUF:DFlash-BF16 --spec-type draft-dflash --spec-draft-n-max 15
-      # https://x.com/antirez/status/2081690739000406235
-      llamaArgs = "-ngl all --no-mmap -fa 1 --no-ui --kv-unified --jinja --ubatch-size 4096 --batch-size 4096 --temp 1 --min-p 0.05 --chat-template-kwargs '{\"preserve_thinking\": true}'";
-      supportImages = true;
-    }
-    {
-      name = "ds4";
-      provider = "ds4-server";
-      contextWindow = 262144;
-      llamaArgs = "--kv-disk-dir /tmp/ds4-kv --kv-disk-space-mb 8192 -m /var/llms/huggingface/hub/models--antirez--deepseek-v4-gguf/snapshots/9170bf42beb77f38006e016503ecace31f2bd9a0/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf";
-      supportImages = false;
-    }
-    {
       name = "ds4-0731";
       provider = "ds4-server";
       contextWindow = 262144;

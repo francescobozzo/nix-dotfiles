@@ -27,7 +27,7 @@ Nix, including:
 
 - `modules/hosts/` — host-specific configuration (framework-desktop,
   macbook-pro)
-- `modules/features/` — cross-host feature modules (home-manager, llm-models)
+- `modules/features/` — cross-host feature modules (home-manager, llm-registry)
 - `modules/programs/` — shared programs and shell config
 - `modules/services/` — self-hosted service modules
 - `secrets/` — sops-encrypted secrets
