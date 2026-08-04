@@ -121,5 +121,17 @@
           "CAP_NET_RAW"
         ];
       };
+
+      fb.services = [
+        {
+          name = "hass";
+          port = config.services.home-assistant.config.http.server_port;
+          category = "misc";
+          icon = "di:home-assistant";
+          toBackup = [
+            config.services.home-assistant.configDir
+          ];
+        }
+      ];
     };
 }

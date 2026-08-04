@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.pihole =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       services.pihole-web = {
         enable = true;
@@ -55,33 +55,13 @@
               # https://github.com/tailscale/tailscale/issues/15352
               "192.168.1.89 fbozzo.dpdns.org"
               "100.76.213.79 fbozzo.dpdns.org"
-              "192.168.1.89 whoami.fbozzo.dpdns.org"
-              "100.76.213.79 whoami.fbozzo.dpdns.org"
-              "192.168.1.89 pihole.fbozzo.dpdns.org"
-              "100.76.213.79 pihole.fbozzo.dpdns.org"
-              "192.168.1.89 webui.fbozzo.dpdns.org"
-              "100.76.213.79 webui.fbozzo.dpdns.org"
-              "192.168.1.89 hass.fbozzo.dpdns.org"
-              "100.76.213.79 hass.fbozzo.dpdns.org"
-              "192.168.1.89 llm.fbozzo.dpdns.org"
-              "100.76.213.79 llm.fbozzo.dpdns.org"
-              "192.168.1.89 glance.fbozzo.dpdns.org"
-              "100.76.213.79 glance.fbozzo.dpdns.org"
-              "192.168.1.89 prometheus.fbozzo.dpdns.org"
-              "100.76.213.79 prometheus.fbozzo.dpdns.org"
-              "192.168.1.89 status.fbozzo.dpdns.org"
-              "100.76.213.79 status.fbozzo.dpdns.org"
-              "192.168.1.89 photos.fbozzo.dpdns.org"
-              "100.76.213.79 photos.fbozzo.dpdns.org"
-              "192.168.1.89 llama.fbozzo.dpdns.org"
-              "100.76.213.79 llama.fbozzo.dpdns.org"
-              "192.168.1.89 gatus.fbozzo.dpdns.org"
-              "100.76.213.79 gatus.fbozzo.dpdns.org"
-              "192.168.1.89 ntfy.fbozzo.dpdns.org"
-              "100.76.213.79 ntfy.fbozzo.dpdns.org"
-              "192.168.1.89 search.fbozzo.dpdns.org"
-              "100.76.213.79 search.fbozzo.dpdns.org"
-            ];
+            ]
+            ++ (builtins.concatLists (
+              map (service: [
+                "192.168.1.89 ${service.subdomain}.fbozzo.dpdns.org"
+                "100.76.213.79 ${service.subdomain}.fbozzo.dpdns.org"
+              ]) config.fb.services
+            ));
           };
           dhcp = {
             active = true;
@@ -95,5 +75,22 @@
           };
         };
       };
+
+      fb.services = [
+        {
+          name = "pihole";
+          port = builtins.fromJSON config.services.pihole-web.ports;
+          gatusHealthcheckEndpoint = "/api/stats/summary";
+          category = "infrastructure";
+          icon = "di:pi-hole";
+          extraGatusConditions = [
+            "[BODY].queries.total > 0"
+            "[BODY].gravity.domains_being_blocked > 0"
+          ];
+          toBackup = [
+            # config.services.pihole-ftl.stateDirectory # ~170MiB daily
+          ];
+        }
+      ];
     };
 }

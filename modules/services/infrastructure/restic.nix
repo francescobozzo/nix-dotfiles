@@ -24,17 +24,9 @@
           ];
           paths = [
             "/var/lib/nixos" # state needed to generate stable uids and gids
-            config.services.home-assistant.configDir
-            "${config.services.open-webui.stateDir}/data"
             "${config.services.traefik.dataDir}/acme.json"
-            "/var/lib/gatus"
-            # config.services.pihole-ftl.stateDirectory ~170MiB daily
-            # "/var/lib/${config.services.prometheus.stateDir}" ~30MiB daily
-            "${config.services.immich.mediaLocation}/backups"
-            "${config.services.immich.mediaLocation}/library"
-            "${config.services.immich.mediaLocation}/upload"
-            "${config.services.immich.mediaLocation}/profile"
-          ];
+          ]
+          ++ (builtins.concatLists (map (service: service.toBackup) config.fb.services));
           pruneOpts = [
             "--keep-last 30" # 30 days
           ];

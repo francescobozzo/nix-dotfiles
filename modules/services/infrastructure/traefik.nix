@@ -104,113 +104,37 @@
         };
 
         dynamicConfigOptions = {
-          http.routers = {
-            whoami = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`whoami.fbozzo.dpdns.org`)";
-              service = "whoami";
-            };
-            pihole = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`pihole.fbozzo.dpdns.org`)";
-              service = "pihole";
-            };
-            webui = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`webui.fbozzo.dpdns.org`)";
-              service = "webui";
-            };
-            hass = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`hass.fbozzo.dpdns.org`)";
-              service = "hass";
-            };
-            glance = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`glance.fbozzo.dpdns.org`)";
-              service = "glance";
-            };
-            prometheus = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`prometheus.fbozzo.dpdns.org`)";
-              service = "prometheus";
-            };
-            immich = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`photos.fbozzo.dpdns.org`)";
-              service = "immich";
-            };
-            llama = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`llama.fbozzo.dpdns.org`)";
-              service = "llama";
-            };
-            gatus = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`gatus.fbozzo.dpdns.org`)";
-              service = "gatus";
-            };
-            ntfy = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`ntfy.fbozzo.dpdns.org`)";
-              service = "ntfy";
-            };
-            search = {
-              entryPoints = [ "websecure" ];
-              rule = "Host(`search.fbozzo.dpdns.org`)";
-              service = "search";
-            };
-          };
-          http.services = {
-            whoami.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.whoami.port}"; }
-              ];
-            };
-            pihole.loadBalancer = {
-              servers = [ { url = "http://localhost:${config.services.pihole-web.ports}"; } ];
-            };
-            webui.loadBalancer = {
-              servers = [ { url = "http://localhost:${toString config.services.open-webui.port}"; } ];
-            };
-            hass.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.home-assistant.config.http.server_port}"; }
-              ];
-            };
-            glance.loadBalancer = {
-              servers = [ { url = "http://localhost:${toString config.services.glance.settings.server.port}"; } ];
-            };
-            prometheus.loadBalancer = {
-              servers = [ { url = "http://localhost:${toString config.services.prometheus.port}"; } ];
-            };
-            immich.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.immich.port}"; }
-              ];
-            };
-            llama.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.llama-swap.port}"; }
-              ];
-            };
-            gatus.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.gatus.settings.web.port}"; }
-              ];
-            };
-            ntfy.loadBalancer = {
-              servers = [
-                { url = "http://localhost:23445"; }
-              ];
-            };
-            search.loadBalancer = {
-              servers = [
-                { url = "http://localhost:${toString config.services.searx.settings.server.port}"; }
-              ];
-            };
-          };
+          http.routers = builtins.listToAttrs (
+            map (service: {
+              name = service.name;
+              value = {
+                entryPoints = [ "websecure" ];
+                rule = "Host(`${service.subdomain}.fbozzo.dpdns.org`)";
+                service = service.name;
+              };
+            }) config.fb.services
+          );
+
+          http.services = builtins.listToAttrs (
+            map (service: {
+              name = service.name;
+              value = {
+                loadBalancer.servers = [
+                  { url = "http://localhost:${toString service.port}"; }
+                ];
+              };
+            }) config.fb.services
+          );
         };
       };
+
+      fb.services = [
+        {
+          name = "whoami";
+          port = config.services.whoami.port;
+          category = "misc";
+          icon = "mdi:account";
+        }
+      ];
     };
 }

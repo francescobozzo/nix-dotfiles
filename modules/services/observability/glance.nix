@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.glance = {
+  flake.modules.nixos.glance = { config, ... }: {
     services.glance = {
       enable = true;
       settings = {
@@ -44,54 +44,12 @@
                     type = "monitor";
                     cache = "1m";
                     title = "services";
-                    sites = [
-                      # icons: https://github.com/glanceapp/glance/blob/main/docs/configuration.md#icons
-                      {
-                        title = "whoami";
-                        url = "https://whoami.fbozzo.dpdns.org";
-                        icon = "mdi:account";
-                      }
-                      {
-                        title = "pihole";
-                        url = "https://pihole.fbozzo.dpdns.org";
-                        icon = "di:pi-hole";
-                      }
-                      {
-                        title = "open-webui";
-                        url = "https://webui.fbozzo.dpdns.org";
-                        icon = "di:open-webui";
-                      }
-                      {
-                        title = "hass";
-                        url = "https://hass.fbozzo.dpdns.org";
-                        icon = "di:home-assistant";
-                      }
-                      {
-                        title = "glance";
-                        url = "https://glance.fbozzo.dpdns.org";
-                        icon = "di:glance";
-                      }
-                      {
-                        title = "gatus";
-                        url = "https://gatus.fbozzo.dpdns.org";
-                        icon = "di:gatus";
-                      }
-                      {
-                        title = "immich";
-                        url = "https://photos.fbozzo.dpdns.org";
-                        icon = "di:immich";
-                      }
-                      {
-                        title = "llama-swap";
-                        url = "https://llama.fbozzo.dpdns.org";
-                        icon = "mdi:swap-horizontal";
-                      }
-                      {
-                        title = "searxng";
-                        url = "https://search.fbozzo.dpdns.org";
-                        icon = "di:searxng";
-                      }
-                    ];
+                    sites = builtins.map (service: {
+                      title = service.name;
+                      url = "https://${service.subdomain}.fbozzo.dpdns.org";
+                      icon = service.icon;
+                      group = service.category;
+                    }) config.fb.services;
                   }
                 ];
               }
@@ -111,8 +69,8 @@
                         label = "New York";
                       }
                       {
-                        timezone = "Asia/Kolkata";
-                        label = "Bangalore";
+                        timezone = "Asia/Tokyo";
+                        label = "Tokyo";
                       }
                     ];
                   }
@@ -153,5 +111,15 @@
         ];
       };
     };
+
+    fb.services = [
+      {
+        name = "glance";
+        port = config.services.glance.settings.server.port;
+        gatusHealthcheckEndpoint = "/api/healthz";
+        category = "observability";
+        icon = "di:glance";
+      }
+    ];
   };
 }

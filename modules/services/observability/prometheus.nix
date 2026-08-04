@@ -1,6 +1,18 @@
 {
   flake.modules.nixos.prometheus =
     { pkgs, config, ... }:
+    let
+      fbService = {
+        name = "prometheus";
+        subdomain = "prometheus";
+        port = config.services.prometheus.port;
+        category = "observability";
+        icon = "mdi:chart-line";
+        toBackup = [
+          # "/var/lib/${config.services.prometheus.stateDir}" # ~30MiB daily
+        ];
+      };
+    in
     {
       services.prometheus = {
         enable = true;
@@ -39,7 +51,9 @@
           }
         ];
         stateDir = "prometheus2"; # default
-        webExternalUrl = "prometheus.fbozzo.dpdns.org";
+        webExternalUrl = "${fbService.subdomain}.fbozzo.dpdns.org";
       };
+
+      fb.services = [ fbService ];
     };
 }

@@ -11,5 +11,17 @@
         };
         package = pkgs.unstable.open-webui;
       };
+
+      fb.services = [
+        {
+          name = "webui";
+          port = config.services.open-webui.port;
+          category = "ai";
+          icon = "di:open-webui";
+          toBackup = [
+            "${config.services.open-webui.stateDir}/data"
+          ];
+        }
+      ];
     };
 }

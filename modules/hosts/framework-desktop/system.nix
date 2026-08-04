@@ -19,6 +19,8 @@
       ];
 
       imports = [
+        self.modules.nixos.fb-services
+
         self.modules.nixos.ai
         self.modules.nixos.ddns
         self.modules.nixos.gaming

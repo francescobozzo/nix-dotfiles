@@ -1,17 +1,37 @@
 {
   flake.modules.nixos.monitoring =
-    { lib, ... }:
+    { lib, config, ... }:
+    let
+      ntfyPort = 23445;
+      gatusService = {
+        name = "gatus";
+        subdomain = "gatus";
+        port = config.services.gatus.settings.web.port;
+        category = "observability";
+        icon = "di:gatus";
+        toBackup = [
+          "/var/lib/gatus"
+        ];
+      };
+      ntfyService = {
+        name = "ntfy";
+        subdomain = "ntfy";
+        port = ntfyPort;
+        category = "misc";
+        icon = "mdi:bell-ring-outline";
+      };
+    in
     {
       services.ntfy-sh = {
         enable = true;
         settings = {
-          base-url = "https://ntfy.fbozzo.dpdns.org";
+          base-url = "https://${ntfyService.subdomain}.fbozzo.dpdns.org";
 
           # enable iOS push notifications
           # https://docs.ntfy.sh/config/#ios-instant-notifications
           upstream-base-url = "https://ntfy.sh";
 
-          listen-http = "127.0.0.1:23445";
+          listen-http = "127.0.0.1:${toString ntfyPort}";
           behind-proxy = true;
 
           enable-login = true;
@@ -30,7 +50,7 @@
           };
           alerting = {
             ntfy = {
-              url = "https://ntfy.fbozzo.dpdns.org";
+              url = "https://${ntfyService.subdomain}.fbozzo.dpdns.org";
               topic = "alerts";
               priority = 3;
               default-alert = {
@@ -40,101 +60,30 @@
               };
             };
           };
-          endpoints = [
-            {
-              name = "Glance";
-              group = "fbozzo.dpdns.org";
-              url = "https://glance.fbozzo.dpdns.org/api/healthz";
-              interval = "1m";
-              conditions = [
-                "[STATUS] == 200"
-                "[CONNECTED] == true"
-                "[RESPONSE_TIME] < 500"
-                "[CERTIFICATE_EXPIRATION] > 96h"
-              ];
-              alerts = [
-                {
-                  type = "ntfy";
-                }
-              ];
-            }
-            {
-              name = "Immich";
-              group = "fbozzo.dpdns.org";
-              url = "https://photos.fbozzo.dpdns.org/";
-              interval = "5m";
-              conditions = [
-                "[STATUS] == 200"
-                "[CONNECTED] == true"
-                "[RESPONSE_TIME] < 500"
-                "[CERTIFICATE_EXPIRATION] > 96h"
-              ];
-              alerts = [
-                {
-                  type = "ntfy";
-                }
-              ];
-            }
-            {
-              name = "llama-swap";
-              group = "fbozzo.dpdns.org";
-              url = "https://llama.fbozzo.dpdns.org/health";
-              interval = "5m";
-              conditions = [
-                "[STATUS] == 200"
-                "[CONNECTED] == true"
-                "[RESPONSE_TIME] < 500"
-                "[BODY] == OK"
-                "[CERTIFICATE_EXPIRATION] > 96h"
-              ];
-              alerts = [
-                {
-                  type = "ntfy";
-                }
-              ];
-            }
-            {
-              name = "searxng";
-              group = "fbozzo.dpdns.org";
-              url = "https://search.fbozzo.dpdns.org/healthz";
-              interval = "5m";
-              conditions = [
-                "[STATUS] == 200"
-                "[CONNECTED] == true"
-                "[RESPONSE_TIME] < 500"
-                "[BODY] == OK"
-                "[CERTIFICATE_EXPIRATION] > 96h"
-              ];
-              alerts = [
-                {
-                  type = "ntfy";
-                }
-              ];
-            }
-            {
-              name = "Pihole";
-              group = "fbozzo.dpdns.org";
-              url = "https://pihole.fbozzo.dpdns.org/api/stats/summary";
-              # headers = {
-              #   "X-FTL-SID" = "$\{PIHOLE_PASSWORD}";
-              # };
-              interval = "5m";
-              conditions = [
-                "[STATUS] == 200"
-                "[CONNECTED] == true"
-                "[RESPONSE_TIME] < 500"
-                "[BODY].queries.total > 0" # We are receiving queries
-                "[BODY].gravity.domains_being_blocked > 0" # We are using blocklists
-                "[CERTIFICATE_EXPIRATION] > 96h"
-              ];
-              alerts = [
-                {
-                  type = "ntfy";
-                }
-              ];
-            }
-          ];
+          endpoints = builtins.map (service: {
+            name = service.name;
+            group = service.category;
+            url = "https://${service.subdomain}.fbozzo.dpdns.org${toString (service.gatusHealthcheckEndpoint or "")}";
+            interval = "5m";
+            conditions = [
+              "[STATUS] == 200"
+              "[CONNECTED] == true"
+              "[RESPONSE_TIME] < 500"
+              "[CERTIFICATE_EXPIRATION] > 96h"
+            ]
+            ++ service.extraGatusConditions;
+            alerts = [
+              {
+                type = "ntfy";
+              }
+            ];
+          }) config.fb.services;
         };
       };
+
+      fb.services = [
+        gatusService
+        ntfyService
+      ];
     };
 }

@@ -6,15 +6,8 @@
         enable = true;
         domains = [
           "fbozzo.dpdns.org"
-          "whoami.fbozzo.dpdns.org"
-          "pihole.fbozzo.dpdns.org"
-          "webui.fbozzo.dpdns.org"
-          "hass.fbozzo.dpdns.org"
-          "llm.fbozzo.dpdns.org"
-          "glance.fbozzo.dpdns.org"
-          # "prometheus.fbozzo.dpdns.org"
-          # "llama.fbozzo.dpdns.org"
-        ];
+        ]
+        ++ (builtins.map (service: "${service.subdomain}.fbozzo.dpdns.org") config.fb.services);
         proxied = false;
         ipv4 = true;
         ipv6 = true;

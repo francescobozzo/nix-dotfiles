@@ -369,5 +369,19 @@
             ];
         };
       };
+
+      fb.services = [
+        {
+          name = "searxng";
+          subdomain = "search";
+          port = config.services.searx.settings.server.port;
+          gatusHealthcheckEndpoint = "/healthz";
+          category = "misc";
+          icon = "di:searxng";
+          extraGatusConditions = [
+            "[BODY] == OK"
+          ];
+        }
+      ];
     };
 }

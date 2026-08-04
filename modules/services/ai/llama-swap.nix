@@ -108,6 +108,19 @@
         };
       };
 
+      fb.services = [
+        {
+          name = "llama";
+          port = config.services.llama-swap.port;
+          gatusHealthcheckEndpoint = "/health";
+          category = "ai";
+          icon = "mdi:swap-horizontal";
+          extraGatusConditions = [
+            "[BODY] == OK"
+          ];
+        }
+      ];
+
       users.groups.${llmGroup} = { };
       users.users.fbozzo.extraGroups = [ llmGroup ]; # required for llama-bench
 
