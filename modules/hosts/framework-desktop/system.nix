@@ -34,6 +34,7 @@
         self.modules.nixos.restic
         self.modules.nixos.search
         self.modules.nixos.traefik
+        self.modules.nixos.trilium
       ];
 
       time.timeZone = "Europe/Rome";
