@@ -37,7 +37,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     hermes-agent.url = "github:NousResearch/hermes-agent";
     nix-amd-ai.url = "github:noamsto/nix-amd-ai";
-    ds4.url = "github:fedeizzo/ds4";
+    ds4.url = "github:francescobozzo/ds4/rocm-strix-halo-release";
 
     herdr.url = "github:herdrdev/herdr";
     herdr.inputs.nixpkgs.follows = "nixpkgs-unstable";
