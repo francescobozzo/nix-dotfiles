@@ -117,16 +117,16 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1786307658,
-        "narHash": "sha256-EKZ7DsBYgQ6JS4//8ODGWdbwi/7iUeB0bg+TROnne1k=",
-        "owner": "francescobozzo",
+        "lastModified": 1784019876,
+        "narHash": "sha256-5df3rXkIHcMLrlzbL4NNBLW/tdgjESkwCahHHPFKDZw=",
+        "owner": "fedeizzo",
         "repo": "ds4",
-        "rev": "4ec2c8850a8dd51760ea06e1813abb2f3801e442",
+        "rev": "7e7e7ce5ff0fe841f2b0007b510eec8a238fe887",
         "type": "github"
       },
       "original": {
-        "owner": "francescobozzo",
-        "ref": "rocm-strix-halo-release",
+        "owner": "fedeizzo",
+        "ref": "main",
         "repo": "ds4",
         "type": "github"
       }
@@ -695,11 +695,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785967620,
-        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
+        "lastModified": 1780749050,
+        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
         "type": "github"
       },
       "original": {
