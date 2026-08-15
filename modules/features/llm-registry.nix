@@ -52,6 +52,14 @@
       supportImages = true;
     }
     {
+      name = "qwen3.8:27b-MTP";
+      provider = "llama-server";
+      contextWindow = 262144;
+      huggingFace = "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min 0.75 --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      supportImages = true;
+    }
+    {
       name = "qwen3.6:27b-MTP";
       provider = "llama-server";
       contextWindow = 262144;
