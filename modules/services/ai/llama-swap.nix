@@ -56,6 +56,7 @@
       services.llama-swap = {
         enable = true;
         port = 11435;
+        package = pkgs.unstable.llama-swap;
         settings = {
           healthCheckTimeout = 3600; # increase health check timeout to 1 hour to accommodate large model downloads
           sendLoadingState = true;
