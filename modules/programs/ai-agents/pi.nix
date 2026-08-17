@@ -38,11 +38,33 @@
               baseUrl = "https://llama.fbozzo.dpdns.org/v1";
               api = "openai-completions";
               apiKey = "placeholder";
-              models = map (m: {
-                id = m.name;
-                contextWindow = m.contextWindow;
-                input = [ "text" ] ++ (if m.supportImages then [ "image" ] else [ ]);
-              }) llamaModels;
+              models = map (
+                m:
+                {
+                  id = m.name;
+                  contextWindow = m.contextWindow;
+                  input = [ "text" ] ++ (if m.supportImages then [ "image" ] else [ ]);
+                }
+                // (lib.optionalAttrs (m.reasoningEffort != null && m.reasoningEffort != [ ]) {
+                  reasoning = true;
+                  thinkingLevelMap = lib.listToAttrs (
+                    map
+                      (l: {
+                        name = l;
+                        value = if lib.elem l m.reasoningEffort then l else null;
+                      })
+                      [
+                        "off"
+                        "minimal"
+                        "low"
+                        "medium"
+                        "high"
+                        "xhigh"
+                        "max"
+                      ]
+                  );
+                })
+              ) llamaModels;
             };
           };
         };
