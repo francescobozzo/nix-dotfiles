@@ -13,7 +13,7 @@
             IdentityFile = "~/.ssh/id_ed25519";
             AddKeysToAgent = "yes";
           }
-          // lib.optionalAttrs pkgs.stdenv.isDarwin { UseKeychain = "yes"; };
+          // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin { UseKeychain = "yes"; };
 
           "neos" = {
             AddKeysToAgent = "yes";
