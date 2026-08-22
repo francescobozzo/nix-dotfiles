@@ -104,10 +104,10 @@
       supportImages = true;
     }
     {
-      name = "deepseek/deepseek-v4-flash-0731";
+      name = "deepseek/deepseek-v4-flash-vision-exp";
       provider = "openrouter";
       contextWindow = 1000000;
-      supportImages = false;
+      supportImages = true;
     }
     {
       name = "nvidia/nemotron-3-ultra-550b-a55b:free";
