@@ -115,11 +115,5 @@
       contextWindow = 1000000;
       supportImages = false;
     }
-    {
-      name = "stealth/ox-alpha";
-      provider = "openrouter";
-      contextWindow = 1000000;
-      supportImages = true;
-    }
   ];
 }
