@@ -115,5 +115,11 @@
       contextWindow = 1000000;
       supportImages = false;
     }
+    {
+      name = "z-ai/glm-5.3-flash";
+      provider = "openrouter";
+      contextWindow = 1310720;
+      supportImages = true;
+    }
   ];
 }
