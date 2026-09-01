@@ -29,7 +29,7 @@
         enable = true;
         # enableMcpIntegration = true; enable when available
         # installRemoteServer = !pkgs.stdenv.hostPlatform.isDarwin; requires same version on local and remote
-        package = pkgs.unstable.zed-editor;
+        # package = pkgs.unstable.zed-editor;
         extensions = [
           "astro"
           "basher"
