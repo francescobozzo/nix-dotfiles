@@ -17,13 +17,13 @@
       };
 
       services.hermes-agent = {
-        enable = true;
+        enable = false;
         environmentFiles = [ config.sops.secrets."hermes-env".path ];
         addToSystemPackages = true;
         extraDependencyGroups = [ "messaging" ];
         settings = {
           model = {
-            default = "qwen3.6:35b-MTP";
+            default = "qwen3.8:35b-MTP";
             provider = "custom";
             base_url = "https://${llamaService.subdomain}.fbozzo.dpdns.org/v1";
           };
