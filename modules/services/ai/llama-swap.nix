@@ -51,6 +51,26 @@
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
       ds4Models = lib.filter (m: m.provider == "ds4-server") self.llms;
       flmModels = lib.filter (m: m.provider == "flm") self.llms;
+      gufoModels = lib.filter (m: m.provider == "gufo") self.llms;
+      gufo = inputs.gufo.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+      # Build the gufo serve command line via gufo's mkGufoServe. llama-swap
+      # passes the listen port through the PORT env var; mkGufoServe supports
+      # raw "$VAR" env references for --port. mkGufoServe covers all gufo
+      # modalities (llm/image/video/tts/asr); extra flags (speculative,
+      # video --root/--ttl) ride on m.llamaArgs.
+      mkGufoCmd =
+        m:
+        inputs.gufo.lib.mkGufoServe {
+          system = pkgs.stdenv.hostPlatform.system;
+          inherit gufo;
+          modality = if m.modality == null then "llm" else m.modality;
+          model = m.modelPath;
+          servedModelName = m.name;
+          context = m.contextWindow;
+          port = "\${PORT}";
+        }
+        + (if m.llamaArgs == "" then "" else " " + m.llamaArgs);
     in
     {
       services.llama-swap = {
@@ -105,6 +125,19 @@
                   checkEndpoint = "/v1/models";
                 };
               }) flmModels
+            )
+            // lib.listToAttrs (
+              builtins.map (m: {
+                name = m.name;
+                value = {
+                  cmd = mkGufoCmd m;
+                  aliases = [ m.name ];
+                  checkEndpoint = "/v1/models";
+                  timeouts = {
+                    responseHeader = 600;
+                  };
+                };
+              }) gufoModels
             );
         };
       };
@@ -173,6 +206,7 @@
       environment.systemPackages = [
         llama-cpp
         ds4
+        gufo
         pkgs.unstable.python314Packages.huggingface-hub
         vllm
       ];
