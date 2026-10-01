@@ -41,15 +41,12 @@
             ];
           });
       llama-server = lib.getExe' llama-cpp "llama-server";
-      ds4 = inputs.ds4.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      ds4-server = lib.getExe' ds4 "ds4-server";
       vllm = inputs.nix-amd-ai.packages.${pkgs.stdenv.hostPlatform.system}.vllm-rocm.override {
         gpuTarget = "gfx1151";
       };
       llmGroup = "llm";
       llmPath = "/var/llms";
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
-      ds4Models = lib.filter (m: m.provider == "ds4-server") self.llms;
       flmModels = lib.filter (m: m.provider == "flm") self.llms;
       gufoModels = lib.filter (m: m.provider == "gufo") self.llms;
       gufo = inputs.gufo.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -102,19 +99,6 @@
                   aliases = [ m.name ];
                 };
               }) llamaModels
-            )
-            // lib.listToAttrs (
-              builtins.map (m: {
-                name = m.name;
-                value = {
-                  cmd = "${ds4-server} --port \${PORT} --ctx ${toString m.contextWindow} ${m.llamaArgs}";
-                  aliases = [ m.name ];
-                  checkEndpoint = "/v1/models";
-                  timeouts = {
-                    responseHeader = 600;
-                  };
-                };
-              }) ds4Models
             )
             // lib.listToAttrs (
               builtins.map (m: {
@@ -205,7 +189,6 @@
 
       environment.systemPackages = [
         llama-cpp
-        ds4
         gufo
         pkgs.unstable.python314Packages.huggingface-hub
         vllm
