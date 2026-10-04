@@ -304,11 +304,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1790875275,
-        "narHash": "sha256-Zr753YOLr0wme66myrBEH0UsjWxF7TK3zwp/6JUME34=",
+        "lastModified": 1791023731,
+        "narHash": "sha256-eu6If5mUj0GGZtWvC9+i78/SLUt8aJb93ImdYpylRPY=",
         "ref": "refs/heads/main",
-        "rev": "d707143223c52b91da3f0fb231ba85ac3eab247c",
-        "revCount": 456,
+        "rev": "1b4e6825f2cf6fa2203af3b4b3596bf25e4bfa4e",
+        "revCount": 473,
         "type": "git",
         "url": "ssh://git@github.com/gufo-org/gufo.git"
       },

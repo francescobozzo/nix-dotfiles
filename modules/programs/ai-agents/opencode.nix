@@ -14,7 +14,6 @@
       programs.opencode = {
         enable = true;
         package = llm-agents.opencode;
-        enableMcpIntegration = true;
         tui = {
           theme = "catppuccin-macchiato";
         };
@@ -34,15 +33,6 @@
                 }) llamaModels
               );
             };
-          };
-        };
-      };
-
-      programs.mcp = {
-        enable = true;
-        servers = {
-          nixos = {
-            command = lib.getExe pkgs.mcp-nixos;
           };
         };
       };

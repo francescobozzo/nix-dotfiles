@@ -134,7 +134,7 @@
       modelPath = "/var/llms/huggingface/hub/models--antirez--deepseek-v4-gguf/snapshots/1cd7b564460821938add0475a60b942c409295e0/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-0731.gguf";
       llamaArgs =
         "--speculative dspark --dspark-model /var/llms/huggingface/hub/models--antirez--deepseek-v4-gguf/snapshots/e7f04037032990db0346398d249baf9fb9df1ccc/DeepSeek-V4-Flash-DSpark-support-0731.gguf"
-        + " --sessions 2";
+        + " --sessions 2 -v";
       supportImages = false;
     }
 
@@ -154,7 +154,7 @@
       modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf";
       llamaArgs =
         "--speculative mtp --mtp-model /var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/MTP/mtp-Qwen3.8-Flash-Next-shared-Q8_0.gguf"
-        + " --sessions 2";
+        + " --sessions 2 -v";
       supportImages = true;
     }
 
@@ -172,7 +172,7 @@
       modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4ca720788d1e01f1bff70c033e0d0028fd02e502/Qwen3.8-27B-UD-Q8_K_XL.gguf";
       llamaArgs =
         "--speculative dflash2 --dflash-model /var/llms/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2-GGUF/snapshots/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
-        + " --sessions 2";
+        + " --sessions 2 -v";
       supportImages = true;
     }
     {
@@ -187,7 +187,7 @@
       modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4ca720788d1e01f1bff70c033e0d0028fd02e502/Qwen3.8-27B-UD-Q4_K_XL.gguf";
       llamaArgs =
         "--speculative dflash2 --dflash-model /var/llms/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2-GGUF/snapshots/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
-        + " --sessions 2";
+        + " --sessions 2 -v";
       supportImages = true;
     }
 

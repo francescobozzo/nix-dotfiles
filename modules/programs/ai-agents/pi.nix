@@ -26,7 +26,6 @@
           defaultModel = "ds4-0731";
           defaultThinkingLevel = "high";
           packages = [
-            "npm:pi-mcp-adapter"
             "npm:pi-direnv"
             "git:github.com/jonjonrankin/pi-caveman"
             "git:github.com/otahontas/pi-coding-agent-catppuccin"
