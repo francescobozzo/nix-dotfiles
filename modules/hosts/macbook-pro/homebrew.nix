@@ -29,7 +29,7 @@
           "Xcode" = 497799835;
           "WhatsApp Messenger" = 310633997;
           "Telegram Lite" = 946399090;
-          # "Tailscale" = 1470499037;
+          "Tailscale" = 1475387142;
         };
 
         # Needed to resolve the "Refusing to untap homebrew/cask" error
