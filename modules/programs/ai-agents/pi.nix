@@ -23,7 +23,7 @@
           hideThinkingBlock = false;
           enableInstallTelemetry = false;
           defaultProvider = "llama";
-          defaultModel = "ds4-0731";
+          defaultModel = "gufo-qwen3.8-flash-next";
           defaultThinkingLevel = "high";
           packages = [
             "npm:pi-direnv"

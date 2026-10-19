@@ -39,7 +39,7 @@ Nix, including:
 In case you need to generate the hardware configuration:
 
 ```sh
-nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/framework-desktop/hardware-configuration.nix --flake .#neos --target-host nixos@192.168.1.89
+nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./modules/hosts/framework-desktop/hardware-configuration.nix --flake .#neos --target-host nixos@192.168.1.89
 ```
 
 In case you want to use the existing hardware configuration
@@ -53,8 +53,11 @@ nix run github:nix-community/nixos-anywhere -- --flake .#neos --target-host nixo
 Use `deploy-rs` to deploy changes remotely:
 
 ```sh
-deploy --skip-checks .#neos
+deploy .#neos
 ```
+
+`deploy-rs` runs the flake checks (`flake.checks`) before activating; add
+`--skip-checks` only when they are known to be slow or broken for the target.
 
 ### LUKS + TPM2
 
@@ -109,7 +112,7 @@ nix flake new -t github:nix-community/nix-direnv .
 ## Secrets
 
 ```sh
-nix-shell -p sops --run "sops hosts/framework-desktop/system/neos-secrets.yaml"
+nix-shell -p sops --run "sops secrets/neos-secrets.yaml"
 ```
 
 ## Backup

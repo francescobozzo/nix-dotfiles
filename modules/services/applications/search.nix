@@ -14,7 +14,7 @@
           server = {
             bind_address = "127.0.0.1";
             port = 8313;
-            base_url = "https://search.fbozzo.dpdns.com";
+            base_url = "https://search.fbozzo.dpdns.org";
             secret_key = config.sops.secrets.searx.path;
             method = "GET";
           };

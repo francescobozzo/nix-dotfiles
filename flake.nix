@@ -41,7 +41,7 @@
     herdr.url = "github:herdrdev/herdr";
     herdr.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    gufo.url = "git+ssh://git@github.com/gufo-org/gufo.git";
+    gufo.url = "github:gufo-org/gufo";
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

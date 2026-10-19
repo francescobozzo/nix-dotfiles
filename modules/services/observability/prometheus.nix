@@ -51,7 +51,7 @@
           }
         ];
         stateDir = "prometheus2"; # default
-        webExternalUrl = "${fbService.subdomain}.fbozzo.dpdns.org";
+        webExternalUrl = "https://${fbService.subdomain}.fbozzo.dpdns.org";
       };
 
       fb.services = [ fbService ];

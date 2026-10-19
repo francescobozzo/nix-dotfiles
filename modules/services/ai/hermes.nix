@@ -23,7 +23,7 @@
         extraDependencyGroups = [ "messaging" ];
         settings = {
           model = {
-            default = "qwen3.8:35b-MTP";
+            default = "gufo-qwen3.8-flash-next";
             provider = "custom";
             base_url = "https://${llamaService.subdomain}.fbozzo.dpdns.org/v1";
           };

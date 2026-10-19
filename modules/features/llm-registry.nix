@@ -111,7 +111,7 @@
       supportImages = true;
     }
     {
-      name = "deepseek/deepseek-v4.1-flash";
+      name = "deepseek/deepseek-v4.1-flash-1017";
       provider = "openrouter";
       contextWindow = 1048576;
       supportImages = true;

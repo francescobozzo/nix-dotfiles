@@ -63,7 +63,9 @@
           endpoints = builtins.map (service: {
             name = service.name;
             group = service.category;
-            url = "https://${service.subdomain}.fbozzo.dpdns.org${toString (service.gatusHealthcheckEndpoint or "")}";
+            url = "https://${service.subdomain}.fbozzo.dpdns.org${
+              toString (service.gatusHealthcheckEndpoint or "")
+            }";
             interval = "5m";
             conditions = [
               "[STATUS] == 200"
