@@ -20,7 +20,7 @@
       home.file.".pi/agent/settings.json" = {
         text = builtins.toJSON {
           theme = "catppuccin-macchiato";
-          hideThinkingBlock = false;
+          hideThinkingBlock = true;
           enableInstallTelemetry = false;
           defaultProvider = "llama";
           defaultModel = "gufo-qwen3.8-flash-next";

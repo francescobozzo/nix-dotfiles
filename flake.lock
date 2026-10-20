@@ -304,11 +304,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1792441774,
-        "narHash": "sha256-Qm3rSw2lDnpf8FiPa3naZgGIHCX89aXeIMCRDyqehdE=",
+        "lastModified": 1792520096,
+        "narHash": "sha256-Bviq8/AWkSlH6XbOO0D4AZDzEAcG+692m++LIb8bx7w=",
         "owner": "gufo-org",
         "repo": "gufo",
-        "rev": "4862410edc6852305e3b0f1b226332591fc56948",
+        "rev": "f020bd3a037d58aa42138ca11fa895524e43cdd6",
         "type": "github"
       },
       "original": {
@@ -438,11 +438,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1792412467,
-        "narHash": "sha256-+8HD0xrtrXiSMgxVSLVzxEk2EicPZBz9/bBHc2u6vb0=",
+        "lastModified": 1792527991,
+        "narHash": "sha256-mscDkbXtRY6H9Z/Z2acpyUEOZqSF4LuOy1dVjVn+7GU=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "8fa7ff4193be923056b342d48d5bb38466791fe1",
+        "rev": "1dbf6c1260b33850a4e933836c35d07e842c2298",
         "type": "github"
       },
       "original": {
