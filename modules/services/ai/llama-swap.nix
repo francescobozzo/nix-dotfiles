@@ -54,7 +54,7 @@
       # Build the gufo serve command line via gufo's mkGufoServe. llama-swap
       # passes the listen port through the PORT env var; mkGufoServe supports
       # raw "$VAR" env references for --port. mkGufoServe covers all gufo
-      # modalities (llm/image/video/tts/asr); extra flags (speculative,
+      # modalities (llm/image/video/embedding/tts/asr); extra flags (speculative,
       # video --root/--ttl) ride on m.llamaArgs.
       mkGufoCmd =
         m:

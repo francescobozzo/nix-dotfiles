@@ -14,7 +14,7 @@
           parallel_tool_calls = false;
           prompt_cache_key = false;
         };
-      }) self.llms;
+      }) (lib.filter (m: m.provider != "gufo" || m.modality == null || m.modality == "llm") self.llms);
     in
     {
       home.packages = with pkgs; [

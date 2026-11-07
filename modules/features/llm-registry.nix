@@ -2,7 +2,7 @@
 {
   options.flake.llms = lib.mkOption {
     type = lib.types.listOf (
-      lib.types.submodule {
+      lib.types.addCheck (lib.types.submodule {
         options = {
           name = lib.mkOption { type = lib.types.str; };
           provider = lib.mkOption {
@@ -23,8 +23,9 @@
             '';
           };
           contextWindow = lib.mkOption {
-            type = lib.types.int;
-            description = "Context window size for the model.";
+            type = lib.types.nullOr lib.types.ints.positive;
+            default = null;
+            description = "Context window size; required except for gufo image, video, and embedding models.";
           };
           reasoningEffort = lib.mkOption {
             type = lib.types.nullOr (lib.types.listOf lib.types.str);
@@ -50,6 +51,7 @@
                 "llm"
                 "video"
                 "image"
+                "embedding"
                 "tts"
                 "asr"
               ]
@@ -67,7 +69,11 @@
             description = "Whether the model supports image input in zed-editor.";
           };
         };
-      }
+      }) (m:
+        if m.provider == "gufo" && lib.elem m.modality [ "image" "video" "embedding" ]
+        then m.contextWindow == null
+        else m.contextWindow != null
+      )
     );
     default = [ ];
     description = "Available LLM model definitions.";
@@ -198,21 +204,32 @@
       name = "Qwen-Image-2.1";
       provider = "gufo";
       modality = "image";
-      contextWindow = 8192; # unused: image modality has no context budget
       modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen-Image-2.1/snapshots/b3179ad355be050328e483a9dfdd9e60cd62adfa";
       llamaArgs = "--max-request-bytes 33554432";
       supportImages = false;
     }
+    {
+      name = "Qwen-Image-2.1-Turbo";
+      provider = "gufo";
+      modality = "image";
+      modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen-Image-2.1-Turbo/snapshots/fc13ba1986fcb905854dc8de2f52eee395f49b5b";
+      llamaArgs = "--max-request-bytes 33554432";
+    }
+    {
+      name = "embeddinggemma-2";
+      provider = "gufo";
+      modality = "embedding";
+      modelPath = "/var/llms/huggingface/hub/models--google--embeddinggemma-2/snapshots/914f7f89142e33e77833254d9c9b90c3cef7303b";
+    }
 
-    # MiniMax H3 text-to-video (gufo serve video). contextWindow is unused by
-    # the video modality; jobs persist under --root with --ttl retention.
+    # MiniMax H3 text-to-video (gufo serve video); jobs persist under --root
+    # with --ttl retention.
     # POST /v1/videos with model "minimax-h3" (exact preset; also accepts
     # minimax-h3-fast/aggressive/dev/fullres).
     {
       name = "minimax-h3";
       provider = "gufo";
       modality = "video";
-      contextWindow = 8192; # unused: video modality has no context budget
       modelPath = "/var/llms/huggingface/hub/models--MiniMaxAI--MiniMax-H3/snapshots/42ed227ee7df40d41602854ae760620d6eb651fe";
       llamaArgs = "--root /var/llms/huggingface/gufo-h3-jobs --ttl 3600";
       supportImages = false;

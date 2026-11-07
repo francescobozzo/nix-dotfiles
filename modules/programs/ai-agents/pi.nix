@@ -15,7 +15,9 @@
       ) self.llms;
     in
     {
-      home.packages = [ llm-agents.pi ];
+      home.packages = [
+        llm-agents.pi
+      ];
 
       home.file.".pi/agent/settings.json" = {
         text = builtins.toJSON {
