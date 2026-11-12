@@ -15,12 +15,13 @@
           rocmGpuTargets = [ "gfx1151" ];
         }).overrideAttrs
           (oldAttrs: rec {
-            version = "10173";
+            version = "12329";
+            commit = "0d69255";
             src = pkgs.fetchFromGitHub {
               owner = "ggml-org";
               repo = "llama.cpp";
               tag = "b${version}";
-              hash = "sha256-nXpeGrPupPFkrsAyRU/a8MUUAmcdt3jJZcMh5mKA5JA=";
+              hash = "sha256-fZopxE+CPVmnuswxRUZZQYaGjLh7au1euWZNHbKel60=";
               leaveDotGit = true;
               postFetch = ''
                 git -C "$out" rev-parse --short HEAD > $out/COMMIT
@@ -28,11 +29,27 @@
               '';
             };
             npmRoot = "tools/ui";
-            npmDepsHash = "sha256-B7uEynAG70a3xauBKc20RuFa9cnWaWzVBCh+LPLBnIM=";
+            npmDepsHash = "sha256-0OJIueUN5oD/V2NtVcXTiRW59u2tJIG3OxW8aJ8JDBY=";
 
-            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-              "-DLLAMA_HIP_UMA=ON" # unified memory
-            ];
+            # The nixpkgs recipe pins these independently of version and src.
+            cmakeFlags =
+              (builtins.filter (
+                flag: !(lib.hasPrefix "-DLLAMA_BUILD_NUMBER" flag) && !(lib.hasPrefix "-DLLAMA_BUILD_COMMIT" flag)
+              ) oldAttrs.cmakeFlags)
+              ++ [
+                "-DLLAMA_BUILD_NUMBER:STRING=${version}"
+                "-DLLAMA_BUILD_COMMIT:STRING=${commit}"
+                "-DLLAMA_HIP_UMA=ON" # unified memory
+              ];
+
+            preConfigure = ''
+              pushd ${npmRoot}
+              LLAMA_BUILD_NUMBER=${version} npm run build
+              popd
+            '';
+
+            # This newer source adds a Python test that imports torch.
+            disabledTests = (oldAttrs.disabledTests or [ ]) ++ [ "test-kv-cache-scales" ];
 
             # Mirror the Strix Halo toolbox HIP tuning: pin the ROCm path explicitly and
             # raise the local unroll threshold for gfx1151 kernels.
@@ -41,9 +58,6 @@
             ];
           });
       llama-server = lib.getExe' llama-cpp "llama-server";
-      vllm = inputs.nix-amd-ai.packages.${pkgs.stdenv.hostPlatform.system}.vllm-rocm.override {
-        gpuTarget = "gfx1151";
-      };
       llmGroup = "llm";
       llmPath = "/var/llms";
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
@@ -191,7 +205,6 @@
         llama-cpp
         gufo
         pkgs.unstable.python314Packages.huggingface-hub
-        vllm
       ];
     };
 }
