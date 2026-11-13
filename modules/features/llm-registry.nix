@@ -2,78 +2,89 @@
 {
   options.flake.llms = lib.mkOption {
     type = lib.types.listOf (
-      lib.types.addCheck (lib.types.submodule {
-        options = {
-          name = lib.mkOption { type = lib.types.str; };
-          provider = lib.mkOption {
-            type = lib.types.enum [
-              "llama-server"
+      lib.types.addCheck
+        (lib.types.submodule {
+          options = {
+            name = lib.mkOption { type = lib.types.str; };
+            provider = lib.mkOption {
+              type = lib.types.enum [
+                "llama-server"
 
-              "flm"
-              "gufo"
-              "openrouter"
-            ];
+                "flm"
+                "gufo"
+                "openrouter"
+              ];
+            };
+            huggingFace = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+              description = ''
+                HuggingFace model reference for llama provider.
+                Expected format: <repo>/<model>-GGUF:<tag> (e.g., unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL)
+              '';
+            };
+            contextWindow = lib.mkOption {
+              type = lib.types.nullOr lib.types.ints.positive;
+              default = null;
+              description = "Context window size; required except for gufo image, video, and embedding models.";
+            };
+            reasoningEffort = lib.mkOption {
+              type = lib.types.nullOr (lib.types.listOf lib.types.str);
+              default = null;
+              description = "Available reasoning effort levels for the model (e.g., low, medium, xhigh).";
+            };
+            llamaArgs = lib.mkOption {
+              type = lib.types.str;
+              default = "";
+              description = "Additional arguments to pass to llama runner.";
+            };
+            modelPath = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+              description = ''
+                Local path to model weights for the gufo provider
+                (e.g., /var/llms/huggingface/hub/models--Qwen--Qwen3-ASR-1.7B/snapshots/<revision>).
+              '';
+            };
+            modality = lib.mkOption {
+              type = lib.types.nullOr (
+                lib.types.enum [
+                  "llm"
+                  "video"
+                  "image"
+                  "embedding"
+                  "tts"
+                  "asr"
+                ]
+              );
+              default = null;
+              description = ''
+                gufo modality served by gufo-server (null defaults to llm).
+                "tts"/"asr" are standalone speech subcommands; "image" serves
+                Qwen-Image-2.1, "video" serves MiniMax H3 text-to-video.
+              '';
+            };
+            supportImages = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Whether the model supports image input in zed-editor.";
+            };
           };
-          huggingFace = lib.mkOption {
-            type = lib.types.nullOr lib.types.str;
-            default = null;
-            description = ''
-              HuggingFace model reference for llama provider.
-              Expected format: <repo>/<model>-GGUF:<tag> (e.g., unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL)
-            '';
-          };
-          contextWindow = lib.mkOption {
-            type = lib.types.nullOr lib.types.ints.positive;
-            default = null;
-            description = "Context window size; required except for gufo image, video, and embedding models.";
-          };
-          reasoningEffort = lib.mkOption {
-            type = lib.types.nullOr (lib.types.listOf lib.types.str);
-            default = null;
-            description = "Available reasoning effort levels for the model (e.g., low, medium, xhigh).";
-          };
-          llamaArgs = lib.mkOption {
-            type = lib.types.str;
-            default = "";
-            description = "Additional arguments to pass to llama runner.";
-          };
-          modelPath = lib.mkOption {
-            type = lib.types.nullOr lib.types.str;
-            default = null;
-            description = ''
-              Local path to model weights for the gufo provider
-              (e.g., /var/llms/huggingface/hub/models--Qwen--Qwen3-ASR-1.7B/snapshots/<revision>).
-            '';
-          };
-          modality = lib.mkOption {
-            type = lib.types.nullOr (
-              lib.types.enum [
-                "llm"
-                "video"
-                "image"
-                "embedding"
-                "tts"
-                "asr"
-              ]
-            );
-            default = null;
-            description = ''
-              gufo modality served by gufo-server (null defaults to llm).
-              "tts"/"asr" are standalone speech subcommands; "image" serves
-              Qwen-Image-2.1, "video" serves MiniMax H3 text-to-video.
-            '';
-          };
-          supportImages = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Whether the model supports image input in zed-editor.";
-          };
-        };
-      }) (m:
-        if m.provider == "gufo" && lib.elem m.modality [ "image" "video" "embedding" ]
-        then m.contextWindow == null
-        else m.contextWindow != null
-      )
+        })
+        (
+          m:
+          if
+            m.provider == "gufo"
+            && lib.elem m.modality [
+              "image"
+              "video"
+              "embedding"
+            ]
+          then
+            m.contextWindow == null
+          else
+            m.contextWindow != null
+        )
     );
     default = [ ];
     description = "Available LLM model definitions.";
@@ -85,7 +96,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.5-0.8B-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --no-mmap -fa 1 --no-ui --kv-unified";
+      llamaArgs = "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 -ngl 999 --load-mode none -fa 1 --no-ui --kv-unified";
       supportImages = true;
     }
     {
@@ -98,7 +109,7 @@
         "low"
       ];
       huggingFace = "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min 0.75 --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 4 --spec-draft-p-min 0.75 --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --load-mode none -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
@@ -106,7 +117,7 @@
       provider = "llama-server";
       contextWindow = 262144;
       huggingFace = "unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL";
-      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --no-mmap -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
+      llamaArgs = "--spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-p-min 0.75 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --presence-penalty 0.0 --repeat-penalty 1.0 -ngl all --load-mode none -fa 1 --no-ui --kv-unified --ubatch-size 2048 --batch-size 4096 --chat-template-kwargs '{\"preserve_thinking\": true}'";
       supportImages = true;
     }
     {
