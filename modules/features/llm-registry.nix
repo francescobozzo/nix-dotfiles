@@ -168,9 +168,9 @@
         "medium"
         "low"
       ];
-      modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf";
+      modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/d96201194f103c906994f283f504209dc8d2a10c/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf";
       llamaArgs =
-        "--speculative mtp --mtp-model /var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/MTP/mtp-Qwen3.8-Flash-Next-shared-Q8_0.gguf"
+        "--speculative mtp --mtp-model /var/llms/huggingface/hub/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots//d96201194f103c906994f283f504209dc8d2a10c/MTP/mtp-Qwen3.8-Flash-Next-shared-Q8_0.gguf"
         + " --sessions 2 -v";
       supportImages = true;
     }
@@ -201,7 +201,7 @@
         "medium"
         "low"
       ];
-      modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4ca720788d1e01f1bff70c033e0d0028fd02e502/Qwen3.8-27B-UD-Q4_K_XL.gguf";
+      modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4af51b3542f775b0a8e4b310bfb3f17e01c306c9/Qwen3.8-27B-UD-Q4_K_XL.gguf";
       llamaArgs =
         "--speculative dflash2 --dflash-model /var/llms/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2-GGUF/snapshots/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
         + " --sessions 2 -v";
@@ -212,7 +212,7 @@
     # ID must equal the llama-swap name: image requests are validated against
     # --served-model-name. Larger uploads need --max-request-bytes.
     {
-      name = "Qwen-Image-2.1";
+      name = "gufo-Qwen-Image-2.1";
       provider = "gufo";
       modality = "image";
       modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen-Image-2.1/snapshots/b3179ad355be050328e483a9dfdd9e60cd62adfa";
@@ -220,25 +220,31 @@
       supportImages = false;
     }
     {
-      name = "Qwen-Image-2.1-Turbo";
+      name = "gufo-Qwen-Image-2.1-Turbo";
       provider = "gufo";
       modality = "image";
       modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen-Image-2.1-Turbo/snapshots/fc13ba1986fcb905854dc8de2f52eee395f49b5b";
       llamaArgs = "--max-request-bytes 33554432";
     }
     {
-      name = "embeddinggemma-2";
+      name = "gufo-embeddinggemma-2";
       provider = "gufo";
       modality = "embedding";
       modelPath = "/var/llms/huggingface/hub/models--google--embeddinggemma-2/snapshots/914f7f89142e33e77833254d9c9b90c3cef7303b";
     }
+    {
+      name = "gufo-embeddinggemma-2-npu";
+      provider = "gufo";
+      modality = "embedding";
+      modelPath = "/var/llms/huggingface/hub/models--google--embeddinggemma-2/snapshots/914f7f89142e33e77833254d9c9b90c3cef7303b";
+      llamaArgs = "--npu";
+    }
 
     # MiniMax H3 text-to-video (gufo serve video); jobs persist under --root
     # with --ttl retention.
-    # POST /v1/videos with model "minimax-h3" (exact preset; also accepts
-    # minimax-h3-fast/aggressive/dev/fullres).
+    # POST /v1/videos with model "gufo-minimax-h3" (exact preset).
     {
-      name = "minimax-h3";
+      name = "gufo-minimax-h3";
       provider = "gufo";
       modality = "video";
       modelPath = "/var/llms/huggingface/hub/models--MiniMaxAI--MiniMax-H3/snapshots/42ed227ee7df40d41602854ae760620d6eb651fe";
@@ -250,7 +256,7 @@
     # --served-model-name now applies to speech too: each server's model_id
     # equals its llama-swap name, so client requests pass validation.
     {
-      name = "qwen3-asr";
+      name = "gufo-qwen3-asr";
       provider = "gufo";
       modality = "asr";
       contextWindow = 1024; # --context
@@ -258,12 +264,28 @@
       supportImages = false;
     }
     {
-      name = "qwen3-tts";
+      name = "gufo-qwen3-asr-npu";
+      provider = "gufo";
+      modality = "asr";
+      contextWindow = 1024;
+      modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen3-ASR-1.7B/snapshots/7278e1e70fe206f11671096ffdd38061171dd6e5";
+      llamaArgs = "--npu";
+    }
+    {
+      name = "gufo-qwen3-tts";
       provider = "gufo";
       modality = "tts";
       contextWindow = 4096; # --context
       modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen3-TTS-12Hz-1.7B-CustomVoice/snapshots/0c0e3051f131929182e2c023b9537f8b1c68adfe";
       supportImages = false;
+    }
+    {
+      name = "gufo-qwen3-tts-npu";
+      provider = "gufo";
+      modality = "tts";
+      contextWindow = 4096;
+      modelPath = "/var/llms/huggingface/hub/models--Qwen--Qwen3-TTS-12Hz-1.7B-CustomVoice/snapshots/0c0e3051f131929182e2c023b9537f8b1c68adfe";
+      llamaArgs = "--npu";
     }
   ];
 }
