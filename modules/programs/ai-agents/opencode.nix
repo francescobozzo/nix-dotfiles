@@ -8,7 +8,7 @@
     }:
     let
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-      llamaModels = lib.filter (m: m.provider != "gufo" || m.modality == null || m.modality == "llm") self.llms;
+      llamaModels = self.chatLlms;
     in
     {
       programs.opencode = {

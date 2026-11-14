@@ -10,9 +10,7 @@
       llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       # llama-swap proxies all models under one OpenAI endpoint; gufo audio and
       # video modality runners have no chat-completions surface, so exclude them.
-      llamaModels = lib.filter (
-        m: m.provider != "gufo" || m.modality == null || m.modality == "llm"
-      ) self.llms;
+      llamaModels = self.chatLlms;
     in
     {
       home.packages = [

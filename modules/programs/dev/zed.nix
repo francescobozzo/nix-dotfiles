@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.modules.homeManager.dev =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     let
       # openai_compatible uses nested "capabilities" block
       llamaModels = builtins.map (m: {
@@ -14,7 +14,7 @@
           parallel_tool_calls = false;
           prompt_cache_key = false;
         };
-      }) (lib.filter (m: m.provider != "gufo" || m.modality == null || m.modality == "llm") self.llms);
+      }) self.chatLlms;
     in
     {
       home.packages = with pkgs; [

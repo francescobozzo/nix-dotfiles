@@ -21,7 +21,7 @@
       # passes the listen port through the PORT env var; mkGufoServe supports
       # raw "$VAR" env references for --port. mkGufoServe covers all gufo
       # modalities (llm/image/video/embedding/tts/asr); extra flags (speculative,
-      # video --root/--ttl) ride on m.llamaArgs.
+      # video --root/--ttl) ride on m.extraArgs.
       mkGufoCmd =
         m:
         inputs.gufo.lib.mkGufoServe {
@@ -33,7 +33,7 @@
           context = m.contextWindow;
           port = "\${PORT}";
         }
-        + (if m.llamaArgs == "" then "" else " " + m.llamaArgs);
+        + (if m.extraArgs == "" then "" else " " + m.extraArgs);
     in
     {
       services.llama-swap = {
@@ -61,7 +61,7 @@
               builtins.map (m: {
                 name = m.name;
                 value = {
-                  cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} -c ${toString m.contextWindow} ${m.llamaArgs}";
+                  cmd = "${llama-server} --port \${PORT} -hf ${m.huggingFace} -c ${toString m.contextWindow} ${m.extraArgs}";
                   aliases = [ m.name ];
                 };
               }) llamaModels
@@ -70,7 +70,7 @@
               builtins.map (m: {
                 name = m.name;
                 value = {
-                  cmd = "${pkgs.fastflowlm}/bin/flm serve --port \${PORT} -c ${toString m.contextWindow} ${m.llamaArgs}";
+                  cmd = "${pkgs.fastflowlm}/bin/flm serve --port \${PORT} -c ${toString m.contextWindow} ${m.extraArgs}";
                   aliases = [ m.name ];
                   checkEndpoint = "/v1/models";
                 };
