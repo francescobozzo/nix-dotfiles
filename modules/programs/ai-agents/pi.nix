@@ -19,6 +19,8 @@
         llm-agents.pi
       ];
 
+      fb.herdr.integrations = [ "pi" ];
+
       home.file.".pi/agent/settings.json" = {
         text = builtins.toJSON {
           theme = "catppuccin-macchiato";

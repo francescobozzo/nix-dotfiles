@@ -1,5 +1,43 @@
 { inputs, ... }:
 {
+  flake.modules.homeManager.ai-agents =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      directories = {
+        codex = ''"''${CODEX_HOME:-$HOME/.codex}"'';
+        claude = ''"''${CLAUDE_CONFIG_DIR:-$HOME/.claude}"'';
+        opencode = ''"''${XDG_CONFIG_HOME:-$HOME/.config}/opencode"'';
+        pi = ''"''${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}/extensions"'';
+        qodercli = ''"''${QODER_CONFIG_DIR:-$HOME/.qoder}"'';
+      };
+      herdr = inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    in
+    {
+      options.fb.herdr.integrations = lib.mkOption {
+        type = lib.types.listOf (lib.types.enum (builtins.attrNames directories));
+        default = [ ];
+        description = "Herdr agent integrations to install during activation.";
+      };
+
+      config = lib.mkIf (config.fb.herdr.integrations != [ ]) {
+        home.packages = [ pkgs.python3 ];
+        home.activation = lib.listToAttrs (
+          map (agent: {
+            name = "herdr-${agent}";
+            value = lib.hm.dag.entryAfter [ "writeBoundary" "linkGeneration" ] ''
+              $DRY_RUN_CMD mkdir -p ${directories.${agent}}
+              $DRY_RUN_CMD ${herdr}/bin/herdr integration install ${agent}
+            '';
+          }) (lib.unique config.fb.herdr.integrations)
+        );
+      };
+    };
+
   flake.modules.homeManager.dev =
     { pkgs, lib, ... }:
     let

@@ -10,5 +10,6 @@
         enable = true;
         package = llm-agents.claude-code;
       };
+      fb.herdr.integrations = [ "claude" ];
     };
 }

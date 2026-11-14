@@ -10,5 +10,6 @@
         enable = true;
         package = llm-agents.codex;
       };
+      fb.herdr.integrations = [ "codex" ];
     };
 }

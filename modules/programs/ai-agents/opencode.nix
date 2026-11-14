@@ -16,6 +16,7 @@
         package = llm-agents.opencode;
         tui = {
           theme = "catppuccin-macchiato";
+          plugin = [ "./herdr-tui-session.js" ];
         };
         settings = {
           provider = {
@@ -36,5 +37,6 @@
           };
         };
       };
+      fb.herdr.integrations = [ "opencode" ];
     };
 }

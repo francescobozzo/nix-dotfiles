@@ -9,5 +9,6 @@
       home.packages = [
         llm-agents.qoder-cli
       ];
+      fb.herdr.integrations = [ "qodercli" ];
     };
 }
