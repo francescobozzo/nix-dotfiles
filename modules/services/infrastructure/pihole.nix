@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.pihole =
-    { pkgs, config, ... }:
+    { pkgs, config, lib, ... }:
     {
       services.pihole-web = {
         enable = true;
@@ -83,6 +83,7 @@
           gatusHealthcheckEndpoint = "/api/stats/summary";
           category = "infrastructure";
           icon = "di:pi-hole";
+          auth.mode = lib.mkIf config.fb.authelia.enable "forwardAuth";
           extraGatusConditions = [
             "[BODY].queries.total > 0"
             "[BODY].gravity.domains_being_blocked > 0"
