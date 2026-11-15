@@ -31,7 +31,28 @@
             name = "herdr-${agent}";
             value = lib.hm.dag.entryAfter [ "writeBoundary" "linkGeneration" ] ''
               $DRY_RUN_CMD mkdir -p ${directories.${agent}}
-              $DRY_RUN_CMD ${herdr}/bin/herdr integration install ${agent}
+              ${
+                if agent == "opencode" then
+                  ''
+                    if [ -z "$DRY_RUN_CMD" ] && [ -L ${directories.opencode}/tui.json ] && \
+                      case "$(readlink ${directories.opencode}/tui.json)" in /nix/store/*) true ;; *) false ;; esac; then
+                      (
+                        tui=${directories.opencode}/tui.json
+                        backup="$(mktemp "''${tui}.herdr.XXXXXXXX")"
+                        rm "$backup"
+                        mv "$tui" "$backup"
+                        trap 'rm -f "$tui"; mv "$backup" "$tui"' EXIT
+                        cp -L "$backup" "$tui"
+                        chmod u+w "$tui"
+                        ${herdr}/bin/herdr integration install opencode
+                      )
+                    else
+                      $DRY_RUN_CMD ${herdr}/bin/herdr integration install opencode
+                    fi
+                  ''
+                else
+                  "$DRY_RUN_CMD ${herdr}/bin/herdr integration install ${agent}"
+              }
             '';
           }) (lib.unique config.fb.herdr.integrations)
         );

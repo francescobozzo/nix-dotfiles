@@ -1,6 +1,11 @@
 {
   flake.modules.nixos.restic =
-    { config, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       # TODO: add on failure notification
       services.restic.backups = {
@@ -27,6 +32,13 @@
             "${config.services.traefik.dataDir}/acme.json"
           ]
           ++ (builtins.concatLists (map (service: service.toBackup) config.fb.services));
+          backupPrepareCommand = ''
+            #!${pkgs.runtimeShell}
+            set -eu
+            ${lib.concatMapStringsSep "\n" (service: service.backupPrepareCommand) (
+              builtins.filter (service: service.backupPrepareCommand != "") config.fb.services
+            )}
+          '';
           pruneOpts = [
             "--keep-last 30" # 30 days
           ];

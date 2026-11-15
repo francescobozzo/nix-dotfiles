@@ -33,6 +33,26 @@
               );
             };
             icon = mkOption { type = types.str; };
+            auth = {
+              mode = mkOption {
+                type = types.enum [
+                  "none"
+                  "oidc"
+                  "forwardAuth"
+                ];
+                default = "none";
+              };
+              oidcClient = mkOption {
+                type = types.nullOr (pkgs.formats.yaml { }).type;
+                default = null;
+                description = "Authelia OIDC client configuration, owned by the service.";
+              };
+              forwardAuthHeaders = mkOption {
+                type = types.listOf types.str;
+                default = [ ];
+                description = "Identity response headers to copy from Authelia to this service.";
+              };
+            };
             extraGatusConditions = mkOption {
               type = types.listOf types.str;
               default = [ ];
@@ -40,6 +60,11 @@
             toBackup = mkOption {
               type = types.listOf types.str;
               default = [ ];
+            };
+            backupPrepareCommand = mkOption {
+              type = types.lines;
+              default = "";
+              description = "Commands to prepare this service's files before the shared backup.";
             };
           };
         }
@@ -61,6 +86,18 @@
       };
 
       config.assertions = [
+        {
+          assertion = all (s: (s.auth.mode == "oidc") == (s.auth.oidcClient != null)) services;
+          message = "An fb.services OIDC client must be supplied exactly when auth.mode is oidc.";
+        }
+        {
+          assertion = all (s: s.auth.mode == "forwardAuth" || s.auth.forwardAuthHeaders == [ ]) services;
+          message = "fb.services forwardAuthHeaders require forwardAuth mode.";
+        }
+        {
+          assertion = config.fb.authelia.enable || all (s: s.auth.mode == "none") services;
+          message = "Authenticated fb.services require fb.authelia.enable.";
+        }
         {
           assertion = dupeNames == [ ];
           message = "fb.services names must be unique; duplicates: ${toString dupeNames}";

@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.traefik =
-    { config, ... }:
+    { config, lib, ... }:
     {
       services.whoami = {
         enable = true;
@@ -111,9 +111,25 @@
                 entryPoints = [ "websecure" ];
                 rule = "Host(`${service.subdomain}.fbozzo.dpdns.org`)";
                 service = service.name;
+                middlewares = lib.optional (service.auth.mode == "forwardAuth") "${service.name}-auth";
               };
             }) config.fb.services
           );
+
+          http.middlewares =
+            lib.mkIf (lib.any (service: service.auth.mode == "forwardAuth") config.fb.services)
+              (
+                builtins.listToAttrs (
+                  map (service: {
+                    name = "${service.name}-auth";
+                    value.forwardAuth = {
+                      address = "http://127.0.0.1:${toString config.fb.authelia.port}/api/authz/forward-auth";
+                      trustForwardHeader = true;
+                      authResponseHeaders = service.auth.forwardAuthHeaders;
+                    };
+                  }) (builtins.filter (service: service.auth.mode == "forwardAuth") config.fb.services)
+                )
+              );
 
           http.services = builtins.listToAttrs (
             map (service: {

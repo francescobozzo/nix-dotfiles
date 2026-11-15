@@ -20,6 +20,7 @@
 
       imports = [
         self.modules.nixos.fb-services
+        self.modules.nixos.authelia
 
         self.modules.nixos.ai
         self.modules.nixos.ddns
@@ -38,5 +39,6 @@
       ];
 
       time.timeZone = "Europe/Rome";
+      fb.authelia.enable = true;
     };
 }
