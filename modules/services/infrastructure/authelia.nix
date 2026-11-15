@@ -92,6 +92,7 @@
             port = cfg.port;
             category = "infrastructure";
             icon = "di:authelia";
+            gatusHealthcheckEndpoint = "/api/health";
             toBackup = [
               "/var/lib/authelia-main/users.yml"
               "/var/lib/authelia-backup/db.sqlite3"
