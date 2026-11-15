@@ -1,6 +1,11 @@
 {
   flake.modules.nixos.hass =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       hassUser = config.users.users.hass.name;
       hassGroup = config.users.users.hass.group;
@@ -53,12 +58,24 @@
           home-assistant-custom-lovelace-modules.mini-graph-card
           home-assistant-custom-lovelace-modules.bubble-card
         ];
-        customComponents = with pkgs.home-assistant-custom-components; [
-          smartir
-        ];
+        customComponents =
+          with pkgs.home-assistant-custom-components;
+          [
+            smartir
+          ]
+          ++ lib.optional config.fb.authelia.enable pkgs.home-assistant-custom-components.auth_oidc;
 
         config = {
           default_config = { };
+
+          auth_oidc = lib.mkIf config.fb.authelia.enable {
+            client_id = "home-assistant";
+            discovery_url = "https://auth.fbozzo.dpdns.org/.well-known/openid-configuration";
+            display_name = "Authelia";
+            # Enter Companion app login codes at https://hass.fbozzo.dpdns.org/auth/oidc/welcome
+            # Enable temporarily to link existing users on their first OIDC login.
+            # features.automatic_user_linking = true;
+          };
 
           smartir.check_updates = false;
           climate = [
@@ -79,6 +96,7 @@
           script = "!include scripts.yaml";
           homeassistant = {
             name = "Home";
+            auth_providers = lib.mkIf config.fb.authelia.enable [ ];
             temperature_unit = "C";
             time_zone = "Europe/Rome";
             unit_system = "metric";
@@ -128,6 +146,29 @@
           port = config.services.home-assistant.config.http.server_port;
           category = "misc";
           icon = "di:home-assistant";
+          auth = lib.mkIf config.fb.authelia.enable {
+            mode = "oidc";
+            oidcClient = {
+              client_id = "home-assistant";
+              client_name = "Home Assistant";
+              consent_mode = "implicit";
+              public = true;
+              authorization_policy = "two_factor";
+              require_pkce = true;
+              pkce_challenge_method = "S256";
+              redirect_uris = [ "https://hass.fbozzo.dpdns.org/auth/oidc/callback" ];
+              scopes = [
+                "openid"
+                "profile"
+                "groups"
+              ];
+              response_types = [ "code" ];
+              grant_types = [ "authorization_code" ];
+              access_token_signed_response_alg = "none";
+              userinfo_signed_response_alg = "none";
+              token_endpoint_auth_method = "none";
+            };
+          };
           toBackup = [
             config.services.home-assistant.configDir
           ];
