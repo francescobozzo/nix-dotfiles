@@ -1,10 +1,10 @@
 {
-  flake.modules.nixos.glance = { config, ... }: {
+  flake.modules.nixos.glance = { config, lib, ... }: {
     services.glance = {
       enable = true;
       settings = {
         server = {
-          host = "0.0.0.0";
+          host = "127.0.0.1";
           port = 14514;
         };
         pages = [
@@ -49,6 +49,8 @@
                       url = "https://${service.subdomain}.fbozzo.dpdns.org";
                       icon = service.icon;
                       group = service.category;
+                    } // lib.optionalAttrs (service.auth.mode == "forwardAuth") {
+                      check-url = "http://127.0.0.1:${toString service.port}${toString service.gatusHealthcheckEndpoint}";
                     }) config.fb.services;
                   }
                 ];
@@ -119,6 +121,7 @@
         gatusHealthcheckEndpoint = "/api/healthz";
         category = "observability";
         icon = "di:glance";
+        auth.mode = lib.mkIf config.fb.authelia.enable "forwardAuth";
       }
     ];
   };

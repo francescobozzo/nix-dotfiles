@@ -63,7 +63,7 @@
           endpoints = builtins.map (service: {
             name = service.name;
             group = service.category;
-            url = "https://${service.subdomain}.fbozzo.dpdns.org${
+            url = "${if service.auth.mode == "forwardAuth" then "http://127.0.0.1:${toString service.port}" else "https://${service.subdomain}.fbozzo.dpdns.org"}${
               toString (service.gatusHealthcheckEndpoint or "")
             }";
             interval = "5m";
@@ -71,8 +71,8 @@
               "[STATUS] == 200"
               "[CONNECTED] == true"
               "[RESPONSE_TIME] < 500"
-              "[CERTIFICATE_EXPIRATION] > 96h"
             ]
+            ++ lib.optional (service.auth.mode != "forwardAuth") "[CERTIFICATE_EXPIRATION] > 96h"
             ++ service.extraGatusConditions;
             alerts = [
               {
