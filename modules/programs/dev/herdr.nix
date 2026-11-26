@@ -9,6 +9,7 @@
     }:
     let
       directories = {
+        antigravity-cli = ''"''${ANTIGRAVITY_CLI_CONFIG_DIR:-$HOME/.gemini/config}"'';
         codex = ''"''${CODEX_HOME:-$HOME/.codex}"'';
         claude = ''"''${CLAUDE_CONFIG_DIR:-$HOME/.claude}"'';
         opencode = ''"''${XDG_CONFIG_HOME:-$HOME/.config}/opencode"'';
