@@ -29,6 +29,66 @@
       supportImages = false;
     }
     {
+      name = "gufo-ds4.1-flash";
+      provider = "gufo";
+      contextWindow = 262144;
+      reasoningEffort = [
+        "low"
+        "high"
+        "max"
+      ];
+      modelPath = "/var/llms/huggingface/hub/models--unsloth--DeepSeek-V4.1-Flash-1017-GGUF/snapshots/2688c0c3c2c3b052ec4f6d10a8417b0ef7ee4eba/UD-IQ2_XXS/DeepSeek-V4.1-Flash-1017-UD-IQ2_XXS-00001-of-00006.gguf";
+      extraArgs =
+        "--stream-experts --sessions 1 --expert-cache-bytes 98784247808 --speculative dspark"
+        + " --dspark-model /var/llms/huggingface/hub/models--Lucebox--DeepSeek-V4.1-Flash-1017-ROCMFP-GGUF/snapshots/ba58445f0818edfc69e680390bc9b4873af8a621/DeepSeek-V4.1-Flash-1017-DSpark-draft-Q2K-Q4K.gguf"
+        + " --mmproj /var/llms/huggingface/hub/models--unsloth--DeepSeek-V4.1-Flash-1017-GGUF/snapshots/2688c0c3c2c3b052ec4f6d10a8417b0ef7ee4eba/mmproj-BF16.gguf";
+      supportImages = true;
+    }
+    {
+      name = "gufo-lfm3-1.7b";
+      provider = "gufo";
+      contextWindow = 262144;
+      reasoningEffort = [
+        "high"
+      ];
+      modelPath = "/var/llms/huggingface/hub/models--LiquidAI--LFM3-1.7B-GGUF/snapshots/b3f2ae5d73cd3c91bf40e8ba752c648aa05dffdf/LFM3-1.7B-Q8_0.gguf";
+    }
+    {
+      name = "gufo-lfm3-vl-2b";
+      provider = "gufo";
+      contextWindow = 128000;
+      reasoningEffort = [
+        "high"
+      ];
+      modelPath = "/var/llms/huggingface/hub/models--LiquidAI--LFM3-VL-2B-GGUF/snapshots/b36554cfd35854b06429900131730cd80f092cdb/LFM3-VL-2B-Q8_0.gguf";
+      extraArgs = "--mmproj /var/llms/huggingface/hub/models--LiquidAI--LFM3-VL-2B-GGUF/snapshots/b36554cfd35854b06429900131730cd80f092cdb/mmproj-LFM3-VL-2B-BF16.gguf";
+      supportImages = true;
+    }
+    {
+      name = "gufo-lfm3-audio-2b-asr";
+      provider = "gufo";
+      modality = "asr";
+      contextWindow = 8192;
+      modelPath = "/var/llms/huggingface/hub/models--LiquidAI--LFM3-Audio-2B-GGUF/snapshots/02355c1a141e464a064f2ab2c276638dbcb7f38a/LFM3-Audio-2B-Q8_0.gguf";
+      extraArgs = "--mmproj /var/llms/huggingface/hub/models--LiquidAI--LFM3-Audio-2B-GGUF/snapshots/02355c1a141e464a064f2ab2c276638dbcb7f38a/mmproj-LFM3-Audio-2B-BF16.gguf";
+    }
+    {
+      name = "gufo-lfm3-audio-2b-tts";
+      provider = "gufo";
+      modality = "tts";
+      contextWindow = 8192;
+      modelPath = "/var/llms/huggingface/hub/models--LiquidAI--LFM3-Audio-2B-GGUF/snapshots/02355c1a141e464a064f2ab2c276638dbcb7f38a/LFM3-Audio-2B-Q8_0.gguf";
+      extraArgs = "--mmproj /var/llms/huggingface/hub/models--LiquidAI--LFM3-Audio-2B-GGUF/snapshots/02355c1a141e464a064f2ab2c276638dbcb7f38a/mmproj-LFM3-Audio-2B-BF16.gguf";
+    }
+    {
+      name = "gufo-d1-omni-2b";
+      provider = "gufo";
+      modality = "decision";
+      contextWindow = 16384;
+      modelPath = "/var/llms/huggingface/hub/models--LiquidAI--d1-Omni-2B-GGUF/snapshots/c53ae0b1f92b17065e9158d34019c9ca1ea5bcf8/d1-Omni-2B-Q8_0.gguf";
+      extraArgs = "--mmproj /var/llms/huggingface/hub/models--LiquidAI--d1-Omni-2B-GGUF/snapshots/c53ae0b1f92b17065e9158d34019c9ca1ea5bcf8/mmproj-d1-Omni-2B-BF16.gguf";
+    }
+    {
       name = "gufo-qwen3.8-flash-next";
       provider = "gufo";
       contextWindow = 262144;
@@ -60,21 +120,21 @@
         + " --sessions 2 -v";
       supportImages = true;
     }
-    {
-      name = "gufo-qwen3.8:27b-Q8-dflash2";
-      provider = "gufo";
-      contextWindow = 262144;
-      reasoningEffort = [
-        "xhigh"
-        "medium"
-        "low"
-      ];
-      modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4ca720788d1e01f1bff70c033e0d0028fd02e502/Qwen3.8-27B-UD-Q8_K_XL.gguf";
-      extraArgs =
-        "--speculative dflash2 --dflash-model /var/llms/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2-GGUF/snapshots/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
-        + " --sessions 2 -v";
-      supportImages = true;
-    }
+    # {
+    #   name = "gufo-qwen3.8:27b-Q8-dflash2";
+    #   provider = "gufo";
+    #   contextWindow = 262144;
+    #   reasoningEffort = [
+    #     "xhigh"
+    #     "medium"
+    #     "low"
+    #   ];
+    #   modelPath = "/var/llms/huggingface/hub/models--unsloth--Qwen3.8-27B-GGUF/snapshots/4ca720788d1e01f1bff70c033e0d0028fd02e502/Qwen3.8-27B-UD-Q8_K_XL.gguf";
+    #   extraArgs =
+    #     "--speculative dflash2 --dflash-model /var/llms/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2-GGUF/snapshots/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
+    #     + " --sessions 2 -v";
+    #   supportImages = true;
+    # }
     {
       name = "gufo-qwen3.8:27b-Q4-dflash2";
       provider = "gufo";

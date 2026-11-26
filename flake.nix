@@ -42,6 +42,14 @@
     herdr.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     gufo.url = "github:gufo-org/gufo";
+    ds41-gufo-extension = {
+      url = "github:franzmoca/ds41-gufo-extension";
+      flake = false;
+    };
+    lfm3-gufo-extension = {
+      url = "github:gufo-org/lfm3-gufo-extension";
+      flake = false;
+    };
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";

@@ -133,6 +133,22 @@
         "type": "github"
       }
     },
+    "ds41-gufo-extension": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795553230,
+        "narHash": "sha256-lW4X301Cs7iSqauvuVn1iKmrNWgak4/8//eBDWncAFs=",
+        "owner": "franzmoca",
+        "repo": "ds41-gufo-extension",
+        "rev": "d78c48773bbd49caa3912482971ac02a10695ae9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "franzmoca",
+        "repo": "ds41-gufo-extension",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -428,6 +444,22 @@
       "original": {
         "owner": "vic",
         "repo": "import-tree",
+        "type": "github"
+      }
+    },
+    "lfm3-gufo-extension": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795715057,
+        "narHash": "sha256-NCzCLY2J0wrFPxwnws1qt9bRHPgVga9aHfVkl01xGc8=",
+        "owner": "gufo-org",
+        "repo": "lfm3-gufo-extension",
+        "rev": "0b04aaccc581e2fae8688aa2e1c674c45edcdb86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gufo-org",
+        "repo": "lfm3-gufo-extension",
         "type": "github"
       }
     },
@@ -917,6 +949,7 @@
       "inputs": {
         "deploy-rs": "deploy-rs",
         "disko": "disko",
+        "ds41-gufo-extension": "ds41-gufo-extension",
         "flake-parts": "flake-parts",
         "gufo": "gufo",
         "herdr": "herdr",
@@ -925,6 +958,7 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "import-tree": "import-tree",
+        "lfm3-gufo-extension": "lfm3-gufo-extension",
         "llm-agents": "llm-agents",
         "mac-app-util": "mac-app-util",
         "nix-amd-ai": "nix-amd-ai",

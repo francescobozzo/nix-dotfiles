@@ -15,12 +15,17 @@
       llamaModels = lib.filter (m: m.provider == "llama-server") self.llms;
       flmModels = lib.filter (m: m.provider == "flm") self.llms;
       gufoModels = lib.filter (m: m.provider == "gufo") self.llms;
-      gufo = inputs.gufo.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      gufo = inputs.gufo.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+        extensions = [
+          inputs.ds41-gufo-extension
+          inputs.lfm3-gufo-extension
+        ];
+      };
 
       # Build the gufo serve command line via gufo's mkGufoServe. llama-swap
       # passes the listen port through the PORT env var; mkGufoServe supports
       # raw "$VAR" env references for --port. mkGufoServe covers all gufo
-      # modalities (llm/image/video/embedding/tts/asr); extra flags (speculative,
+      # modalities (llm/image/video/embedding/tts/asr/decision); extra flags (speculative,
       # video --root/--ttl) ride on m.extraArgs.
       mkGufoCmd =
         m:

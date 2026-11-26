@@ -53,6 +53,7 @@
                   "video"
                   "image"
                   "embedding"
+                  "decision"
                   "tts"
                   "asr"
                 ]
