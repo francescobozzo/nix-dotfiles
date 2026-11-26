@@ -44,6 +44,23 @@
       supportImages = true;
     }
     {
+      name = "gufo-inkling-2-mini";
+      provider = "gufo";
+      contextWindow = 262144;
+      reasoningEffort = [
+        "high"
+        "xhigh"
+        "medium"
+        "low"
+      ];
+      modelPath = "/var/llms/huggingface/hub/models--unsloth--Inkling-2-Mini-GGUF/snapshots/8078d149286eec7193795413b9e0643da6d11fa1/Inkling-2-Mini-UD-Q4_K_XL.gguf";
+      extraArgs =
+        "--speculative dspark --dspark-model /var/llms/huggingface/hub/models--unsloth--Inkling-2-Mini-GGUF/snapshots/8078d149286eec7193795413b9e0643da6d11fa1/dspark-Inkling-2-Mini-Q8_0.gguf"
+        + " --mmproj /var/llms/huggingface/hub/models--unsloth--Inkling-2-Mini-GGUF/snapshots/8078d149286eec7193795413b9e0643da6d11fa1/mmproj-BF16.gguf"
+        + " --sessions 2 -v";
+      supportImages = true;
+    }
+    {
       name = "gufo-qwen3.8:27b-Q8-dflash2";
       provider = "gufo";
       contextWindow = 262144;
